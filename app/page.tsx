@@ -1,84 +1,89 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+
 const storeCategories = [
   {
     name: "Peles",
-    href: "https://www.lalu.lv/veikals/category/peles/",
+    href: "/veikals/category/peles/",
     tone: "lavender",
     description: "Roku darinātas peles ar raksturu.",
   },
   {
     name: "Rotaļlietas",
-    href: "https://www.lalu.lv/veikals/category/rotallietas/",
+    href: "/veikals/category/rotallietas/",
     tone: "cream",
     description: "Mīksti, koši un bērniem draudzīgi darbi.",
     nested: true,
   },
   {
     name: "Cepures",
-    href: "https://www.lalu.lv/veikals/category/cepures/",
+    href: "/veikals/category/cepures/",
     tone: "warm",
     description: "Siltas sezonas izvēles katrai dienai.",
   },
   {
     name: "Cimdi",
-    href: "https://www.lalu.lv/veikals/category/cimdi/",
+    href: "/veikals/category/cimdi/",
     tone: "lavender",
     description: "Adīti pāri ar amatnieces rokrakstu.",
     nested: true,
   },
   {
     name: "Mauči jeb dūrgaļi",
-    href: "https://www.lalu.lv/veikals/category/mauci-jeb-durgali/",
+    href: "/veikals/category/mauci-jeb-durgali/",
     tone: "cream",
     description: "Praktiski un dekoratīvi plaukstu sildītāji.",
   },
   {
     name: "Latviski darbi / Atstarotāji",
-    href: "https://www.lalu.lv/veikals/category/atstarotaji/",
+    href: "/veikals/category/atstarotaji/",
     tone: "warm",
     description: "Gaismai, drošībai un latviskai noskaņai.",
   },
   {
     name: "Dažādi",
-    href: "https://www.lalu.lv/veikals/category/atslegu-piekarini/",
+    href: "/veikals/category/atslegu-piekarini/",
     tone: "lavender",
     description: "Nelieli atradumi un dāvanu nieki.",
     nested: true,
   },
   {
     name: "Magnētiņi",
-    href: "https://www.lalu.lv/veikals/category/magnetini/",
+    href: "/veikals/category/magnetini/",
     tone: "cream",
     description: "Mazie piemiņas darbi ikdienai.",
   },
   {
     name: "Pasūtījumi",
-    href: "https://www.lalu.lv/veikals/category/pasutijumi/",
+    href: "/veikals/category/pasutijumi/",
     tone: "warm",
     description: "Individuāli darinājumi pēc vienošanās.",
   },
   {
     name: "Fantāzijas ziedi",
-    href: "https://www.lalu.lv/veikals/category/fantazijas-ziedi/",
+    href: "/veikals/category/fantazijas-ziedi/",
     tone: "lavender",
     description: "Ziedi, kuri paliek ilgāk par sezonu.",
   },
 ];
 
 const navItems = [
-  { label: "Veikals", href: "https://www.lalu.lv/veikals/" },
-  { label: "Meistarklases", href: "https://www.lalu.lv/meistarklases/" },
-  { label: "Ekskursijas", href: "https://www.lalu.lv/ekskursijas/" },
-  { label: "Fantāzijas ziedi", href: "https://www.lalu.lv/fantazijas-ziedi/" },
-  { label: "Par mums", href: "https://www.lalu.lv/par-lalu/" },
+  { label: "Veikals", href: "/veikals/" },
+  { label: "Meistarklases", href: "/meistarklases/" },
+  { label: "Ekskursijas", href: "/ekskursijas/" },
+  { label: "Fantāzijas ziedi", href: "/fantazijas-ziedi/" },
+  { label: "Par mums", href: "/par-mums/" },
 ];
 
 const footerGroups = [
   {
     title: "LaLu",
     links: [
-      { label: "Par LaLu", href: "https://www.lalu.lv/par-lalu/" },
-      { label: "Vectēva stāsts", href: "https://www.lalu.lv/vecteva-stasts/" },
-      { label: "Pagalma piedzīvojumi", href: "https://www.lalu.lv/ekskursijas/" },
+      { label: "Par LaLu", href: "/par-mums/" },
+      { label: "Vectēva stāsts", href: "/vecteva-stasts/" },
+      { label: "Pagalma piedzīvojumi", href: "/ekskursijas/" },
     ],
   },
   {
@@ -88,9 +93,9 @@ const footerGroups = [
   {
     title: "Notikumi",
     links: [
-      { label: "Meistarklases", href: "https://www.lalu.lv/meistarklases/" },
-      { label: "Ekskursijas", href: "https://www.lalu.lv/ekskursijas/" },
-      { label: "Pieteikties ciemos", href: "https://www.lalu.lv/kontakti/" },
+      { label: "Meistarklases", href: "/meistarklases/" },
+      { label: "Ekskursijas", href: "/ekskursijas/" },
+      { label: "Pieteikties ciemos", href: "/kontakti/" },
     ],
   },
 ];
@@ -139,17 +144,40 @@ function RollingLabel({ children }: { children: string }) {
 }
 
 function Header() {
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+  const closeMobileMenu = () => setIsMobileOpen(false);
+
+  useEffect(() => {
+    document.body.style.overflow = isMobileOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileOpen]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMobileOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <header className="site-header">
-      <div className="nav-shell">
-        <a className="brand" href="https://www.lalu.lv/" aria-label="LaLu sākums">
+      <div className={`nav-shell${isMobileOpen ? " mobile-open" : ""}`}>
+        <Link className="brand" href="/" aria-label="LaLu sākums">
           <LaLuMark />
           <span>LaLu</span>
-        </a>
+        </Link>
 
         <nav className="desktop-nav" aria-label="Galvenā navigācija">
           <div className="nav-item nav-item-store">
-            <a className="nav-link" href="https://www.lalu.lv/veikals/">
+            <a className="nav-link" href="/veikals/">
               <RollingLabel>Veikals</RollingLabel>
             </a>
 
@@ -177,7 +205,7 @@ function Header() {
                   </div>
                 </div>
 
-                <a className="mega-feature" href="https://www.lalu.lv/veikals/">
+                <a className="mega-feature" href="/veikals/">
                   <span className="feature-art" aria-hidden="true">
                     <span />
                     <span />
@@ -189,8 +217,8 @@ function Header() {
               </div>
 
               <div className="mega-actions">
-                <a href="https://www.lalu.lv/veikals/">Apskatīt veikalu</a>
-                <a href="https://www.lalu.lv/kontakti/">Jautāt par pasūtījumu</a>
+                <a href="/veikals/">Apskatīt veikalu</a>
+                <a href="/kontakti/">Jautāt par pasūtījumu</a>
               </div>
             </div>
           </div>
@@ -203,25 +231,63 @@ function Header() {
         </nav>
 
         <div className="nav-actions">
-          <a className="icon-button" href="https://www.lalu.lv/veikals/" aria-label="Atvērt veikalu">
+          <a className="icon-button" href="/veikals/" aria-label="Atvērt veikalu">
             <BagIcon />
           </a>
-          <a className="primary-cta" href="https://www.lalu.lv/ekskursijas/">
+          <a className="primary-cta" href="/ekskursijas/">
             Pieteikties ekskursijai
           </a>
         </div>
 
-        <details className="mobile-menu">
-          <summary>Izvēlne</summary>
-          <div>
+        <div className="mobile-header-actions">
+          <a className="mobile-top-cta" href="/ekskursijas/" onClick={closeMobileMenu}>
+            Pieteikties
+          </a>
+          <button
+            className="mobile-menu-toggle"
+            type="button"
+            aria-label={isMobileOpen ? "Aizvērt izvēlni" : "Atvērt izvēlni"}
+            aria-expanded={isMobileOpen}
+            aria-controls="mobile-navigation"
+            onClick={() => setIsMobileOpen((open) => !open)}
+          >
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+          </button>
+        </div>
+
+        <div
+          className="mobile-menu-panel"
+          id="mobile-navigation"
+          aria-hidden={!isMobileOpen}
+        >
+          <nav className="mobile-menu-links" aria-label="Mobilā navigācija">
             {navItems.map((item) => (
-              <a href={item.href} key={item.label}>
-                {item.label}
+              <a href={item.href} key={item.label} onClick={closeMobileMenu}>
+                <span>{item.label}</span>
+                <svg viewBox="0 0 14 14" aria-hidden="true">
+                  <path d="m5 3 4 4-4 4" />
+                </svg>
               </a>
             ))}
-            <a href="https://www.lalu.lv/kontakti/">Kontakti</a>
+            <a href="/kontakti/" onClick={closeMobileMenu}>
+              <span>Kontakti</span>
+              <svg viewBox="0 0 14 14" aria-hidden="true">
+                <path d="m5 3 4 4-4 4" />
+              </svg>
+            </a>
+          </nav>
+
+          <div className="mobile-menu-actions">
+            <a href="/ekskursijas/" onClick={closeMobileMenu}>
+              Pieteikties ekskursijai
+            </a>
+            <a href="/veikals/" onClick={closeMobileMenu}>
+              Veikals
+              <span aria-hidden="true">→</span>
+            </a>
           </div>
-        </details>
+        </div>
       </div>
     </header>
   );
@@ -231,17 +297,6 @@ function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-inner">
-        <div className="footer-brand">
-          <a className="brand" href="https://www.lalu.lv/" aria-label="LaLu sākums">
-            <LaLuMark />
-            <span>LaLu</span>
-          </a>
-          <p>
-            Radīts Latvijā. Radīts ar mīlestību. Rokdarbi, radošas darbnīcas un
-            ciemošanās Aizputē.
-          </p>
-        </div>
-
         <div className="footer-links">
           {footerGroups.map((group) => (
             <div key={group.title}>
@@ -265,8 +320,19 @@ function Footer() {
       </div>
 
       <div className="footer-bottom">
+        <Link className="brand" href="/" aria-label="LaLu sākums">
+          <LaLuMark />
+          <span>LaLu</span>
+        </Link>
         <p>© LaLu. Radošā darbnīca ar neatkārtojamu rokrakstu.</p>
-        <a href="https://www.facebook.com/laludarbnica">Facebook</a>
+        <div className="footer-socials" aria-label="Sociālie kanāli">
+          <a href="/social/facebook/" aria-label="Facebook">
+            f
+          </a>
+          <a href="/social/instagram/" aria-label="Instagram">
+            ig
+          </a>
+        </div>
       </div>
     </footer>
   );
@@ -286,7 +352,7 @@ export default function Home() {
             Clay iedvesmotu kustību.
           </p>
         </div>
-        <a className="secondary-cta" href="https://www.lalu.lv/veikals/">
+        <a className="secondary-cta" href="/veikals/">
           Ienāc veikalā
         </a>
       </section>
