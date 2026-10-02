@@ -240,8 +240,8 @@ function Header() {
         </div>
 
         <div className="mobile-header-actions">
-          <a className="mobile-top-cta" href="/ekskursijas/" onClick={closeMobileMenu}>
-            Pieteikties
+          <a className="mobile-bag-link" href="/veikals/" aria-label="Atvērt veikalu" onClick={closeMobileMenu}>
+            <BagIcon />
           </a>
           <button
             className="mobile-menu-toggle"
