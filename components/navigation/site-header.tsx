@@ -93,6 +93,9 @@ export function SiteHeader() {
               <RollingLabel>{item.label}</RollingLabel>
             </a>
           ))}
+          <a className="nav-link" href="/kontakti/">
+            <RollingLabel>Kontakti</RollingLabel>
+          </a>
         </nav>
 
         <div className="nav-actions">

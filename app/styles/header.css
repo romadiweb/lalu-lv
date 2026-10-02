@@ -3,8 +3,7 @@
   top: 0;
   z-index: 20;
   padding: 0 12px;
-  background: linear-gradient(180deg, rgb(249 248 246 / 0.98), rgb(249 248 246 / 0.82));
-  backdrop-filter: blur(16px);
+  background: transparent;
 }
 
 .nav-shell {
@@ -121,9 +120,11 @@
 }
 
 .primary-cta {
-  padding: 0 18px;
+  min-height: 40px;
+  padding: 0 15px;
   background: var(--primary);
   color: var(--ink);
+  font-size: 13px;
 }
 
 .icon-button:hover,
