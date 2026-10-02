@@ -1,0 +1,53 @@
+.brand {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  font-size: 24px;
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.logo-mark {
+  display: grid;
+  width: 29px;
+  height: 29px;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  box-shadow: inset 0 -8px 14px rgb(23 23 23 / 0.08);
+}
+
+.logo-mark svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+}
+
+.logo-mark path:first-child {
+  fill: #f9f8f6;
+}
+
+.logo-mark path:nth-child(2) {
+  fill: #171717;
+  opacity: 0.92;
+}
+
+.logo-mark circle {
+  fill: #c8bbfb;
+  stroke: #171717;
+  stroke-width: 1.6;
+}
+
+.bag-icon {
+  width: 27px;
+  height: 27px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
