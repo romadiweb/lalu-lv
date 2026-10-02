@@ -1,33 +1,20 @@
 import Image from "next/image";
-
-const heroLinks = [
-  {
-    title: "Veikals",
-    description: "Roku darināti atradumi ikdienai un svētkiem.",
-    href: "/veikals/",
-  },
-  {
-    title: "Meistarklases",
-    description: "Radošas nodarbības lieliem un maziem.",
-    href: "/meistarklases/",
-  },
-  {
-    title: "Ekskursijas",
-    description: "Ielūkojies LaLu darbnīcas ikdienā.",
-    href: "/ekskursijas/",
-  },
-  {
-    title: "Fantāzijas ziedi",
-    description: "Ziedi, kas saglabā savu stāstu ilgāk.",
-    href: "/fantazijas-ziedi/",
-  },
-];
+import { ReviewMarquee } from "./review-marquee";
 
 function ArrowIcon() {
   return (
     <svg viewBox="0 0 20 20" aria-hidden="true">
       <path d="M4 10h11M11 5l5 5-5 5" />
     </svg>
+  );
+}
+
+function RollingArrowIcon() {
+  return (
+    <span className="rolling-arrow" aria-hidden="true">
+      <ArrowIcon />
+      <ArrowIcon />
+    </span>
   );
 }
 
@@ -56,33 +43,19 @@ export function OpeningPanel() {
             <p>Roku darbi, meistarklases un ciemošanās darbnīcā vienā siltā vietā.</p>
             <div className="hero-actions">
               <a className="secondary-cta" href="/veikals/">
-                Ienāc veikalā
+                <span>Ienāc veikalā</span>
+                <RollingArrowIcon />
               </a>
               <a className="hero-secondary-cta" href="/ekskursijas/">
-                Pieteikties ekskursijai
+                <span>Pieteikties ekskursijai</span>
+                <RollingArrowIcon />
               </a>
             </div>
           </div>
         </div>
       </div>
 
-      <nav className="hero-lower-panel" aria-label="Iepazīsti LaLu">
-        <div className="hero-panel-intro">
-          <span>LaLu radošā darbnīca</span>
-          <p>Atklāj stāstus, darbus un piedzīvojumus, kas tapuši tepat Latvijā.</p>
-        </div>
-        <div className="hero-panel-grid">
-          {heroLinks.map((link) => (
-            <a className="hero-panel-link" href={link.href} key={link.title}>
-              <span className="hero-panel-link-heading">
-                <strong>{link.title}</strong>
-                <ArrowIcon />
-              </span>
-              <span>{link.description}</span>
-            </a>
-          ))}
-        </div>
-      </nav>
+      <ReviewMarquee />
     </section>
   );
 }
