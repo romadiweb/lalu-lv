@@ -13,33 +13,17 @@
 
 .logo-mark {
   display: grid;
-  width: 29px;
-  height: 29px;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
   place-items: center;
-  border-radius: var(--radius-md);
-  background: var(--primary);
-  box-shadow: inset 0 -8px 14px rgb(23 23 23 / 0.08);
 }
 
-.logo-mark svg {
-  width: 24px;
-  height: 24px;
-  fill: none;
-}
-
-.logo-mark path:first-child {
-  fill: #f9f8f6;
-}
-
-.logo-mark path:nth-child(2) {
-  fill: #171717;
-  opacity: 0.92;
-}
-
-.logo-mark circle {
-  fill: #c8bbfb;
-  stroke: #171717;
-  stroke-width: 1.6;
+.logo-mark-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .bag-icon {
