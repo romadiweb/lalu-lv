@@ -5,6 +5,7 @@ import {
   type KeyboardEvent,
   type PointerEvent,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
 } from "react";
@@ -12,7 +13,8 @@ import styles from "./story-carousel.module.css";
 
 const VIDEO_ID = "Gs507EVZiOc";
 const VIDEO_TITLE = "Aizputes novada rokdarbu izstādes atklāšana";
-const STORY_COUNT = 2;
+const STORY_COUNT = 3;
+const INITIAL_STORY_INDEX = Math.floor(STORY_COUNT / 2);
 
 function ArrowIcon({ direction }: { direction: "left" | "right" }) {
   return (
@@ -36,33 +38,23 @@ function PlayIcon() {
 
 export function StoryCarousel() {
   const viewportRef = useRef<HTMLDivElement>(null);
-  const animationFrameRef = useRef<number | null>(null);
-  const isSettlingRef = useRef(false);
+  const scrollUpdateFrameRef = useRef<number | null>(null);
   const dragState = useRef({
     startX: 0,
     startScrollLeft: 0,
-    startIndex: 0,
+    startIndex: INITIAL_STORY_INDEX,
     dragging: false,
   });
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(INITIAL_STORY_INDEX);
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     return () => {
-      if (animationFrameRef.current !== null) {
-        cancelAnimationFrame(animationFrameRef.current);
+      if (scrollUpdateFrameRef.current !== null) {
+        cancelAnimationFrame(scrollUpdateFrameRef.current);
       }
     };
   }, []);
-
-  const stopSettling = () => {
-    if (animationFrameRef.current !== null) {
-      cancelAnimationFrame(animationFrameRef.current);
-      animationFrameRef.current = null;
-    }
-
-    isSettlingRef.current = false;
-  };
 
   const getCards = (viewport: HTMLDivElement) =>
     Array.from(viewport.querySelectorAll<HTMLElement>("[data-story-card]"));
@@ -82,7 +74,7 @@ export function StoryCarousel() {
     }, 0);
   };
 
-  const settleToCard = (index: number) => {
+  const settleToCard = (index: number, behavior: ScrollBehavior = "smooth") => {
     const viewport = viewportRef.current;
 
     if (!viewport) {
@@ -102,54 +94,61 @@ export function StoryCarousel() {
       0,
       Math.min(maxScrollLeft, card.offsetLeft - (viewport.clientWidth - card.offsetWidth) / 2),
     );
-    const startLeft = viewport.scrollLeft;
-    const distance = targetLeft - startLeft;
-
-    stopSettling();
-
-    if (reducedMotion || Math.abs(distance) < 1) {
-      viewport.classList.remove(styles.dragging);
-      viewport.classList.remove(styles.settling);
-      viewport.scrollLeft = targetLeft;
-      setActiveIndex(index);
-      return;
-    }
-
-    const duration = Math.min(520, Math.max(320, Math.abs(distance) * 0.52));
-    const startedAt = performance.now();
-    isSettlingRef.current = true;
-    viewport.classList.add(styles.settling);
     viewport.classList.remove(styles.dragging);
 
-    const animate = (now: number) => {
-      const progress = Math.min(1, (now - startedAt) / duration);
-      const easedProgress = 1 - Math.pow(1 - progress, 5);
-      viewport.scrollLeft = startLeft + distance * easedProgress;
-
-      if (progress < 1) {
-        animationFrameRef.current = requestAnimationFrame(animate);
-        return;
-      }
-
-      animationFrameRef.current = null;
-      isSettlingRef.current = false;
-      viewport.classList.remove(styles.settling);
-      viewport.scrollLeft = targetLeft;
-      setActiveIndex(index);
-    };
-
-    animationFrameRef.current = requestAnimationFrame(animate);
+    viewport.scrollTo({
+      left: targetLeft,
+      behavior: reducedMotion ? "auto" : behavior,
+    });
+    setActiveIndex(index);
   };
 
   const updateActiveCard = () => {
     const viewport = viewportRef.current;
 
-    if (!viewport || dragState.current.dragging || isSettlingRef.current) {
+    if (!viewport || dragState.current.dragging || scrollUpdateFrameRef.current !== null) {
       return;
     }
 
-    setActiveIndex(getClosestCardIndex(viewport));
+    scrollUpdateFrameRef.current = requestAnimationFrame(() => {
+      scrollUpdateFrameRef.current = null;
+
+      const currentViewport = viewportRef.current;
+
+      if (!currentViewport || dragState.current.dragging) {
+        return;
+      }
+
+      const closestIndex = getClosestCardIndex(currentViewport);
+      setActiveIndex((currentIndex) =>
+        currentIndex === closestIndex ? currentIndex : closestIndex,
+      );
+    });
   };
+
+  useLayoutEffect(() => {
+    const viewport = viewportRef.current;
+
+    if (!viewport) {
+      return;
+    }
+
+    const cards = Array.from(viewport.querySelectorAll<HTMLElement>("[data-story-card]"));
+    const card = cards[INITIAL_STORY_INDEX];
+
+    if (!card) {
+      return;
+    }
+
+    const maxScrollLeft = viewport.scrollWidth - viewport.clientWidth;
+    viewport.scrollLeft = Math.max(
+      0,
+      Math.min(
+        maxScrollLeft,
+        card.offsetLeft - (viewport.clientWidth - card.offsetWidth) / 2,
+      ),
+    );
+  }, []);
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
     if (event.pointerType !== "mouse" || event.button !== 0) {
@@ -168,8 +167,6 @@ export function StoryCarousel() {
       return;
     }
 
-    stopSettling();
-    viewport.classList.remove(styles.settling);
     dragState.current = {
       startX: event.clientX,
       startScrollLeft: viewport.scrollLeft,
@@ -338,6 +335,32 @@ export function StoryCarousel() {
                 target="_blank"
               >
                 Lasīt rakstu
+                <ArrowIcon direction="right" />
+              </a>
+            </div>
+          </article>
+
+          <article className={`${styles.card} ${styles.articleCard}`} data-story-card>
+            <Image
+              alt="LaLu radošā darbnīca Aizputē"
+              className={styles.cardImage}
+              draggable={false}
+              fill
+              sizes="(max-width: 720px) calc(100vw - 48px), 860px"
+              src="/images/darbnica_lalu_eka_2021_web-800x450.jpg"
+            />
+            <div className={styles.cardShade} />
+            <div className={styles.cardCopy}>
+              <span>Raksts un video · ReTV</span>
+              <h3>Aizputes rokdarbniece Laila Luzere izveido radošo darbnīcu</h3>
+              <p>ReTV stāsts par Lailas Luzeres radošo darbnīcu, senlietām un rokdarbiem.</p>
+              <a
+                className={styles.underlinedAction}
+                href="https://retv.lv/raksts/aizputes-rokdarbniece-laila-luzere-izveido-radoso-darbnicu/"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Lasīt un skatīties
                 <ArrowIcon direction="right" />
               </a>
             </div>

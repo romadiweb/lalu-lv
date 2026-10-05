@@ -1,17 +1,33 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { LaLuMark } from "@/components/brand/lalu-mark";
 import { BagIcon } from "@/components/icons/bag-icon";
-import { CategoryIcon } from "@/components/icons/category-icon";
 import { RollingLabel } from "@/components/navigation/rolling-label";
 import { navItems, storeCategories } from "@/lib/site-map";
 
 export function SiteHeader() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [activeMobilePanel, setActiveMobilePanel] = useState<"store" | null>(null);
+  const [isLogoPopping, setIsLogoPopping] = useState(false);
 
-  const closeMobileMenu = () => setIsMobileOpen(false);
+  const closeMobileMenu = () => {
+    setIsMobileOpen(false);
+    setActiveMobilePanel(null);
+  };
+
+  const openStorePanel = () => {
+    setActiveMobilePanel("store");
+    setIsLogoPopping(false);
+  };
+
+  const closeStorePanel = () => {
+    setActiveMobilePanel(null);
+    setIsLogoPopping(true);
+    window.setTimeout(() => setIsLogoPopping(false), 420);
+  };
 
   useEffect(() => {
     document.body.style.overflow = isMobileOpen ? "hidden" : "";
@@ -34,11 +50,22 @@ export function SiteHeader() {
 
   return (
     <header className="site-header">
-      <div className={`nav-shell${isMobileOpen ? " mobile-open" : ""}`}>
-        <Link className="brand" href="/" aria-label="LaLu sākums">
-          <LaLuMark />
-          <span>LaLu</span>
-        </Link>
+      <div
+        className={`nav-shell${isMobileOpen ? " mobile-open" : ""}${activeMobilePanel ? " mobile-submenu-open" : ""}${isLogoPopping ? " logo-pop" : ""}`}
+      >
+        {activeMobilePanel ? (
+          <button className="mobile-back-button" type="button" onClick={closeStorePanel}>
+            <svg viewBox="0 0 14 14" aria-hidden="true">
+              <path d="M9 3 5 7l4 4" />
+            </svg>
+            Back
+          </button>
+        ) : (
+          <Link className="brand" href="/" aria-label="LaLu sākums" onClick={closeMobileMenu}>
+            <LaLuMark />
+            <span>LaLu</span>
+          </Link>
+        )}
 
         <nav className="desktop-nav" aria-label="Galvenā navigācija">
           <div className="nav-item nav-item-store">
@@ -53,7 +80,17 @@ export function SiteHeader() {
                   <div className="category-grid">
                     {storeCategories.map((category) => (
                       <a className="category-link" href={category.href} key={category.name}>
-                        <CategoryIcon tone={category.tone} />
+                        <span className={`category-image-frame category-image-frame-${category.tone}`}>
+                          <Image
+                            src={category.image.src}
+                            alt={category.image.alt}
+                            width={320}
+                            height={320}
+                            sizes="44px"
+                            loading="eager"
+                            decoding="async"
+                          />
+                        </span>
                         <span>
                           <span className="category-title">
                             {category.name}
@@ -117,7 +154,14 @@ export function SiteHeader() {
             aria-label={isMobileOpen ? "Aizvērt izvēlni" : "Atvērt izvēlni"}
             aria-expanded={isMobileOpen}
             aria-controls="mobile-navigation"
-            onClick={() => setIsMobileOpen((open) => !open)}
+            onClick={() => {
+              setIsMobileOpen((open) => {
+                if (open) {
+                  setActiveMobilePanel(null);
+                }
+                return !open;
+              });
+            }}
           >
             <span aria-hidden="true" />
             <span aria-hidden="true" />
@@ -129,31 +173,66 @@ export function SiteHeader() {
           id="mobile-navigation"
           aria-hidden={!isMobileOpen}
         >
-          <nav className="mobile-menu-links" aria-label="Mobilā navigācija">
-            {navItems.map((item) => (
-              <a href={item.href} key={item.label} onClick={closeMobileMenu}>
-                <span>{item.label}</span>
-                <svg viewBox="0 0 14 14" aria-hidden="true">
-                  <path d="m5 3 4 4-4 4" />
-                </svg>
-              </a>
-            ))}
-            <a href="/kontakti/" onClick={closeMobileMenu}>
-              <span>Kontakti</span>
-              <svg viewBox="0 0 14 14" aria-hidden="true">
-                <path d="m5 3 4 4-4 4" />
-              </svg>
-            </a>
-          </nav>
+          <div className="mobile-menu-stage">
+            <div className="mobile-menu-root" aria-hidden={activeMobilePanel !== null} inert={activeMobilePanel !== null}>
+              <nav className="mobile-menu-links" aria-label="Mobilā navigācija">
+                {navItems.map((item) =>
+                  item.label === "Veikals" ? (
+                    <button type="button" key={item.label} onClick={openStorePanel}>
+                      <span>{item.label}</span>
+                      <svg viewBox="0 0 14 14" aria-hidden="true">
+                        <path d="m5 3 4 4-4 4" />
+                      </svg>
+                    </button>
+                  ) : (
+                    <a href={item.href} key={item.label} onClick={closeMobileMenu}>
+                      <span>{item.label}</span>
+                      <svg viewBox="0 0 14 14" aria-hidden="true">
+                        <path d="m5 3 4 4-4 4" />
+                      </svg>
+                    </a>
+                  ),
+                )}
+                <a href="/kontakti/" onClick={closeMobileMenu}>
+                  <span>Kontakti</span>
+                  <svg viewBox="0 0 14 14" aria-hidden="true">
+                    <path d="m5 3 4 4-4 4" />
+                  </svg>
+                </a>
+              </nav>
 
-          <div className="mobile-menu-actions">
-            <a href="/ekskursijas/" onClick={closeMobileMenu}>
-              Pieteikties ekskursijai
-            </a>
-            <a href="/veikals/" onClick={closeMobileMenu}>
-              Veikals
-              <span aria-hidden="true">→</span>
-            </a>
+              <div className="mobile-menu-actions">
+                <a href="/ekskursijas/" onClick={closeMobileMenu}>
+                  Pieteikties ekskursijai
+                </a>
+                <a href="/veikals/" onClick={closeMobileMenu}>
+                  Veikals
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+
+            <div className="mobile-submenu-panel" aria-hidden={activeMobilePanel !== "store"} inert={activeMobilePanel !== "store"}>
+              <nav className="mobile-category-list" aria-label="Veikala kategorijas">
+                <p className="mobile-menu-kicker">Veikala kategorijas</p>
+                {storeCategories.map((category) => (
+                  <a href={category.href} key={category.name} onClick={closeMobileMenu}>
+                    <span className={`category-image-frame category-image-frame-${category.tone}`}>
+                      <Image
+                        src={category.image.src}
+                        alt={category.image.alt}
+                        width={320}
+                        height={320}
+                        sizes="44px"
+                        loading="eager"
+                        decoding="async"
+                      />
+                    </span>
+                    <span>{category.name}</span>
+                  </a>
+                ))}
+              </nav>
+            </div>
           </div>
         </div>
       </div>

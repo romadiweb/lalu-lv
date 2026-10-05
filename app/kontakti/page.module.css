@@ -1,0 +1,559 @@
+.pageShell {
+  min-height: 100vh;
+  overflow: clip;
+  background:
+    linear-gradient(180deg, var(--canvas) 0%, var(--canvas) 34rem),
+    var(--canvas);
+  color: var(--ink);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
+  gap: clamp(36px, 5vw, 76px);
+  align-items: stretch;
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: clamp(82px, 9vw, 128px) 0 clamp(82px, 9vw, 124px);
+}
+
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.heroCopy h1 {
+  max-width: 9.5ch;
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.94;
+  text-wrap: balance;
+}
+
+.heroCopy > p {
+  max-width: 62ch;
+  margin: clamp(24px, 3vw, 34px) 0 0;
+  color: var(--body);
+  font-size: clamp(16px, 1.45vw, 18px);
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+.mapHeader a {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  transition:
+    transform 220ms ease,
+    background-color 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease;
+}
+
+.mapHeader a:hover,
+.mapHeader a:focus-visible {
+  transform: translateY(-1px);
+}
+
+.mapHeader a svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.iconRoll {
+  display: block;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+.iconRoll > span {
+  display: grid;
+  grid-template-rows: repeat(2, 18px);
+  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.iconRoll svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.mapHeader a:hover .iconRoll > span,
+.mapHeader a:focus-visible .iconRoll > span {
+  transform: translateY(-50%);
+}
+
+.factGrid {
+  display: grid;
+  gap: 10px;
+  margin: clamp(32px, 4vw, 44px) 0 0;
+}
+
+.factCard {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.34fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  min-height: 74px;
+  padding: 16px 18px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  background: rgb(255 253 249 / 0.72);
+}
+
+.factCard dt {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.factCard dt span {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: var(--surface-soft);
+  color: var(--ink);
+}
+
+.factCard svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.factCard dd {
+  min-width: 0;
+  margin: 0;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.factCard a {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 180ms ease;
+}
+
+.factCard a:hover,
+.factCard a:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+.socialCtaRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.socialCtaRow a {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  min-height: 58px;
+  justify-content: flex-start;
+  padding: 0 18px;
+  border: 1px solid var(--hairline);
+  background: var(--canvas);
+  color: var(--ink);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  transition:
+    background-color 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease;
+}
+
+.socialCtaRow a:first-child {
+  background: var(--primary);
+}
+
+.socialIconRoll {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+.socialIconRoll > span {
+  display: grid;
+  grid-template-rows: repeat(2, 20px);
+  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.socialCtaRow a:hover .socialIconRoll > span,
+.socialCtaRow a:focus-visible .socialIconRoll > span {
+  transform: translateY(-50%);
+}
+
+.socialIconRoll svg {
+  width: 20px;
+  height: 20px;
+}
+
+.socialIconRoll svg rect,
+.socialIconRoll svg circle,
+.socialIconRoll svg path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.socialCtaRow a:first-child .socialIconRoll svg path {
+  fill: currentColor;
+  stroke: none;
+}
+
+.mapPanel {
+  display: grid;
+  grid-template-rows: auto minmax(420px, 1fr);
+  min-height: 620px;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  background: var(--canvas);
+  box-shadow: 0 28px 72px rgb(23 23 23 / 0.08);
+}
+
+.mapHeader {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(20px, 2.4vw, 30px);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.mapHeader h2 {
+  margin: 0;
+  font-size: clamp(24px, 2vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.mapHeader p {
+  max-width: 48ch;
+  margin: 9px 0 0;
+  color: var(--body);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.mapHeader a {
+  flex: 0 0 auto;
+  min-height: 42px;
+  padding: 0 15px;
+  background: var(--ink);
+  color: var(--canvas);
+}
+
+.mapBody {
+  position: relative;
+  min-height: 420px;
+  overflow: hidden;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  border: 0;
+  background: var(--surface-soft);
+  filter: saturate(0.88) contrast(0.95);
+}
+
+.mapNote {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  left: 18px;
+  display: grid;
+  gap: 2px;
+  max-width: 280px;
+  padding: 12px 14px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: rgb(249 248 246 / 0.9);
+  box-shadow: 0 12px 30px rgb(23 23 23 / 0.08);
+  pointer-events: none;
+}
+
+.mapNote span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.mapNote strong {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.intentSection {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto clamp(92px, 10vw, 140px);
+}
+
+.intentIntro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(320px, 0.78fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: end;
+  margin-bottom: clamp(24px, 3.5vw, 42px);
+}
+
+.intentIntro h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(32px, 4.2vw, 56px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.intentIntro p {
+  margin: 0;
+  color: var(--body);
+  font-size: 16px;
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+.reasonGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.reasonCard {
+  min-height: 260px;
+  padding: clamp(24px, 3vw, 34px);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  background: var(--surface-card);
+}
+
+.reasonCard:nth-child(2) {
+  background: var(--canvas);
+}
+
+.reasonCard:nth-child(3) {
+  background: var(--surface-soft);
+}
+
+.reasonCard h3 {
+  max-width: 14ch;
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(24px, 2.4vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.reasonCard p {
+  margin: clamp(18px, 2.5vw, 28px) 0 0;
+  color: var(--body);
+  font-size: 16px;
+  line-height: 1.58;
+}
+
+.visitBand {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto clamp(70px, 8vw, 112px);
+  padding: clamp(10px, 1.4vw, 14px);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  background: var(--surface-soft);
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.visitMedia {
+  position: relative;
+  min-height: clamp(280px, 40vw, 560px);
+  overflow: hidden;
+  border-radius: calc(var(--radius-xl) - 8px);
+  background: var(--icon-backing);
+}
+
+.visitMedia img {
+  object-fit: cover;
+}
+
+.visitMedia::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(23 23 23 / 0), rgb(23 23 23 / 0.08));
+  content: "";
+  pointer-events: none;
+}
+
+@media (max-width: 980px) {
+  .hero,
+  .intentIntro {
+    grid-template-columns: 1fr;
+  }
+
+  .mapPanel {
+    min-height: 560px;
+  }
+
+  .reasonGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .reasonCard {
+    min-height: auto;
+  }
+
+  .visitMedia {
+    min-height: 330px;
+  }
+}
+
+@media (max-width: 840px) {
+  .hero {
+    padding-top: 118px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero,
+  .intentSection,
+  .visitBand {
+    width: calc(100% - 32px);
+  }
+
+  .hero {
+    gap: 28px;
+    padding-bottom: 78px;
+  }
+
+  .heroCopy h1 {
+    max-width: 8.5ch;
+    font-size: clamp(40px, 14vw, 56px);
+  }
+
+  .factCard {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    align-items: start;
+  }
+
+  .factCard dd {
+    font-size: 14px;
+  }
+
+  .mapPanel {
+    grid-template-rows: auto auto;
+    min-height: 0;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 18px 44px rgb(23 23 23 / 0.08);
+  }
+
+  .mapHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .mapHeader a {
+    width: 100%;
+  }
+
+  .map {
+    min-height: 410px;
+  }
+
+  .mapBody {
+    min-height: 410px;
+  }
+
+  .mapNote {
+    right: 14px;
+    bottom: 14px;
+    left: 14px;
+    max-width: none;
+  }
+
+  .intentSection {
+    margin-bottom: 82px;
+  }
+
+  .intentIntro {
+    margin-bottom: 18px;
+  }
+
+  .reasonCard {
+    padding: 24px;
+    border-radius: var(--radius-lg);
+  }
+
+  .visitBand {
+    padding: 10px;
+    border-radius: var(--radius-xl);
+  }
+
+  .visitMedia {
+    min-height: 250px;
+    border-radius: var(--radius-lg);
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mapHeader a,
+  .socialCtaRow a,
+  .iconRoll > span,
+  .socialIconRoll > span {
+    transition: none;
+  }
+
+  .mapHeader a:hover,
+  .mapHeader a:focus-visible,
+  .mapHeader a:hover .iconRoll > span,
+  .mapHeader a:focus-visible .iconRoll > span,
+  .socialCtaRow a:hover .socialIconRoll > span,
+  .socialCtaRow a:focus-visible .socialIconRoll > span {
+    transform: none;
+  }
+}

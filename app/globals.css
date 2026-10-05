@@ -7,6 +7,7 @@
   --surface-soft: #f3f0ec;
   --surface-card: #eeeae4;
   --surface-strong: #e5e0d8;
+  --icon-backing: #f4f3f0;
   --primary: #c8bbfb;
   --primary-active: #b5a4f3;
   --primary-disabled: #e7e2f6;
@@ -84,6 +85,8 @@ button:focus-visible {
   }
 
   .mobile-menu-links a,
+  .mobile-menu-links button,
+  .mobile-category-list a,
   .mobile-menu-actions {
     transition-delay: 0ms !important;
   }

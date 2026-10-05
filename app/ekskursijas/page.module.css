@@ -1,0 +1,623 @@
+.pageShell {
+  min-height: 100vh;
+  overflow: clip;
+  background:
+    radial-gradient(circle at 82% 8%, rgb(200 187 251 / 0.26), transparent 24rem),
+    linear-gradient(180deg, var(--canvas) 0%, var(--canvas) 38rem),
+    var(--canvas);
+  color: var(--ink);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.94fr) minmax(420px, 1.06fr);
+  gap: clamp(36px, 5vw, 80px);
+  align-items: center;
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: clamp(82px, 9vw, 130px) 0 clamp(72px, 8vw, 110px);
+}
+
+.heroCopy h1 {
+  max-width: 11ch;
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.94;
+  text-wrap: balance;
+}
+
+.heroCopy p {
+  max-width: 61ch;
+  margin: clamp(24px, 3vw, 34px) 0 0;
+  color: var(--body);
+  font-size: clamp(16px, 1.45vw, 18px);
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: clamp(28px, 4vw, 42px);
+}
+
+.heroActions a,
+.cardBody a {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  transition:
+    transform 220ms ease,
+    background-color 220ms ease,
+    border-color 220ms ease;
+}
+
+.heroActions a:first-child {
+  padding: 0 18px;
+  background: var(--primary);
+  color: var(--ink);
+}
+
+.heroActions a:last-child {
+  padding: 0 18px;
+  border: 1px solid var(--hairline);
+  background: var(--canvas);
+  color: var(--ink);
+}
+
+.heroActions a:hover,
+.heroActions a:focus-visible,
+.cardBody a:hover,
+.cardBody a:focus-visible {
+  transform: translateY(-1px);
+}
+
+.heroActions svg,
+.cardBody svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.heroActions a:hover svg,
+.heroActions a:focus-visible svg,
+.cardBody a:hover svg,
+.cardBody a:focus-visible svg {
+  transform: translateX(4px);
+}
+
+.visitBoard {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  min-height: 540px;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  background: var(--canvas);
+  box-shadow: 0 28px 70px rgb(23 23 23 / 0.08);
+}
+
+.visitBoard::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  z-index: 0;
+  border-radius: calc(var(--radius-xl) - 8px);
+  background:
+    linear-gradient(120deg, rgb(200 187 251 / 0.6), transparent 42%),
+    var(--surface-soft);
+}
+
+.visitBoard > * {
+  position: relative;
+  z-index: 1;
+}
+
+.boardTop {
+  display: grid;
+  align-content: end;
+  min-height: 190px;
+  padding: clamp(24px, 3vw, 34px);
+  border-radius: var(--radius-lg);
+  background: var(--primary);
+  color: var(--ink);
+}
+
+.boardTop span {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.boardTop strong {
+  max-width: 15ch;
+  margin-top: 10px;
+  font-size: clamp(32px, 3.4vw, 40px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.priceStack {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.priceStack div {
+  display: grid;
+  gap: 8px;
+  min-height: 112px;
+  align-content: space-between;
+  padding: 16px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  background: rgb(255 253 249 / 0.76);
+}
+
+.priceStack span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.priceStack strong {
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.visitSteps {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  background: var(--canvas);
+}
+
+.visitSteps li {
+  display: flex;
+  min-height: 56px;
+  align-items: center;
+  gap: 12px;
+  padding: 0 18px;
+  color: var(--body);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.visitSteps li + li {
+  border-top: 1px solid var(--hairline);
+}
+
+.visitSteps li::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 4px rgb(200 187 251 / 0.24);
+}
+
+.offerSection,
+.kitchenSection,
+.bookingBand {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.offerSection {
+  padding: 0 0 clamp(90px, 10vw, 138px);
+}
+
+.sectionIntro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.84fr) minmax(320px, 0.72fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: end;
+  margin-bottom: clamp(26px, 4vw, 46px);
+}
+
+.sectionIntro h2,
+.kitchenIntro h2,
+.bookingBand h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(32px, 4.3vw, 56px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.sectionIntro p,
+.kitchenIntro p,
+.bookingBand p {
+  margin: 0;
+  color: var(--body);
+  font-size: 16px;
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.offerCard {
+  position: relative;
+  display: grid;
+  min-height: 600px;
+  overflow: visible;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  background: var(--canvas);
+}
+
+.cardBand {
+  position: relative;
+  min-height: 154px;
+  padding: 54px 16px 18px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: var(--surface-card);
+  color: var(--ink);
+}
+
+.featuredCard .cardBand {
+  background: var(--primary);
+}
+
+.iconTile {
+  position: absolute;
+  top: -16px;
+  left: 16px;
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border: 1px solid rgb(23 23 23 / 0.08);
+  border-radius: var(--radius-md);
+  background: var(--primary-disabled);
+  box-shadow: 0 14px 24px rgb(23 23 23 / 0.08);
+}
+
+.featuredCard .iconTile {
+  background: var(--canvas);
+}
+
+.iconTile svg,
+.kitchenIcon svg {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.cardBand > span:not(.iconTile) {
+  display: block;
+  color: var(--body);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.cardBand h3 {
+  margin: 8px 0 0;
+  color: var(--ink);
+  font-size: clamp(24px, 2.2vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.06;
+  text-wrap: balance;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  padding: 22px 16px 16px;
+}
+
+.cardBody > strong {
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.24;
+}
+
+.cardBody p {
+  margin: 18px 0 0;
+  color: var(--body);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.cardBody ul {
+  display: grid;
+  gap: 9px;
+  margin: 22px 0 28px;
+  padding: 0;
+  list-style: none;
+}
+
+.cardBody li {
+  display: flex;
+  gap: 8px;
+  color: var(--body);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.cardBody li::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  flex: 0 0 auto;
+  margin-top: 7px;
+  border-radius: 50%;
+  background: var(--ink);
+  opacity: 0.4;
+}
+
+.cardBody a {
+  width: 100%;
+  margin-top: auto;
+  border: 1px solid var(--ink);
+  background: var(--canvas);
+  color: var(--ink);
+}
+
+.featuredCard .cardBody a {
+  background: var(--ink);
+  color: var(--canvas);
+}
+
+.kitchenSection {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1fr);
+  gap: clamp(26px, 5vw, 72px);
+  align-items: start;
+  padding: clamp(32px, 4.2vw, 56px);
+  border-radius: var(--radius-xl);
+  background: var(--surface-soft);
+}
+
+.kitchenIntro {
+  position: sticky;
+  top: 96px;
+  display: grid;
+  gap: 22px;
+}
+
+.kitchenIcon {
+  display: grid;
+  width: 66px;
+  height: 66px;
+  place-items: center;
+  border-radius: var(--radius-lg);
+  background: var(--primary);
+  color: var(--ink);
+}
+
+.kitchenIntro p {
+  margin-top: 22px;
+}
+
+.kitchenGrid {
+  display: grid;
+  gap: 10px;
+}
+
+.kitchenCard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(150px, 0.34fr);
+  gap: 24px;
+  align-items: end;
+  min-height: 156px;
+  padding: clamp(20px, 2.4vw, 28px);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  background: var(--canvas);
+}
+
+.kitchenCard h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(24px, 2.2vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.kitchenCard p {
+  max-width: 64ch;
+  margin: 14px 0 0;
+  color: var(--body);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.kitchenMeta {
+  display: grid;
+  gap: 8px;
+  justify-items: end;
+  text-align: right;
+}
+
+.kitchenMeta strong {
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.kitchenMeta span {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.bookingBand {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.7fr);
+  gap: clamp(26px, 5vw, 68px);
+  align-items: start;
+  margin-top: clamp(82px, 9vw, 122px);
+  margin-bottom: clamp(72px, 8vw, 112px);
+  padding: clamp(30px, 4.3vw, 56px);
+  border-radius: var(--radius-xl);
+  background: var(--primary);
+}
+
+.bookingBand h2 {
+  max-width: 14ch;
+}
+
+.bookingBand > div > p {
+  max-width: 64ch;
+  margin-top: 22px;
+  color: var(--ink);
+}
+
+.bookingNotes {
+  display: grid;
+  gap: 10px;
+}
+
+.bookingNotes p {
+  min-height: 72px;
+  padding: 18px;
+  border: 1px solid rgb(23 23 23 / 0.1);
+  border-radius: var(--radius-lg);
+  background: rgb(255 253 249 / 0.58);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (max-width: 1120px) {
+  .cardGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 12px;
+  }
+
+  .offerCard {
+    min-height: 540px;
+  }
+}
+
+@media (max-width: 980px) {
+  .hero,
+  .sectionIntro,
+  .kitchenSection,
+  .bookingBand {
+    grid-template-columns: 1fr;
+  }
+
+  .visitBoard {
+    min-height: 0;
+  }
+
+  .kitchenIntro {
+    position: static;
+  }
+}
+
+@media (max-width: 840px) {
+  .hero {
+    padding-top: 118px;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero,
+  .offerSection,
+  .kitchenSection,
+  .bookingBand {
+    width: calc(100% - 32px);
+  }
+
+  .hero {
+    gap: 34px;
+    padding-bottom: 78px;
+  }
+
+  .heroCopy h1 {
+    font-size: clamp(40px, 13vw, 56px);
+  }
+
+  .heroActions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .priceStack,
+  .cardGrid,
+  .kitchenCard {
+    grid-template-columns: 1fr;
+  }
+
+  .boardTop {
+    min-height: 168px;
+  }
+
+  .offerCard {
+    min-height: 0;
+  }
+
+  .cardBand {
+    min-height: 142px;
+  }
+
+  .kitchenSection,
+  .bookingBand {
+    padding: 28px 22px;
+  }
+
+  .kitchenMeta {
+    justify-items: start;
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroActions a,
+  .cardBody a,
+  .heroActions svg,
+  .cardBody svg {
+    transition: none;
+  }
+
+  .heroActions a:hover,
+  .heroActions a:focus-visible,
+  .cardBody a:hover,
+  .cardBody a:focus-visible,
+  .heroActions a:hover svg,
+  .heroActions a:focus-visible svg,
+  .cardBody a:hover svg,
+  .cardBody a:focus-visible svg {
+    transform: none;
+  }
+}
