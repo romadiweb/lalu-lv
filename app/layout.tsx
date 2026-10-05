@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ScrollToTop } from "@/components/navigation/scroll-to-top";
 import "./globals.css";
 import "./styles/brand.css";
 import "./styles/header.css";
@@ -23,7 +24,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="lv"
       className={`${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <ScrollToTop />
+      </body>
     </html>
   );
 }

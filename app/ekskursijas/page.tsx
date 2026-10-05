@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { SiteFooter } from "@/components/footer/site-footer";
 import { PreFooterCta } from "@/components/home/pre-footer-cta";
 import { SiteHeader } from "@/components/navigation/site-header";
@@ -16,38 +17,14 @@ export const metadata: Metadata = {
 
 function ArrowIcon() {
   return (
-    <svg aria-hidden="true" viewBox="0 0 20 20">
-      <path d="M4 10h11M11 5l5 5-5 5" />
-    </svg>
-  );
-}
-
-function StudioIcon() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 28 28">
-      <path d="M5.5 12.2 14 5.8l8.5 6.4v9.9H5.5Z" />
-      <path d="M10.2 22.1v-6.7h7.6v6.7" />
-      <path d="M8.5 10.3V7.2h3" />
-    </svg>
-  );
-}
-
-function StoryIcon() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 28 28">
-      <path d="M7 6.2h10.2a4 4 0 0 1 4 4v11.6H10.8a4 4 0 0 0-3.8 2.8Z" />
-      <path d="M7 6.2v18.4" />
-      <path d="M11 11h6.4M11 15h5" />
-    </svg>
-  );
-}
-
-function SparkIcon() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 28 28">
-      <path d="M14 4.8 16.5 12l6.7 2-6.7 2L14 23.2 11.5 16l-6.7-2 6.7-2Z" />
-      <path d="m21.4 5.7.8 2.2 2 .7-2 .7-.8 2.2-.8-2.2-2-.7 2-.7Z" />
-    </svg>
+    <span className={styles.rollingArrow} aria-hidden="true">
+      <svg viewBox="0 0 20 20">
+        <path d="M4 10h11M11 5l5 5-5 5" />
+      </svg>
+      <svg viewBox="0 0 20 20">
+        <path d="M4 10h11M11 5l5 5-5 5" />
+      </svg>
+    </span>
   );
 }
 
@@ -81,7 +58,7 @@ const excursionCards = [
     description:
       "Ienāc LaLu darbnīcā, apskati rokdarbus un izvēlies sirsnīgu dāvanu turpat Aizputē.",
     details: ["Rokdarbu apskate", "Iespēja iepirkties", "Pēc iepriekšējas vienošanās"],
-    Icon: StudioIcon,
+    icon: "/images/custom-icons/Cozy Crochet Teddy Craft Table.png",
   },
   {
     title: "Vectēva stāsts",
@@ -90,7 +67,7 @@ const excursionCards = [
     description:
       "LaLu stāsts ar darbnīcas sajūtu, senām atmiņām un mierīgu ciemošanos nelielām grupām.",
     details: ["Stāstījums darbnīcā", "Piemērots ģimenēm un skolām", "Var apvienot ar pagalmu"],
-    Icon: StoryIcon,
+    icon: "/images/custom-icons/Nostalgic Heirloom Chest with Keepsakes.png",
     featured: true,
   },
   {
@@ -100,7 +77,7 @@ const excursionCards = [
     description:
       "Pagalma apskate ar darbošanos, pasaku noskaņu un mazu līdzi ņemamu prieku.",
     details: ["Pelnrušķītes kurpīte", "Aktivitātes ārā", "Radošs pārsteigums līdzi"],
-    Icon: SparkIcon,
+    icon: "/images/custom-icons/Miniature Woodland Discovery Diorama.png",
   },
   {
     title: "Meistarklases",
@@ -109,7 +86,7 @@ const excursionCards = [
     description:
       "Roku darbs, kopā būšana un īpašs process dzimšanas dienām, nometnēm vai radu salidojumiem.",
     details: ["Svētki un pasākumi", "Nometnes un grupas", "Saturs pielāgots vecumam"],
-    Icon: SparkIcon,
+    icon: "/images/custom-icons/Cozy Crochet Craft Still Life.png",
   },
 ];
 
@@ -206,8 +183,15 @@ export default function EkskursijasPage() {
               key={card.title}
             >
               <div className={styles.cardBand}>
-                <span className={styles.iconTile}>
-                  <card.Icon />
+                <span className={styles.iconTile} aria-hidden="true">
+                  <Image
+                    className={styles.cardIcon}
+                    src={card.icon}
+                    alt=""
+                    width={1254}
+                    height={1254}
+                    sizes="104px"
+                  />
                 </span>
                 <span>{card.kicker}</span>
                 <h3>{card.title}</h3>

@@ -1,32 +1,64 @@
-import Link from "next/link";
+import Image from "next/image";
 import styles from "./about-lalu.module.css";
 
-function ArrowIcon() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 20 20">
-      <path d="M4 10h11M11 5l5 5-5 5" />
-    </svg>
-  );
-}
+const values = [
+  {
+    title: "Roku darbs",
+    copy: "Katrs darbs top ar rokām un savu raksturu.",
+    image: "/images/about-lalu/roku-darbs.png",
+    alt: "Tamborēts zieds krēmkrāsā un maigā lavandas tonī",
+  },
+  {
+    title: "Dabiski materiāli",
+    copy: "Koks, dzija un materiāli ar īstu sajūtu.",
+    image: "/images/about-lalu/dabiski-materiali.png",
+    alt: "Gaiša koka sirds ar izgrebtu vidu",
+  },
+  {
+    title: "Pašu idejas",
+    copy: "Darbi, kas rodas tepat LaLu darbnīcā.",
+    image: "/images/about-lalu/pasu-idejas.png",
+    alt: "Ar rokām veidots fantāzijas zieds",
+  },
+  {
+    title: "Latviskais",
+    copy: "Raksti, simboli un vietējais rokraksts.",
+    image: "/images/about-lalu/latviskais.png",
+    alt: "Zieds no sarkanbalti rakstītas austas lentes",
+  },
+  {
+    title: "Radīts Aizputē",
+    copy: "Mazā darbnīcā ar lielu uzmanību detaļām.",
+    image: "/images/about-lalu/radits-aizpute.png",
+    alt: "Krēmkrāsas tamborēts lācītis ar lavandas šalli",
+  },
+];
 
 export function AboutLalu() {
   return (
     <section className={styles.section} aria-labelledby="about-lalu-title">
-      <div className={styles.inner}>
-        <h2 id="about-lalu-title">LaLu ir vieta, kur idejas iegūst savu rokrakstu.</h2>
-        <div className={styles.copy}>
-          <p>
-            LaLu radošajā darbnīcā Aizputē top ar rokām darināti tēli, rotaļlietas un mazi
-            pārsteigumi — katrs ar savu raksturu.
-          </p>
-          <p>
-            Te var ne tikai ieraudzīt gatavos darbus, bet arī piedalīties meistarklasēs,
-            doties ekskursijā un atklāt, kā no idejas soli pa solim rodas kaut kas īpašs.
-          </p>
-          <Link className={styles.link} href="/par-mums/">
-            Iepazīsti LaLu tuvāk
-            <ArrowIcon />
-          </Link>
+      <div className={styles.panel}>
+        <h2 id="about-lalu-title">Mazās detaļās dzīvo LaLu rokraksts.</h2>
+
+        <div className={styles.values}>
+          {values.map((value) => (
+            <article className={styles.value} key={value.title}>
+              <div className={styles.visual}>
+                <Image
+                  className={styles.image}
+                  src={value.image}
+                  alt={value.alt}
+                  width={1254}
+                  height={1254}
+                  sizes="(max-width: 580px) 116px, (max-width: 980px) 180px, 220px"
+                />
+              </div>
+              <div className={styles.copy}>
+                <h3>{value.title}</h3>
+                <p>{value.copy}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
