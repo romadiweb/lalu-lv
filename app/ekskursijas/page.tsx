@@ -6,7 +6,6 @@ import { SiteHeader } from "@/components/navigation/site-header";
 import styles from "./page.module.css";
 
 const phone = "+371 26878579";
-const email = "laila@lalu.lv";
 const phoneHref = `tel:${phone.replace(/\s/g, "")}`;
 
 export const metadata: Metadata = {
@@ -27,28 +26,6 @@ function ArrowIcon() {
     </span>
   );
 }
-
-function FireIcon() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 28 28">
-      <path d="M14.8 24c4.4-.5 7-3.3 7-7.2 0-3.1-1.7-5.4-4.5-7.7.2 2.7-.7 4.3-2.4 5.5.2-3.6-1.5-6.7-4.7-9.5.4 4.7-4 6.8-4 11.7 0 3.8 2.6 6.7 6.9 7.2" />
-      <path d="M11.8 23.5c-1.4-1-2.1-2.3-2.1-3.9 0-1.9 1.2-3.1 2.6-4.5.3 2.2 1.4 3.2 2.8 4.2.6-.9.9-1.9.7-3.2 1.7 1.3 2.5 2.6 2.5 4.2 0 1.4-.7 2.5-2 3.2" />
-    </svg>
-  );
-}
-
-const quickFacts = [
-  { label: "Ekskursija", value: "4 EUR pieaugušajiem" },
-  { label: "Bērniem", value: "3 EUR" },
-  { label: "Lauku ķēķis", value: "7-12 EUR no personas" },
-];
-
-const visitSteps = [
-  "Darbnīcas apmeklējums",
-  "Vectēva stāsts",
-  "Pagalma piedzīvojumi",
-  "Meistarklase vai degustācija",
-];
 
 const excursionCards = [
   {
@@ -137,7 +114,7 @@ export default function EkskursijasPage() {
             vai pievienot siltu Lauku ķēķa meistarklasi.
           </p>
           <div className={styles.heroActions}>
-            <a href={`mailto:${email}?subject=Pieteikt%20ekskursiju%20LaLu`}>
+            <a href="/pieteikties/">
               Pieteikt ekskursiju
               <ArrowIcon />
             </a>
@@ -145,24 +122,16 @@ export default function EkskursijasPage() {
           </div>
         </div>
 
-        <aside className={styles.visitBoard} aria-label="LaLu ekskursijas īsais pārskats">
-          <div className={styles.boardTop}>
-            <span>Ciemošanās izvēlne</span>
-            <strong>Darbnīca, pagalms un Lauku ķēķis vienā maršrutā.</strong>
-          </div>
-          <div className={styles.priceStack}>
-            {quickFacts.map((fact) => (
-              <div key={fact.label}>
-                <span>{fact.label}</span>
-                <strong>{fact.value}</strong>
-              </div>
-            ))}
-          </div>
-          <ol className={styles.visitSteps}>
-            {visitSteps.map((step) => (
-              <li key={step}>{step}</li>
-            ))}
-          </ol>
+        <aside className={styles.visitBoard} aria-label="Ciemošanās izvēles priekšskatījums">
+          <Image
+            className={styles.visitBoardImage}
+            src="/images/custom-icons/latvian-adventure-selection-ui.png"
+            alt="Ilustrēta ciemošanās izvēles grafika ar vairākiem darbnīcas piedzīvojumu variantiem."
+            width={1170}
+            height={1408}
+            priority
+            sizes="(max-width: 980px) min(100vw - 48px, 620px), 520px"
+          />
         </aside>
       </section>
 
@@ -204,7 +173,7 @@ export default function EkskursijasPage() {
                     <li key={detail}>{detail}</li>
                   ))}
                 </ul>
-                <a href={`mailto:${email}?subject=${encodeURIComponent(`Pieteikt ${card.title}`)}`}>
+                <a href="/pieteikties/">
                   Pieteikt
                   <ArrowIcon />
                 </a>
@@ -217,7 +186,13 @@ export default function EkskursijasPage() {
       <section className={styles.kitchenSection} aria-labelledby="kitchen-title">
         <div className={styles.kitchenIntro}>
           <span className={styles.kitchenIcon}>
-            <FireIcon />
+            <Image
+              src="/images/custom-icons/crocheted-flame-icon.png"
+              alt=""
+              width={1024}
+              height={1024}
+              sizes="74px"
+            />
           </span>
           <div>
             <h2 id="kitchen-title">Īpašie piedāvājumi Lauku ķēķī</h2>

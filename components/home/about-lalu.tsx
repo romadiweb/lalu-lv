@@ -16,7 +16,7 @@ const values = [
   },
   {
     title: "Pašu idejas",
-    copy: "Darbi, kas rodas tepat LaLu darbnīcā.",
+    copy: "Darbi, kas rodas tepat darbnīcā.",
     image: "/images/about-lalu/pasu-idejas.png",
     alt: "Ar rokām veidots fantāzijas zieds",
   },
@@ -38,7 +38,7 @@ export function AboutLalu() {
   return (
     <section className={styles.section} aria-labelledby="about-lalu-title">
       <div className={styles.panel}>
-        <h2 id="about-lalu-title">Mazās detaļās dzīvo LaLu rokraksts.</h2>
+        <h2 id="about-lalu-title">Mazās detaļās dzīvo rokraksts.</h2>
 
         <div className={styles.values}>
           {values.map((value) => (

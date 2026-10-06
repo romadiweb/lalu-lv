@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         hostname: "lastatic.ams3.cdn.digitaloceanspaces.com",
         pathname: "/2013/10/g1/Tirdzins_KM_72.jpg",
       },
+      {
+        protocol: "https",
+        hostname: "site-1900478.mozfiles.com",
+        pathname: "/files/1900478/catitems/**",
+      },
     ],
   },
 };

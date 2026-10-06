@@ -234,8 +234,8 @@ export function StoryCarousel() {
   return (
     <section className={styles.section} aria-labelledby="stories-title">
       <div className={styles.headingBlock}>
-        <h2 id="stories-title">LaLu stāstos un kadros</h2>
-        <p>Noskaties video vai iepazīsti LaLu darbus Latvijas mediju stāstos.</p>
+        <h2 id="stories-title">Stāstos un kadros</h2>
+        <p>Noskaties video vai iepazīsti darbnīcas darbus Latvijas mediju stāstos.</p>
         <div className={styles.controls} aria-label="Karuseļa vadība">
           <button
             aria-label="Iepriekšējais stāsts"

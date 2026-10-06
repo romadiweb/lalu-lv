@@ -9,6 +9,7 @@ export type PostPreview = {
   imagePosition?: string;
   slug: string;
   tone: "lavender" | "warm" | "neutral";
+  body: string[];
 };
 
 // Visual placeholder content. This array can be replaced by CMS records later.
@@ -24,6 +25,11 @@ export const posts: PostPreview[] = [
     imagePosition: "22% center",
     slug: "rudens-lalu-darbnica",
     tone: "warm",
+    body: [
+      "Rudens darbnīcā ienāk ar mierīgākām krāsām, biezākiem pavedieniem un vēlmi radīt lietas, kas sasilda. Plauktos parādās jauni tēli, adījumi un mazi sezonas pārsteigumi, ko var apskatīt klātienē.",
+      "Šajā laikā īpaši labi redzams roku darba ritms: katram darbam ir savs valdziņš, sava noskaņa un mazs stāsts. Daļa ideju kļūst par dāvanām, daļa paliek kā iedvesma nākamajām meistarklasēm.",
+      "Ja vēlies redzēt, kas šobrīd top, vislabāk ir atbraukt ciemos vai sekot jaunumiem sociālajos tīklos. Darbnīcā vienmēr ir kaut kas, ko pamanīt tikai tuvumā.",
+    ],
   },
   {
     title: "Fantāzijas ziedi, kas turpina ziedēt arī pēc vasaras",
@@ -36,6 +42,11 @@ export const posts: PostPreview[] = [
     imagePosition: "51% center",
     slug: "fantazijas-ziedi-pec-vasaras",
     tone: "lavender",
+    body: [
+      "Fantāzijas ziedi nav piesaistīti sezonai. Tie turpina ziedēt arī tad, kad dārzs ārā kļūst klusāks, un tieši tāpēc tie iederas gan mājās, gan dāvanās, gan svētku noformējumā.",
+      "Katrs zieds top kā neliela kompozīcija: krāsa, forma un materiāls tiek salikti tā, lai darbs saglabātu vieglumu un prieku. Tie nav vienkārši dekori, bet mazi roku darba akcenti ar raksturu.",
+      "Rudenī īpaši skaisti izskatās maigie lavandas, krēmkrāsas un siltie dabas toņi. Tie ļauj vasaras sajūtai palikt klātesošai vēl ilgi pēc tās beigām.",
+    ],
   },
   {
     title: "Kā top LaLu tēli — no pirmās idejas līdz pēdējam valdziņam",
@@ -47,6 +58,11 @@ export const posts: PostPreview[] = [
     imageAlt: "Ieskats LaLu rokdarbu izstādē",
     slug: "ka-top-lalu-teli",
     tone: "neutral",
+    body: [
+      "Katrs tēls sākas ar pavisam vienkāršu jautājumu: kādu sajūtu tam vajadzētu nest? Dažreiz pirmā ir krāsa, citreiz seja, forma vai mazs rakstura pavediens, kas nosaka visu pārējo.",
+      "Tālāk seko darbs ar materiālu. Valdziņi, detaļas un proporcijas tiek pielāgotas, līdz tēls sāk izskatīties dzīvs. Šajā procesā nav steigas, jo tieši lēnās izvēles padara roku darbu atpazīstamu.",
+      "Pēdējais solis ir raksturs. Acis, aksesuārs vai neliela tekstūra var pilnībā mainīt noskaņu, tāpēc katrs tēls tiek pabeigts tikai tad, kad tas šķiet gatavs satikt savu cilvēku.",
+    ],
   },
   {
     title: "Ciemošanās darbnīcā: ko piedzīvot lieliem un maziem",
@@ -59,5 +75,14 @@ export const posts: PostPreview[] = [
     imagePosition: "58% center",
     slug: "ciemosanas-darbnica",
     tone: "warm",
+    body: [
+      "Ciemošanās darbnīcā ir iespēja ieraudzīt rokdarbus tuvumā un sajust vietu, kur tie top. Apmeklējums var būt mierīga apskate, stāsts par senlietām vai aktīvāka programma ar pagalma piedzīvojumiem.",
+      "Ģimenēm un skolēnu grupām patīk iespēja darboties, pētīt un jautāt. Pieaugušajiem bieži visvairāk paliek atmiņā Vectēva stāsts, darbnīcas noskaņa un sarunas par lietām, kas darinātas ar rokām.",
+      "Programmu var pielāgot grupai, laikam un notikumam. Pirms braukšanas vislabāk sazināties, lai vienotos par datumu, cilvēku skaitu un to, vai ciemošanos papildināt ar degustāciju vai meistarklasi.",
+    ],
   },
 ];
+
+export function getPostBySlug(slug: string) {
+  return posts.find((post) => post.slug === slug);
+}

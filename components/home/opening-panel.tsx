@@ -46,7 +46,7 @@ export function OpeningPanel() {
                 <span>Ienāc veikalā</span>
                 <RollingArrowIcon />
               </a>
-              <a className="hero-secondary-cta" href="/ekskursijas/">
+              <a className="hero-secondary-cta" href="/pieteikties/">
                 <span>Pieteikties ekskursijai</span>
                 <RollingArrowIcon />
               </a>

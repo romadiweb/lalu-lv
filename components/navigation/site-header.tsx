@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { LaLuMark } from "@/components/brand/lalu-mark";
-import { BagIcon } from "@/components/icons/bag-icon";
+import { CartDrawer } from "@/components/cart/cart-drawer";
+import { CartToggle } from "@/components/cart/cart-toggle";
 import { RollingLabel } from "@/components/navigation/rolling-label";
 import { navItems, storeCategories } from "@/lib/site-map";
 
@@ -107,14 +108,32 @@ export function SiteHeader() {
                   </div>
                 </div>
 
-                <a className="mega-feature" href="/veikals/">
-                  <span className="feature-art" aria-hidden="true">
-                    <span />
-                    <span />
-                    <span />
+                <a className="mega-feature delivery-feature" href="/piegade/">
+                  <span className="delivery-logo-tray" aria-hidden="true">
+                    <Image
+                      src="/images/third-party-logos/Omniva_lockup_horizontal_orange.svg"
+                      alt=""
+                      width={84}
+                      height={28}
+                      sizes="84px"
+                    />
+                    <Image
+                      src="/images/third-party-logos/DPD_logo_(2015).svg"
+                      alt=""
+                      width={52}
+                      height={28}
+                      sizes="52px"
+                    />
+                    <Image
+                      src="/images/third-party-logos/Latvijas_Pasts_(2025).svg"
+                      alt=""
+                      width={64}
+                      height={28}
+                      sizes="64px"
+                    />
                   </span>
-                  <span className="feature-label">Radošā darbnīca LaLu</span>
-                  <strong>Ienāc veikalā un atrodi rokām darinātu dāvanu.</strong>
+                  <span className="feature-label">Piegāde</span>
+                  <strong>Saņem pasūtījumu sev ērtākajā veidā.</strong>
                 </a>
               </div>
 
@@ -136,18 +155,14 @@ export function SiteHeader() {
         </nav>
 
         <div className="nav-actions">
-          <a className="icon-button" href="/veikals/" aria-label="Atvērt veikalu">
-            <BagIcon />
-          </a>
-          <a className="primary-cta" href="/ekskursijas/">
+          <CartToggle className="icon-button" />
+          <a className="primary-cta" href="/pieteikties/">
             Pieteikties ekskursijai
           </a>
         </div>
 
         <div className="mobile-header-actions">
-          <a className="mobile-bag-link" href="/veikals/" aria-label="Atvērt veikalu" onClick={closeMobileMenu}>
-            <BagIcon />
-          </a>
+          <CartToggle className="mobile-bag-link" />
           <button
             className="mobile-menu-toggle"
             type="button"
@@ -202,7 +217,7 @@ export function SiteHeader() {
               </nav>
 
               <div className="mobile-menu-actions">
-                <a href="/ekskursijas/" onClick={closeMobileMenu}>
+                <a href="/pieteikties/" onClick={closeMobileMenu}>
                   Pieteikties ekskursijai
                 </a>
                 <a href="/veikals/" onClick={closeMobileMenu}>
@@ -236,6 +251,7 @@ export function SiteHeader() {
           </div>
         </div>
       </div>
+      <CartDrawer />
     </header>
   );
 }

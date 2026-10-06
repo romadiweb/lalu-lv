@@ -1,0 +1,376 @@
+.pageShell {
+  min-height: 100vh;
+  overflow: clip;
+  background:
+    radial-gradient(circle at 88% 10%, rgb(200 187 251 / 0.22), transparent 24rem),
+    var(--canvas);
+  color: var(--ink);
+}
+
+.workshopIntro {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: clamp(96px, 10vw, 148px) 0 clamp(84px, 9vw, 132px);
+}
+
+.copy {
+  max-width: 680px;
+  margin-top: clamp(42px, 5vw, 64px);
+}
+
+.copy h2 {
+  max-width: 16ch;
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(30px, 3.6vw, 44px);
+  font-weight: 560;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.copy p {
+  max-width: 60ch;
+  margin: 16px 0 0;
+  color: var(--body);
+  font-size: 16px;
+  line-height: 1.58;
+  text-wrap: pretty;
+}
+
+.visitBand {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(360px, 1fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+  margin-top: clamp(72px, 8vw, 112px);
+  padding: clamp(28px, 4vw, 52px);
+  border-radius: var(--radius-xl);
+  background: #fffdf9;
+}
+
+.visitCopy {
+  max-width: 520px;
+}
+
+.visitCopy h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(32px, 4.2vw, 52px);
+  font-weight: 560;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.visitCopy p {
+  margin: 18px 0 0;
+  color: var(--body);
+  font-size: 16px;
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+.visitCopy a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 28px;
+  padding: 0 18px;
+  border-radius: var(--radius-md);
+  background: var(--ink);
+  color: #fffdf9;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.visitVisual {
+  display: grid;
+  min-height: 360px;
+  place-items: center;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: var(--surface-soft);
+}
+
+.visitImage {
+  width: min(100%, 560px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 30px rgb(23 23 23 / 0.1));
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: clamp(28px, 4vw, 44px);
+}
+
+.card {
+  display: grid;
+  min-height: 246px;
+  align-content: start;
+  gap: 28px;
+  padding: clamp(28px, 3vw, 36px);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  background: #fffdf9;
+}
+
+.imageWrap {
+  display: grid;
+  width: 132px;
+  height: 132px;
+  place-items: center;
+  border-radius: var(--radius-lg);
+  background: var(--surface-soft);
+}
+
+.image {
+  width: 112px;
+  height: 112px;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 18px rgb(23 23 23 / 0.1));
+}
+
+.cardCopy {
+  max-width: 32ch;
+}
+
+.cardCopy h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.cardCopy p {
+  margin: 14px 0 0;
+  color: var(--body);
+  font-size: 16px;
+  line-height: 1.58;
+  text-wrap: pretty;
+}
+
+.masterclassSection {
+  margin-top: 0;
+}
+
+.masterclassSection > h1 {
+  max-width: 15ch;
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(34px, 4.4vw, 56px);
+  font-weight: 560;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.masterclassGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(26px, 4vw, 56px);
+  margin-top: clamp(28px, 4vw, 46px);
+}
+
+.masterclassCard {
+  display: grid;
+  gap: 24px;
+  align-content: start;
+  min-width: 0;
+}
+
+.masterclassImageWrap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: var(--surface-soft);
+}
+
+.masterclassImage {
+  object-fit: cover;
+}
+
+.masterclassCopy {
+  max-width: 62ch;
+}
+
+.masterclassCopy h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(26px, 2.7vw, 38px);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  min-height: 2em;
+  text-wrap: balance;
+}
+
+.masterclassCopy p {
+  margin: 18px 0 0;
+  color: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.masterclassCopy ul {
+  display: grid;
+  gap: 10px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.masterclassCopy li {
+  display: flex;
+  gap: 10px;
+  color: var(--body);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.masterclassCopy li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  flex: 0 0 auto;
+  margin-top: 8px;
+  border-radius: 50%;
+  background: var(--primary-active);
+}
+
+.masterclassCopy dl {
+  display: grid;
+  gap: 10px;
+  margin: 24px 0 0;
+}
+
+.masterclassCopy dl div {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--hairline);
+}
+
+.masterclassCopy dt {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.masterclassCopy dd {
+  margin: 0;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+@media (max-width: 1100px) {
+  .visitBand {
+    grid-template-columns: 1fr;
+  }
+
+  .visitVisual {
+    min-height: 300px;
+  }
+
+  .cardGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: 0;
+    grid-template-columns: 132px minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .masterclassGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .masterclassCard {
+    grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+@media (max-width: 700px) {
+  .workshopIntro {
+    width: calc(100% - 32px);
+    padding-top: 118px;
+  }
+
+  .copy h2 {
+    font-size: clamp(30px, 9vw, 40px);
+  }
+
+  .cardGrid {
+    gap: 16px;
+    margin-top: 44px;
+  }
+
+  .visitBand {
+    margin-top: 40px;
+    padding: 24px;
+  }
+
+  .visitCopy h2 {
+    font-size: clamp(32px, 10vw, 44px);
+  }
+
+  .visitVisual {
+    min-height: 220px;
+    border-radius: var(--radius-lg);
+  }
+
+  .card {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 24px;
+  }
+
+  .masterclassSection {
+    margin-top: 72px;
+  }
+
+  .masterclassSection > h1 {
+    font-size: clamp(34px, 11vw, 46px);
+  }
+
+  .masterclassGrid {
+    gap: 42px;
+  }
+
+  .masterclassCard {
+    grid-template-columns: 1fr;
+  }
+
+  .masterclassCopy dl div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .masterclassCopy h2 {
+    min-height: 0;
+  }
+
+  .imageWrap {
+    width: 132px;
+    height: 132px;
+  }
+
+  .image {
+    width: 116px;
+    height: 116px;
+  }
+}

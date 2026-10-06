@@ -152,8 +152,8 @@ export function ReviewMarquee() {
       ref={panelRef}
     >
       <div className="review-panel-intro">
-        <h2 id="review-panel-title">Ko par LaLu saka mūsu viesi</h2>
-        <p>Patiesas Google atsauksmes no cilvēkiem, kuri LaLu piedzīvojuši klātienē.</p>
+        <h2 id="review-panel-title">Ko saka mūsu viesi</h2>
+        <p>Patiesas Google atsauksmes no cilvēkiem, kuri darbnīcu piedzīvojuši klātienē.</p>
       </div>
       <div className="review-marquee">
         {reviewRows.map((row, index) => (

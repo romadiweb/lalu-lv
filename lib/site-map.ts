@@ -131,7 +131,7 @@ export const navItems: NavItem[] = [
   { label: "Meistarklases", href: "/meistarklases/" },
   { label: "Ekskursijas", href: "/ekskursijas/" },
   { label: "Fantāzijas ziedi", href: "/fantazijas-ziedi/" },
-  { label: "Par mums", href: "/par-mums/" },
+  { label: "Raksti", href: "/aktualitates/" },
 ];
 
 export const footerGroups: FooterGroup[] = [
@@ -152,7 +152,7 @@ export const footerGroups: FooterGroup[] = [
     links: [
       { label: "Meistarklases", href: "/meistarklases/" },
       { label: "Ekskursijas", href: "/ekskursijas/" },
-      { label: "Pieteikties ciemos", href: "/kontakti/" },
+      { label: "Pieteikties ciemos", href: "/pieteikties/" },
     ],
   },
 ];

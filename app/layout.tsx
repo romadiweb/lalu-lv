@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
+import { CartProvider } from "@/components/cart/cart-provider";
 import { ScrollToTop } from "@/components/navigation/scroll-to-top";
 import "./globals.css";
 import "./styles/brand.css";
@@ -13,20 +14,37 @@ const inter = Inter({
   subsets: ["latin", "latin-ext"],
 });
 
+const editorial = Cormorant_Garamond({
+  variable: "--font-editorial",
+  subsets: ["latin", "latin-ext"],
+  weight: ["500", "600"],
+});
+
 export const metadata: Metadata = {
   title: "LaLu | Radošā darbnīca",
   description: "Roku darbi, meistarklases un ekskursijas LaLu radošajā darbnīcā.",
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="lv"
-      className={`${inter.variable} h-full antialiased`}
+      className={`${inter.variable} ${editorial.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        {children}
-        <ScrollToTop />
+        <CartProvider>
+          {children}
+          <ScrollToTop />
+        </CartProvider>
       </body>
     </html>
   );

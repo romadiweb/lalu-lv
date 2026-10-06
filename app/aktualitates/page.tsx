@@ -29,7 +29,7 @@ export default function AktualitatesPage() {
         <aside className={styles.sidebar} aria-label="LaLu saites">
           <h2>LaLu</h2>
           <nav>
-            <Link href="/kontakti/">
+            <Link href="/pieteikties/">
               Pieteikt ciemošanos
               <ArrowIcon />
             </Link>

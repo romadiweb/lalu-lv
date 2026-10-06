@@ -9,11 +9,11 @@ export function LatestPosts() {
       <div className={styles.heading}>
         <h2 id="latest-posts-title">Aktualitātes</h2>
         <p>
-          Jaunumi no darbnīcas, radoši stāsti un nelieli ieskati tajā, kas šobrīd top LaLu.
+          Jaunumi no darbnīcas, radoši stāsti un nelieli ieskati tajā, kas šobrīd top.
         </p>
       </div>
 
-      <div className={styles.grid} aria-label="Jaunākās LaLu aktualitātes">
+      <div className={styles.grid} aria-label="Jaunākās aktualitātes">
         {posts.map((post) => (
           <article className={styles.card} key={post.title}>
             <Link
@@ -42,7 +42,7 @@ export function LatestPosts() {
       </div>
 
       <div className={styles.archiveRow}>
-        <p>Apskati visus LaLu jaunumus, notikumus un radošos stāstus vienuviet.</p>
+        <p>Apskati visus jaunumus, notikumus un radošos stāstus vienuviet.</p>
         <Link href="/aktualitates/">
           Skatīt visus
           <svg aria-hidden="true" viewBox="0 0 20 20">
