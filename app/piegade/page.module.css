@@ -1,0 +1,357 @@
+.pageShell {
+  min-height: 100vh;
+  background: var(--canvas);
+  color: var(--ink);
+}
+
+.deliveryIntro {
+  width: min(1280px, calc(100% - 48px));
+  min-height: 420px;
+  margin: 0 auto;
+  padding: clamp(116px, 10vw, 156px) 0 clamp(96px, 9vw, 136px);
+}
+
+.deliveryIntro h1 {
+  max-width: 34ch;
+  margin: 0;
+  font-size: clamp(32px, 3.2vw, 40px);
+  font-weight: 560;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.deliveryIntro > p {
+  max-width: 72ch;
+  margin: 24px 0 0;
+  color: var(--body);
+  font-size: 18px;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.termsSection {
+  max-width: 860px;
+  margin-top: clamp(72px, 8vw, 112px);
+}
+
+.termsSection > h2 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 560;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.termsSection > p {
+  max-width: 72ch;
+  margin: 18px 0 0;
+  color: var(--body);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.termsSection > p a {
+  color: color-mix(in srgb, var(--primary-active) 58%, var(--ink));
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.termsTrigger {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--ink);
+  color: #fffdf9;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.arrowRoll {
+  display: block;
+  width: 16px;
+  height: 16px;
+  overflow: hidden;
+}
+
+.arrowRoll svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.termsTrigger:hover .arrowRoll svg,
+.termsTrigger:focus-visible .arrowRoll svg {
+  transform: translateY(-100%);
+}
+
+.termsDialog {
+  position: fixed;
+  inset: 0;
+  width: min(760px, calc(100% - 32px));
+  max-width: none;
+  max-height: calc(100svh - 32px);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: #fffdf9;
+  color: var(--ink);
+  box-shadow: 0 28px 80px rgb(23 23 23 / 0.2);
+  overflow: hidden;
+}
+
+.termsDialog::backdrop {
+  background: rgb(23 23 23 / 0.32);
+  backdrop-filter: blur(8px);
+}
+
+.termsPanel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: min(780px, calc(100svh - 32px));
+}
+
+.termsDialogHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 28px;
+  border-bottom: 1px solid var(--hairline);
+  background: #fffdf9;
+}
+
+.termsDialogHeader h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.termsDialogHeader button {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--surface-soft);
+  color: var(--ink);
+  cursor: pointer;
+  place-items: center;
+}
+
+.termsDialogHeader svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.8;
+}
+
+.termsContent {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 28px;
+  scrollbar-color: var(--surface-strong) transparent;
+  scrollbar-width: thin;
+}
+
+.termsContent p {
+  max-width: 70ch;
+  margin: 0;
+  color: var(--body);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.termsContent p + p {
+  margin-top: 16px;
+}
+
+.termsContent h3 {
+  margin: 36px 0 14px;
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.termsContent ul {
+  display: grid;
+  gap: 14px;
+  margin: 18px 0 0;
+  padding-left: 22px;
+  color: var(--body);
+}
+
+.termsContent li {
+  padding-left: 4px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.deliveryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: clamp(48px, 6vw, 72px);
+}
+
+.deliveryCard {
+  display: grid;
+  min-height: 220px;
+  align-content: start;
+  padding: 30px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  background: #fffdf9;
+}
+
+.carrierMark,
+.pickupMark {
+  display: grid;
+  width: 92px;
+  height: 44px;
+  align-items: center;
+  justify-items: start;
+}
+
+.carrierMark img {
+  display: block;
+  width: auto;
+  max-width: 84px;
+  max-height: 30px;
+  object-fit: contain;
+}
+
+.pickupMark svg {
+  width: 32px;
+  height: 32px;
+  fill: none;
+  stroke: var(--primary-active);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.deliveryCard h2 {
+  max-width: 22ch;
+  margin: 28px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.deliveryCard strong {
+  display: block;
+  margin-top: 10px;
+  color: var(--body);
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+@media (max-width: 1000px) {
+  .deliveryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .deliveryIntro {
+    width: calc(100% - 32px);
+    min-height: 0;
+    padding: 112px 0 88px;
+  }
+
+  .deliveryIntro h1 {
+    font-size: 32px;
+    line-height: 1.08;
+  }
+
+  .deliveryIntro > p {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.58;
+  }
+
+  .deliveryGrid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 40px;
+  }
+
+  .deliveryCard {
+    min-height: 0;
+    grid-template-columns: 76px minmax(0, 1fr) auto;
+    gap: 14px;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .carrierMark,
+  .pickupMark {
+    width: 76px;
+    height: 40px;
+  }
+
+  .carrierMark img {
+    max-width: 70px;
+    max-height: 26px;
+  }
+
+  .deliveryCard h2,
+  .deliveryCard strong {
+    margin-top: 0;
+  }
+
+  .termsSection {
+    margin-top: 72px;
+  }
+
+  .termsSection > p {
+    font-size: 16px;
+    line-height: 1.58;
+  }
+
+  .termsDialog {
+    width: calc(100% - 16px);
+    max-height: calc(100svh - 16px);
+    border-radius: var(--radius-lg);
+  }
+
+  .termsPanel {
+    height: calc(100svh - 16px);
+  }
+
+  .termsDialogHeader {
+    padding: 16px 18px;
+  }
+
+  .termsContent {
+    padding: 22px 18px 32px;
+  }
+}
