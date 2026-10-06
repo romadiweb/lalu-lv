@@ -73,7 +73,12 @@ export default function MeistarklasesPage() {
       <section className={styles.workshopIntro} aria-labelledby="masterclass-list-title">
         <section className={styles.masterclassSection} aria-labelledby="masterclass-list-title">
           <h1 id="masterclass-list-title">Radošās meistarklases</h1>
-          <div className={styles.masterclassGrid}>
+          <div
+            className={styles.masterclassGrid}
+            role="region"
+            aria-label="Meistarklašu kartītes"
+            tabIndex={0}
+          >
             {masterclasses.map((item) => (
               <article className={styles.masterclassCard} key={item.title}>
                 <div className={styles.masterclassImageWrap}>
@@ -82,7 +87,7 @@ export default function MeistarklasesPage() {
                     src={item.image}
                     alt={item.alt}
                     fill
-                    sizes="(max-width: 760px) 86vw, (max-width: 1100px) 38vw, 330px"
+                    sizes="(max-width: 700px) 78vw, (max-width: 1100px) 38vw, 330px"
                   />
                 </div>
                 <div className={styles.masterclassCopy}>
