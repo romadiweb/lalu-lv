@@ -229,6 +229,12 @@ export function SiteHeader() {
 
             <div className="mobile-submenu-panel" aria-hidden={activeMobilePanel !== "store"} inert={activeMobilePanel !== "store"}>
               <nav className="mobile-category-list" aria-label="Veikala kategorijas">
+                <a className="mobile-shop-all" href="/veikals/" onClick={closeMobileMenu}>
+                  <span>Apskatīt visu veikalu</span>
+                  <svg viewBox="0 0 14 14" aria-hidden="true">
+                    <path d="m5 3 4 4-4 4" />
+                  </svg>
+                </a>
                 <p className="mobile-menu-kicker">Veikala kategorijas</p>
                 {storeCategories.map((category) => (
                   <a href={category.href} key={category.name} onClick={closeMobileMenu}>
@@ -246,6 +252,35 @@ export function SiteHeader() {
                     <span>{category.name}</span>
                   </a>
                 ))}
+                <a className="mobile-delivery-card" href="/piegade/" onClick={closeMobileMenu}>
+                  <span className="mobile-delivery-copy">
+                    <span>Piegāde</span>
+                    <strong>Izvēlies sev ērtāko saņemšanas veidu</strong>
+                  </span>
+                  <span className="mobile-delivery-logos" aria-hidden="true">
+                    <Image
+                      src="/images/third-party-logos/Omniva_lockup_horizontal_orange.svg"
+                      alt=""
+                      width={84}
+                      height={28}
+                      sizes="64px"
+                    />
+                    <Image
+                      src="/images/third-party-logos/DPD_logo_(2015).svg"
+                      alt=""
+                      width={52}
+                      height={28}
+                      sizes="38px"
+                    />
+                    <Image
+                      src="/images/third-party-logos/Latvijas_Pasts_(2025).svg"
+                      alt=""
+                      width={64}
+                      height={28}
+                      sizes="46px"
+                    />
+                  </span>
+                </a>
               </nav>
             </div>
           </div>
