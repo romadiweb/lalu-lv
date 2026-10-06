@@ -61,7 +61,7 @@ export function SiteHeader() {
             <svg viewBox="0 0 14 14" aria-hidden="true">
               <path d="M9 3 5 7l4 4" />
             </svg>
-            Back
+            Atpakaļ 
           </button>
         ) : (
           <Link className="brand" href="/" aria-label="LaLu sākums" onClick={closeMobileMenu}>

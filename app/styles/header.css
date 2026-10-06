@@ -1056,22 +1056,39 @@
 }
 
 .mobile-delivery-logos {
-  display: grid;
-  width: 72px;
-  gap: 4px;
-  align-content: center;
-  justify-items: center;
-  padding: 6px;
+  display: flex;
+  width: 168px;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 12px;
   border-radius: var(--radius-md);
-  background: rgb(255 254 251 / 0.72);
+  background: rgb(255 254 251 / 0.78);
+  flex-shrink: 0;
 }
 
 .mobile-delivery-logos img {
   display: block;
   width: auto;
-  max-width: 58px;
-  height: 12px;
+  height: 18px;
+  max-width: none;
   object-fit: contain;
+}
+
+.mobile-delivery-logos img:nth-child(1) {
+  width: 58px;
+  height: auto;
+}
+
+.mobile-delivery-logos img:nth-child(2) {
+  width: 34px;
+  height: auto;
+}
+
+.mobile-delivery-logos img:nth-child(3) {
+  width: 42px;
+  height: auto;
 }
 
 .mobile-menu-actions {
