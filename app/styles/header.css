@@ -907,9 +907,12 @@
   overflow-y: auto;
   overscroll-behavior: contain;
   padding: 18px 2px max(18px, env(safe-area-inset-bottom));
-  scrollbar-width: thin;
-  scrollbar-color: var(--surface-strong) transparent;
+  scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
+}
+
+.mobile-category-list::-webkit-scrollbar {
+  display: none;
 }
 
 .mobile-category-list a {
@@ -993,19 +996,44 @@
 }
 
 .mobile-category-list .mobile-delivery-card {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 12px;
   min-height: 82px;
+  overflow: hidden;
   margin-top: 14px;
   padding: 12px 14px;
   border-radius: var(--radius-lg);
-  background: var(--primary-disabled);
+  background: #fa7119;
+  color: #fffdf9;
+  isolation: isolate;
+}
+
+.mobile-delivery-card::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' seed='23' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.75'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='480' height='480' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+  background-size: 480px 480px;
+  mix-blend-mode: soft-light;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.mobile-delivery-card::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background: linear-gradient(to right, rgb(23 23 23 / 0.18), transparent 72%);
+  pointer-events: none;
 }
 
 .mobile-category-list .mobile-delivery-card:hover,
 .mobile-category-list .mobile-delivery-card:focus-visible {
-  background: var(--primary-disabled);
+  background: #fa7119;
 }
 
 .mobile-delivery-copy {
@@ -1014,7 +1042,7 @@
 }
 
 .mobile-delivery-copy > span {
-  color: var(--muted);
+  color: #fffdf9;
   font-size: 12px;
   font-weight: 750;
   letter-spacing: 0.08em;

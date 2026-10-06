@@ -5,11 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { LaLuMark } from "@/components/brand/lalu-mark";
 import { CartDrawer } from "@/components/cart/cart-drawer";
+import { useCart } from "@/components/cart/cart-provider";
 import { CartToggle } from "@/components/cart/cart-toggle";
 import { RollingLabel } from "@/components/navigation/rolling-label";
 import { navItems, storeCategories } from "@/lib/site-map";
 
 export function SiteHeader() {
+  const { closeCart } = useCart();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [activeMobilePanel, setActiveMobilePanel] = useState<"store" | null>(null);
   const [isLogoPopping, setIsLogoPopping] = useState(false);
@@ -162,7 +164,7 @@ export function SiteHeader() {
         </div>
 
         <div className="mobile-header-actions">
-          <CartToggle className="mobile-bag-link" />
+          <CartToggle className="mobile-bag-link" onOpen={closeMobileMenu} />
           <button
             className="mobile-menu-toggle"
             type="button"
@@ -170,6 +172,7 @@ export function SiteHeader() {
             aria-expanded={isMobileOpen}
             aria-controls="mobile-navigation"
             onClick={() => {
+              closeCart();
               setIsMobileOpen((open) => {
                 if (open) {
                   setActiveMobilePanel(null);
@@ -202,17 +205,11 @@ export function SiteHeader() {
                   ) : (
                     <a href={item.href} key={item.label} onClick={closeMobileMenu}>
                       <span>{item.label}</span>
-                      <svg viewBox="0 0 14 14" aria-hidden="true">
-                        <path d="m5 3 4 4-4 4" />
-                      </svg>
                     </a>
                   ),
                 )}
                 <a href="/kontakti/" onClick={closeMobileMenu}>
                   <span>Kontakti</span>
-                  <svg viewBox="0 0 14 14" aria-hidden="true">
-                    <path d="m5 3 4 4-4 4" />
-                  </svg>
                 </a>
               </nav>
 
