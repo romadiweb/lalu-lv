@@ -12,7 +12,7 @@ export type PostPreview = {
   body: string[];
 };
 
-// Visual placeholder content. This array can be replaced by CMS records later.
+// Legacy fallback content kept only for reference while Supabase CMS records are active.
 export const posts: PostPreview[] = [
   {
     title: "Rudens LaLu darbnīcā: krāsas, idejas un jauni darbi",

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { SiteFooter } from "@/components/footer/site-footer";
 import { ArchiveList } from "@/components/updates/archive-list";
 import { SiteHeader } from "@/components/navigation/site-header";
+import { getBlogPosts } from "@/lib/content";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -18,13 +19,15 @@ function ArrowIcon() {
   );
 }
 
-export default function AktualitatesPage() {
+export default async function AktualitatesPage() {
+  const posts = await getBlogPosts();
+
   return (
     <main className={styles.pageShell}>
       <SiteHeader />
 
       <div className={styles.archiveLayout}>
-        <ArchiveList />
+        <ArchiveList posts={posts} />
 
         <aside className={styles.sidebar} aria-label="LaLu saites">
           <h2>LaLu</h2>

@@ -3,7 +3,8 @@
 import { useDeferredValue, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { posts } from "@/lib/posts";
+import type { BlogPost } from "@/lib/content-types";
+import { formatPostDate } from "@/lib/format";
 import styles from "./archive-list.module.css";
 
 function SearchIcon() {
@@ -15,7 +16,7 @@ function SearchIcon() {
   );
 }
 
-export function ArchiveList() {
+export function ArchiveList({ posts }: { posts: BlogPost[] }) {
   const [query, setQuery] = useState("");
   const deferredQuery = useDeferredValue(query);
 
@@ -32,7 +33,7 @@ export function ArchiveList() {
         .toLocaleLowerCase("lv")
         .includes(normalizedQuery),
     );
-  }, [deferredQuery]);
+  }, [deferredQuery, posts]);
 
   return (
     <section className={styles.section} aria-labelledby="archive-title">
@@ -67,17 +68,17 @@ export function ArchiveList() {
               <div className={styles.copy}>
                 <h2>{post.title}</h2>
                 <p>{post.excerpt}</p>
-                <time dateTime={post.dateTime}>{post.date}</time>
+                <time dateTime={post.published_at}>{formatPostDate(post.published_at)}</time>
               </div>
               <div className={styles.imageWrap}>
                 <Image
-                  alt={post.imageAlt}
+                  alt={post.image_alt}
                   className={styles.image}
                   fill
                   loading={index === 0 ? "eager" : "lazy"}
                   sizes="(max-width: 430px) 24vw, (max-width: 720px) 104px, (max-width: 1020px) 136px, 160px"
-                  src={post.image}
-                  style={post.imagePosition ? { objectPosition: post.imagePosition } : undefined}
+                  src={post.image_url}
+                  style={post.image_position ? { objectPosition: post.image_position } : undefined}
                 />
               </div>
             </Link>

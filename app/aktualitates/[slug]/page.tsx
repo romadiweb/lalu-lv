@@ -4,7 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteFooter } from "@/components/footer/site-footer";
 import { SiteHeader } from "@/components/navigation/site-header";
-import { getPostBySlug, posts } from "@/lib/posts";
+import { getBlogPostBySlug, getBlogPosts } from "@/lib/content";
+import { formatPostDate } from "@/lib/format";
 import styles from "./page.module.css";
 
 type ArticlePageProps = PageProps<"/aktualitates/[slug]">;
@@ -17,13 +18,9 @@ function ArrowIcon() {
   );
 }
 
-export function generateStaticParams() {
-  return posts.map((post) => ({ slug: post.slug }));
-}
-
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getBlogPostBySlug(slug);
 
   if (!post) {
     return {};
@@ -37,7 +34,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const [post, posts] = await Promise.all([getBlogPostBySlug(slug), getBlogPosts()]);
 
   if (!post) {
     notFound();
@@ -56,12 +53,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           <dl className={styles.meta}>
             <div>
               <dt>Autors</dt>
-              <dd>LaLu darbnīca</dd>
+              <dd>{post.author_name}</dd>
             </div>
             <div>
               <dt>Datums</dt>
               <dd>
-                <time dateTime={post.dateTime}>{post.date}</time>
+                <time dateTime={post.published_at}>{formatPostDate(post.published_at)}</time>
               </dd>
             </div>
           </dl>
@@ -69,12 +66,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
         <div className={`${styles.heroImage} ${styles[post.tone]}`}>
           <Image
-            alt={post.imageAlt}
+            alt={post.image_alt}
             fill
             priority
             sizes="(max-width: 760px) calc(100vw - 32px), min(1180px, calc(100vw - 48px))"
-            src={post.image}
-            style={post.imagePosition ? { objectPosition: post.imagePosition } : undefined}
+            src={post.image_url}
+            style={post.image_position ? { objectPosition: post.image_position } : undefined}
           />
         </div>
 
@@ -99,20 +96,20 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 <Link href={`/aktualitates/${relatedPost.slug}/`}>
                   <div className={`${styles.moreImage} ${styles[relatedPost.tone]}`}>
                     <Image
-                      alt={relatedPost.imageAlt}
+                      alt={relatedPost.image_alt}
                       fill
                       sizes="(max-width: 760px) 82vw, 360px"
-                      src={relatedPost.image}
+                      src={relatedPost.image_url}
                       style={
-                        relatedPost.imagePosition
-                          ? { objectPosition: relatedPost.imagePosition }
+                        relatedPost.image_position
+                          ? { objectPosition: relatedPost.image_position }
                           : undefined
                       }
                     />
                   </div>
                   <span>{relatedPost.category}</span>
                   <h3>{relatedPost.title}</h3>
-                  <time dateTime={relatedPost.dateTime}>{relatedPost.date}</time>
+                  <time dateTime={relatedPost.published_at}>{formatPostDate(relatedPost.published_at)}</time>
                 </Link>
               </article>
             ))}

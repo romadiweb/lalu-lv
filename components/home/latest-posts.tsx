@@ -1,9 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { posts } from "@/lib/posts";
+import { getBlogPosts } from "@/lib/content";
+import { formatPostDate } from "@/lib/format";
 import styles from "./latest-posts.module.css";
 
-export function LatestPosts() {
+export async function LatestPosts() {
+  const posts = (await getBlogPosts()).slice(0, 4);
+
   return (
     <section className={styles.section} aria-labelledby="latest-posts-title">
       <div className={styles.heading}>
@@ -23,18 +26,18 @@ export function LatestPosts() {
             >
               <div className={`${styles.imageWrap} ${styles[post.tone]}`}>
                 <Image
-                  alt={post.imageAlt}
+                  alt={post.image_alt}
                   className={styles.image}
                   fill
                   sizes="(max-width: 720px) 78vw, (max-width: 980px) 50vw, 295px"
-                  src={post.image}
-                  style={post.imagePosition ? { objectPosition: post.imagePosition } : undefined}
+                  src={post.image_url}
+                  style={post.image_position ? { objectPosition: post.image_position } : undefined}
                 />
               </div>
               <div className={styles.cardBody}>
                 <span>{post.category}</span>
                 <h3>{post.title}</h3>
-                <time dateTime={post.dateTime}>{post.date}</time>
+                <time dateTime={post.published_at}>{formatPostDate(post.published_at)}</time>
               </div>
             </Link>
           </article>
