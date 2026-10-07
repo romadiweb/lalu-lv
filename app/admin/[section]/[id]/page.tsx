@@ -93,6 +93,7 @@ function ProductImagesInput({ value }: { value: unknown }) {
                 type="file"
                 accept="image/*"
               />
+              <small>JPEG, PNG vai WebP, ne vairāk kā 3 MB.</small>
             </div>
 
             <label htmlFor={`product_image_alt_${index}`}>Alt teksts</label>
@@ -140,7 +141,7 @@ export default async function AdminRecordPage({ params }: PageProps<"/admin/[sec
         </Link>
       </header>
 
-      <form className="admin-form" action={saveRecordAction}>
+      <form id="admin-record-form" className="admin-form" action={saveRecordAction}>
         <input type="hidden" name="_section" value={resource.section} />
         <input type="hidden" name="_id" value={id} />
         {fields.map((field) => (
@@ -151,6 +152,7 @@ export default async function AdminRecordPage({ params }: PageProps<"/admin/[sec
               <div className="admin-upload">
                 <label htmlFor={`${field.name}__file`}>Augšupielādēt failu</label>
                 <input id={`${field.name}__file`} name={`${field.name}__file`} type="file" accept="image/*" />
+                <small>JPEG, PNG vai WebP, ne vairāk kā 3 MB.</small>
               </div>
             ) : null}
             {field.help ? <small>{field.help}</small> : null}
@@ -159,14 +161,15 @@ export default async function AdminRecordPage({ params }: PageProps<"/admin/[sec
         {resource.section === "veikala-produkti" ? (
           <ProductImagesInput value={record.product_images} />
         ) : null}
-        <div className="admin-form-actions">
-          <button className="admin-button" type="submit">Saglabāt</button>
-        </div>
       </form>
-
-      {!isNew ? (
-        <DeleteRecordForm section={resource.section} id={id} />
-      ) : null}
+      <div className="admin-record-actions">
+        <button className="admin-button" type="submit" form="admin-record-form">
+          Saglabāt
+        </button>
+        {!isNew ? (
+          <DeleteRecordForm section={resource.section} id={id} />
+        ) : null}
+      </div>
     </main>
   );
 }

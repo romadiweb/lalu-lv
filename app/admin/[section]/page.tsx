@@ -47,7 +47,12 @@ export default async function AdminSectionPage({ params }: PageProps<"/admin/[se
                   <td key={column}>{formatListValue(column, record[column])}</td>
                 ))}
                 <td className="admin-table-actions">
-                  <Link href={`/admin/${resource.section}/${record.id}/`}>Labot</Link>
+                  <Link
+                    className="admin-edit-button"
+                    href={`/admin/${resource.section}/${record.id}/`}
+                  >
+                    Labot
+                  </Link>
                   <DeleteRecordForm
                     section={resource.section}
                     id={String(record.id)}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 type Command = "bold" | "italic" | "underline" | "insertUnorderedList" | "insertOrderedList" | "undo" | "redo" | "createLink" | "foreColor";
 
@@ -16,12 +16,15 @@ const toolbarButtons: Array<{ command: Command; label: string; icon: string }> =
 
 export function RichTextEditor({ name, initialHtml }: { name: string; initialHtml: string }) {
   const editorRef = useRef<HTMLDivElement>(null);
+  const valueRef = useRef<HTMLTextAreaElement>(null);
   const selectionRef = useRef<Range | null>(null);
-  const [serializedValue, setSerializedValue] = useState(() => JSON.stringify(initialHtml ? [initialHtml] : []));
 
   function syncValue() {
     const html = editorRef.current?.innerHTML.trim() ?? "";
-    setSerializedValue(JSON.stringify(html && html !== "<br>" ? [html] : []));
+
+    if (valueRef.current) {
+      valueRef.current.value = html === "<br>" ? "" : html;
+    }
   }
 
   function rememberSelection() {
@@ -105,7 +108,13 @@ export function RichTextEditor({ name, initialHtml }: { name: string; initialHtm
         role="textbox"
         suppressContentEditableWarning
       />
-      <textarea name={name} readOnly value={serializedValue} hidden />
+      <textarea
+        defaultValue={initialHtml}
+        hidden
+        name={name}
+        readOnly
+        ref={valueRef}
+      />
     </div>
   );
 }

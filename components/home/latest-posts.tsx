@@ -16,7 +16,10 @@ export async function LatestPosts() {
         </p>
       </div>
 
-      <div className={styles.grid} aria-label="Jaunākās aktualitātes">
+      <div
+        className={`${styles.grid} ${styles[`gridCount${posts.length}`]}`}
+        aria-label="Jaunākās aktualitātes"
+      >
         {posts.map((post) => (
           <article className={`${styles.card} ${post.image_url ? "" : styles.cardNoImage}`} key={post.title}>
             <Link

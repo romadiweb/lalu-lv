@@ -40,10 +40,16 @@ function parseFieldValue(field: AdminField, formData: FormData) {
   if (field.type === "richtext") {
     try {
       const blocks = JSON.parse(value);
-      return Array.isArray(blocks) ? blocks.map(String).map(sanitizeRichText).filter(Boolean) : [];
+      if (Array.isArray(blocks)) {
+        return blocks.map(String).map(sanitizeRichText).filter(Boolean);
+      }
     } catch {
-      return [];
+      // Current editors submit HTML directly; JSON arrays remain supported for
+      // records created by the earlier editor implementation.
     }
+
+    const sanitizedValue = sanitizeRichText(value);
+    return sanitizedValue ? [sanitizedValue] : [];
   }
 
   if (field.type === "array") {

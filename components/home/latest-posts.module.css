@@ -34,9 +34,25 @@
 
 .grid {
   display: grid;
+  width: 100%;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   border: 1px solid var(--hairline);
   background: #fffdf9;
+}
+
+.gridCount1 {
+  width: min(100%, 295px);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.gridCount2 {
+  width: min(100%, 590px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.gridCount3 {
+  width: min(100%, 885px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .card {
@@ -233,6 +249,19 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .gridCount1 {
+    width: min(100%, 295px);
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gridCount2 {
+    width: min(100%, 590px);
+  }
+
+  .gridCount3 {
+    width: min(100%, 885px);
+  }
+
   .card {
     min-height: 430px;
   }
@@ -270,6 +299,7 @@
 
   .grid {
     display: flex;
+    width: 100%;
     gap: 0;
     overflow-x: auto;
     border-right: 0;

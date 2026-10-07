@@ -6,7 +6,7 @@ import sharp from "sharp";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 const CMS_BUCKET = "cms-images";
-const MAX_UPLOAD_SIZE = 12 * 1024 * 1024;
+const MAX_UPLOAD_SIZE = 3 * 1024 * 1024;
 
 let bucketReadyPromise: Promise<void> | null = null;
 
@@ -72,7 +72,7 @@ export async function uploadCmsImage(
   }
 
   if (upload.size > MAX_UPLOAD_SIZE) {
-    throw new Error("Image upload is too large. Maximum size is 12 MB.");
+    throw new Error("Attēls ir pārāk liels. Maksimālais izmērs ir 3 MB.");
   }
 
   await ensureCmsBucket();
