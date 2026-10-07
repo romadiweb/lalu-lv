@@ -18,11 +18,32 @@ export async function getRecord(resource: AdminResource, id: string) {
     `select * from public.${quoteIdent(resource.table)} where id = $1 limit 1`,
     [id],
   );
+
+  if (record && resource.section === "veikala-produkti") {
+    const images = await adminQuery<{
+      url: string;
+      alt: string | null;
+      is_primary: boolean;
+      sort_order: number;
+    }>(
+      `
+        select url, alt, is_primary, sort_order
+        from public.shop_product_images
+        where product_id = $1
+        order by is_primary desc, sort_order asc, created_at asc
+      `,
+      [id],
+    );
+
+    record.product_images = images;
+    record.primary_image_url = images[0]?.url ?? "";
+  }
+
   return record ?? null;
 }
 
 export function emptyRecord(resource: AdminResource) {
-  return Object.fromEntries(
+  const record = Object.fromEntries(
     resource.fields.map((field) => {
       if (field.name === "status") {
         return [field.name, field.options?.[0]?.value ?? "published"];
@@ -47,6 +68,12 @@ export function emptyRecord(resource: AdminResource) {
       return [field.name, ""];
     }),
   );
+
+  if (resource.section === "veikala-produkti") {
+    record.product_images = [];
+  }
+
+  return record;
 }
 
 export function serializeFieldValue(value: unknown) {

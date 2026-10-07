@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { CartProvider } from "@/components/cart/cart-provider";
 import { ScrollToTop } from "@/components/navigation/scroll-to-top";
+import { CookieConsent } from "@/components/CookieConsent";
+import "@/components/cookie-consent.css";
 import "./globals.css";
 import "./styles/brand.css";
 import "./styles/header.css";
@@ -44,6 +46,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <CartProvider>
           {children}
           <ScrollToTop />
+          <CookieConsent />
         </CartProvider>
       </body>
     </html>

@@ -8,48 +8,88 @@ import { formatPrice } from "@/lib/format";
 import { type ShopProduct } from "@/lib/shop";
 import styles from "./page.module.css";
 
-export function ProductCard({ product }: { product: ShopProduct }) {
+export function ProductCard({
+  product,
+}: {
+  product: ShopProduct;
+}) {
   const { addItem } = useCart();
+
+  const isSoldOut =
+    product.stock_status === "sold_out";
 
   return (
     <article className={styles.productCard}>
-      <Link className={styles.productLink} href={`/veikals/product/${product.slug}/`}>
-        <span className={styles.productImage}>
+      <div className={styles.productMedia}>
+        <Link
+          className={styles.productImage}
+          href={`/veikals/product/${product.slug}/`}
+        >
           {product.image ? (
             <Image
               src={product.image.url}
-              alt={product.image.alt ?? product.name}
-              width={520}
-              height={680}
-              sizes="(max-width: 760px) 50vw, (max-width: 1180px) 33vw, 260px"
+              alt={
+                product.image.alt ?? product.name
+              }
+              width={480}
+              height={560}
+              sizes="
+                (max-width: 600px) 50vw,
+                (max-width: 900px) 33vw,
+                (max-width: 1180px) 25vw,
+                220px
+              "
             />
           ) : (
-            <span className={styles.imageFallback}>LaLu</span>
+            <span className={styles.imageFallback}>
+              LaLu
+            </span>
           )}
+        </Link>
+
+        <button
+          className={styles.addToBagButton}
+          type="button"
+          disabled={isSoldOut}
+          aria-label={`Pievienot grozam: ${product.name}`}
+          onClick={() =>
+            addItem({
+              id: product.id,
+              slug: product.slug,
+              name: product.name,
+              price_cents: product.price_cents,
+              currency: product.currency,
+              image: product.image,
+            })
+          }
+        >
+          <BagIcon />
+        </button>
+
+        {isSoldOut ? (
+          <span className={styles.productBadge}>
+            Izpārdots
+          </span>
+        ) : null}
+      </div>
+
+      <div className={styles.productInfo}>
+        <Link
+          className={styles.productName}
+          href={`/veikals/product/${product.slug}/`}
+        >
+          {product.name}
+        </Link>
+
+        <span className={styles.productMeta}>
+          {isSoldOut
+            ? "Nav pieejams"
+            : formatPrice(
+                product.price_cents,
+                product.currency,
+              )}
         </span>
-        <span className={styles.productName}>{product.name}</span>
-      </Link>
-      <span className={styles.productMeta}>
-        {product.stock_status === "sold_out" ? "Izpārdots" : formatPrice(product.price_cents, product.currency)}
-      </span>
-      <button
-        className={styles.addToBagButton}
-        type="button"
-        disabled={product.stock_status === "sold_out"}
-        aria-label={`Pievienot grozam: ${product.name}`}
-        onClick={() =>
-          addItem({
-            id: product.id,
-            slug: product.slug,
-            name: product.name,
-            price_cents: product.price_cents,
-            currency: product.currency,
-            image: product.image,
-          })
-        }
-      >
-        <BagIcon />
-      </button>
+      </div>
     </article>
   );
 }

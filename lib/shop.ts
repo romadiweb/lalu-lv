@@ -21,6 +21,10 @@ export type ShopProduct = {
   currency: string;
   stock_status: "in_stock" | "made_to_order" | "sold_out";
   old_url: string | null;
+  images: Array<{
+    url: string;
+    alt: string | null;
+  }>;
   image: {
     url: string;
     alt: string | null;
@@ -28,7 +32,7 @@ export type ShopProduct = {
   categorySlugs: string[];
 };
 
-type ProductRow = Omit<ShopProduct, "image" | "categorySlugs"> & {
+type ProductRow = Omit<ShopProduct, "image" | "images" | "categorySlugs"> & {
   shop_product_images: Array<{
     url: string;
     alt: string | null;
@@ -105,6 +109,11 @@ export async function getShopData() {
       return a.sort_order - b.sort_order;
     });
 
+    const productImages = images.map((image) => ({
+      url: image.url,
+      alt: image.alt,
+    }));
+
     return {
       id: product.id,
       slug: product.slug,
@@ -114,7 +123,8 @@ export async function getShopData() {
       currency: product.currency,
       stock_status: product.stock_status,
       old_url: product.old_url,
-      image: images[0] ? { url: images[0].url, alt: images[0].alt } : null,
+      images: productImages,
+      image: productImages[0] ?? null,
       categorySlugs: (product.shop_product_categories ?? [])
         .map((entry) => getCategorySlug(entry.shop_categories))
         .filter((slug): slug is string => Boolean(slug)),
@@ -168,6 +178,11 @@ export async function getShopProductBySlug(slug: string) {
     return a.sort_order - b.sort_order;
   });
 
+  const productImages = images.map((image) => ({
+    url: image.url,
+    alt: image.alt,
+  }));
+
   return {
     id: product.id,
     slug: product.slug,
@@ -177,7 +192,8 @@ export async function getShopProductBySlug(slug: string) {
     currency: product.currency,
     stock_status: product.stock_status,
     old_url: product.old_url,
-    image: images[0] ? { url: images[0].url, alt: images[0].alt } : null,
+    images: productImages,
+    image: productImages[0] ?? null,
     categorySlugs: (product.shop_product_categories ?? [])
       .map((entry) => getCategorySlug(entry.shop_categories))
       .filter((categorySlug): categorySlug is string => Boolean(categorySlug)),

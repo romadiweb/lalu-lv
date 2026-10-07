@@ -6,6 +6,7 @@ export type AdminField = {
   required?: boolean;
   help?: string;
   autoSlugFrom?: string;
+  dbColumn?: boolean;
 };
 
 export type AdminResource = {
@@ -161,7 +162,7 @@ export const adminResources: AdminResource[] = [
   {
     section: "veikala-produkti",
     label: "Veikala produkti",
-    description: "Produktu pamatdati. Attēlus un kategorijas varēs paplašināt nākamajā solī.",
+    description: "Produktu pamatdati, cenas, statusi un vairāki produkta attēli.",
     table: "shop_products",
     orderBy: "sort_order asc, name asc",
     listColumns: ["name", "status", "price_cents", "stock_status"],

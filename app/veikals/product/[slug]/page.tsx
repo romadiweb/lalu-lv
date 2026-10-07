@@ -49,19 +49,37 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </div>
 
         <div className={styles.productLayout}>
-          <div className={styles.galleryPanel}>
-            {product.image ? (
-              <Image
-                src={product.image.url}
-                alt={product.image.alt ?? product.name}
-                width={840}
-                height={980}
-                sizes="(max-width: 900px) 100vw, 54vw"
-                priority
-              />
-            ) : (
-              <span>LaLu</span>
-            )}
+          <div className={styles.galleryStack}>
+            <div className={styles.galleryPanel}>
+              {product.image ? (
+                <Image
+                  src={product.image.url}
+                  alt={product.image.alt ?? product.name}
+                  width={840}
+                  height={980}
+                  sizes="(max-width: 900px) 100vw, 54vw"
+                  priority
+                />
+              ) : (
+                <span>LaLu</span>
+              )}
+            </div>
+
+            {product.images.length > 1 ? (
+              <div className={styles.thumbnailGrid} aria-label="Produkta attēli">
+                {product.images.map((image, index) => (
+                  <div className={styles.thumbnail} key={`${image.url}-${index}`}>
+                    <Image
+                      src={image.url}
+                      alt={image.alt ?? product.name}
+                      width={220}
+                      height={220}
+                      sizes="120px"
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : null}
           </div>
 
           <aside className={styles.productSummary}>
