@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { DeleteRecordForm } from "../delete-record-form";
 import { requireAdmin } from "@/lib/admin/auth";
 import { formatListValue, listRecords } from "@/lib/admin/cms";
 import { getAdminResource } from "@/lib/admin/resources";
@@ -45,8 +46,13 @@ export default async function AdminSectionPage({ params }: PageProps<"/admin/[se
                 {resource.listColumns.map((column) => (
                   <td key={column}>{formatListValue(column, record[column])}</td>
                 ))}
-                <td>
+                <td className="admin-table-actions">
                   <Link href={`/admin/${resource.section}/${record.id}/`}>Labot</Link>
+                  <DeleteRecordForm
+                    section={resource.section}
+                    id={String(record.id)}
+                    compact
+                  />
                 </td>
               </tr>
             ))}

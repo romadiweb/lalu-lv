@@ -3,6 +3,12 @@ export type AdminField = {
   label: string;
   type: "text" | "textarea" | "array" | "number" | "date" | "select" | "money";
   options?: Array<{ label: string; value: string }>;
+  optionsFrom?: {
+    table: "blog_categories";
+    labelColumn: "name";
+    valueColumn: "name";
+    orderBy: "sort_order asc, name asc";
+  };
   required?: boolean;
   help?: string;
   autoSlugFrom?: string;
@@ -11,6 +17,7 @@ export type AdminField = {
 
 export type AdminResource = {
   section: string;
+  icon: "article" | "tag" | "workshop" | "cards" | "gallery" | "image" | "store" | "product";
   label: string;
   description: string;
   table: string;
@@ -28,6 +35,7 @@ const statusOptions = [
 export const adminResources: AdminResource[] = [
   {
     section: "raksti",
+    icon: "article",
     label: "Raksti",
     description: "Aktualitāšu saraksts un rakstu lapas.",
     table: "blog_posts",
@@ -36,7 +44,19 @@ export const adminResources: AdminResource[] = [
     fields: [
       { name: "title", label: "Virsraksts", type: "text", required: true },
       { name: "slug", label: "Saite / slug", type: "text", autoSlugFrom: "title", help: "Var atstāt tukšu - CMS izveidos no virsraksta." },
-      { name: "category", label: "Kategorija", type: "text", required: true },
+      {
+        name: "category",
+        label: "Kategorija",
+        type: "select",
+        required: true,
+        optionsFrom: {
+          table: "blog_categories",
+          labelColumn: "name",
+          valueColumn: "name",
+          orderBy: "sort_order asc, name asc",
+        },
+        help: "Kategorijas var pārvaldīt sadaļā “Rakstu kategorijas”.",
+      },
       { name: "excerpt", label: "Īsais apraksts", type: "textarea", required: true },
       { name: "body", label: "Raksta teksts", type: "array", help: "Viens paragrāfs katrā rindā." },
       { name: "author_name", label: "Autors", type: "text" },
@@ -59,7 +79,22 @@ export const adminResources: AdminResource[] = [
     ],
   },
   {
+    section: "rakstu-kategorijas",
+    icon: "tag",
+    label: "Rakstu kategorijas",
+    description: "Kategorijas, kuras var izvēlēties, veidojot vai labojot rakstu.",
+    table: "blog_categories",
+    orderBy: "sort_order asc, name asc",
+    listColumns: ["name", "slug", "sort_order"],
+    fields: [
+      { name: "name", label: "Nosaukums", type: "text", required: true },
+      { name: "slug", label: "Slug", type: "text", autoSlugFrom: "name", help: "Var atstāt tukšu — CMS izveidos no nosaukuma." },
+      { name: "sort_order", label: "Secība", type: "number" },
+    ],
+  },
+  {
     section: "meistarklases",
+    icon: "workshop",
     label: "Meistarklases",
     description: "Divu kolonnu meistarklašu kartītes ar attēlu, tekstu un detaļām.",
     table: "workshops",
@@ -83,6 +118,7 @@ export const adminResources: AdminResource[] = [
   },
   {
     section: "meistarklasu-kartites",
+    icon: "cards",
     label: "Meistarklašu info kartītes",
     description: "Trīs apakšējās info kartītes.",
     table: "workshop_feature_cards",
@@ -99,6 +135,7 @@ export const adminResources: AdminResource[] = [
   },
   {
     section: "fantazijas-ziedi",
+    icon: "gallery",
     label: "Fantāzijas ziedu galerijas",
     description: "Galeriju sadaļas, kurās vēlāk dzīvos ziedu attēli.",
     table: "flower_galleries",
@@ -116,6 +153,7 @@ export const adminResources: AdminResource[] = [
   },
   {
     section: "ziedu-atteli",
+    icon: "image",
     label: "Fantāzijas ziedu attēli",
     description: "Atsevišķi galerijas attēli. Gallery ID var nokopēt no galerijas saraksta.",
     table: "flower_gallery_items",
@@ -134,6 +172,7 @@ export const adminResources: AdminResource[] = [
   },
   {
     section: "veikala-kategorijas",
+    icon: "store",
     label: "Veikala kategorijas",
     description: "Veikala kreisā navigācija un kategoriju nosaukumi.",
     table: "shop_categories",
@@ -161,6 +200,7 @@ export const adminResources: AdminResource[] = [
   },
   {
     section: "veikala-produkti",
+    icon: "product",
     label: "Veikala produkti",
     description: "Produktu pamatdati, cenas, statusi un vairāki produkta attēli.",
     table: "shop_products",

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { requireAdmin } from "@/lib/admin/auth";
 import { adminResources } from "@/lib/admin/resources";
+import { ResourceIcon } from "./resource-icon";
 
 export default async function AdminDashboardPage() {
   await requireAdmin();
@@ -17,7 +18,7 @@ export default async function AdminDashboardPage() {
         {adminResources.map((resource) => (
           <Link className="admin-card" href={`/admin/${resource.section}/`} key={resource.section}>
             <div>
-              <h2>{resource.label}</h2>
+              <h2><ResourceIcon icon={resource.icon} />{resource.label}</h2>
               <p>{resource.description}</p>
             </div>
             <span>Atvērt sadaļu</span>

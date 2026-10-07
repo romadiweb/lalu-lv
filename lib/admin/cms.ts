@@ -7,6 +7,27 @@ function quoteIdent(value: string) {
   return `"${value.replaceAll('"', '""')}"`;
 }
 
+export async function resolveResourceFields(resource: AdminResource) {
+  return Promise.all(resource.fields.map(async (field) => {
+    if (!field.optionsFrom) {
+      return field;
+    }
+
+    const source = field.optionsFrom;
+    const options = await adminQuery<Record<string, unknown>>(
+      `select ${quoteIdent(source.labelColumn)}, ${quoteIdent(source.valueColumn)} from public.${quoteIdent(source.table)} order by ${source.orderBy}`,
+    );
+
+    return {
+      ...field,
+      options: options.map((option) => ({
+        label: String(option[source.labelColumn]),
+        value: String(option[source.valueColumn]),
+      })),
+    };
+  }));
+}
+
 export async function listRecords(resource: AdminResource) {
   return adminQuery<Record<string, unknown>>(
     `select id, ${resource.listColumns.map(quoteIdent).join(", ")} from public.${quoteIdent(resource.table)} order by ${resource.orderBy}`,

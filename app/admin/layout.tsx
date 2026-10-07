@@ -4,6 +4,7 @@ import { LaLuMark } from "@/components/brand/lalu-mark";
 import { adminResources } from "@/lib/admin/resources";
 import { getCurrentAdmin } from "@/lib/admin/auth";
 import { logoutAction } from "./actions";
+import { ResourceIcon } from "./resource-icon";
 import "./admin.css";
 
 export default async function AdminLayout({ children }: { children: ReactNode }) {
@@ -24,7 +25,8 @@ export default async function AdminLayout({ children }: { children: ReactNode })
             <nav className="admin-nav" aria-label="CMS sadaļas">
               {adminResources.map((resource) => (
                 <Link href={`/admin/${resource.section}/`} key={resource.section}>
-                  {resource.label}
+                  <ResourceIcon icon={resource.icon} />
+                  <span>{resource.label}</span>
                 </Link>
               ))}
             </nav>

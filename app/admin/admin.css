@@ -57,6 +57,7 @@
   display: flex;
   min-height: 42px;
   align-items: center;
+  gap: 10px;
   padding: 0 12px;
   border-radius: var(--radius-md);
   color: var(--body);
@@ -68,6 +69,26 @@
 .admin-nav a.is-active {
   background: var(--surface-soft);
   color: var(--ink);
+}
+
+.admin-resource-icon {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.55;
+}
+
+.admin-nav .admin-resource-icon {
+  color: var(--muted);
+}
+
+.admin-nav a:hover .admin-resource-icon,
+.admin-nav a:focus-visible .admin-resource-icon {
+  color: var(--primary-active);
 }
 
 .admin-sidebar form {
@@ -168,6 +189,9 @@
 }
 
 .admin-card h2 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
   margin: 0;
   font-size: 18px;
   font-weight: 720;
@@ -224,6 +248,13 @@
 .admin-table td a {
   color: var(--ink);
   font-weight: 700;
+}
+
+.admin-table-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
 }
 
 .admin-form {
@@ -405,17 +436,34 @@
   display: inline-flex;
 }
 
-.admin-delete button {
+.admin-delete-button {
   min-height: 42px;
-  border: 1px solid var(--hairline);
+  border: 1px solid var(--error);
   border-radius: var(--radius-md);
-  background: transparent;
-  color: var(--body);
+  background: var(--error);
+  color: #fff;
   cursor: pointer;
   font: inherit;
   font-size: 14px;
-  font-weight: 650;
+  font-weight: 700;
   padding: 0 14px;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.admin-delete-button:hover {
+  border-color: #dc2626;
+  background: #dc2626;
+}
+
+.admin-delete-button:focus-visible {
+  outline: 3px solid rgb(239 68 68 / 0.28);
+  outline-offset: 2px;
+}
+
+.admin-table-actions .admin-delete-button {
+  min-height: 34px;
+  padding: 0 11px;
+  font-size: 13px;
 }
 
 /* =========================================================

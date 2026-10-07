@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { deleteRecordAction, saveRecordAction } from "@/app/admin/actions";
+import { saveRecordAction } from "@/app/admin/actions";
+import { DeleteRecordForm } from "@/app/admin/delete-record-form";
 import { requireAdmin } from "@/lib/admin/auth";
-import { emptyRecord, getRecord, serializeFieldInputValue } from "@/lib/admin/cms";
+import { emptyRecord, getRecord, resolveResourceFields, serializeFieldInputValue } from "@/lib/admin/cms";
 import { getAdminResource, type AdminField } from "@/lib/admin/resources";
 
 function FieldInput({ field, value }: { field: AdminField; value: unknown }) {
@@ -112,7 +113,10 @@ export default async function AdminRecordPage({ params }: PageProps<"/admin/[sec
   }
 
   const isNew = id === "new";
-  const record = isNew ? emptyRecord(resource) : await getRecord(resource, id);
+  const [record, fields] = await Promise.all([
+    isNew ? emptyRecord(resource) : getRecord(resource, id),
+    resolveResourceFields(resource),
+  ]);
 
   if (!record) {
     notFound();
@@ -133,7 +137,7 @@ export default async function AdminRecordPage({ params }: PageProps<"/admin/[sec
       <form className="admin-form" action={saveRecordAction}>
         <input type="hidden" name="_section" value={resource.section} />
         <input type="hidden" name="_id" value={id} />
-        {resource.fields.map((field) => (
+        {fields.map((field) => (
           <div className="admin-field" key={field.name}>
             <label htmlFor={field.name}>{field.label}</label>
             <FieldInput field={field} value={record[field.name]} />
@@ -155,11 +159,7 @@ export default async function AdminRecordPage({ params }: PageProps<"/admin/[sec
       </form>
 
       {!isNew ? (
-        <form className="admin-delete" action={deleteRecordAction}>
-          <input type="hidden" name="_section" value={resource.section} />
-          <input type="hidden" name="_id" value={id} />
-          <button type="submit">Dzēst ierakstu</button>
-        </form>
+        <DeleteRecordForm section={resource.section} id={id} />
       ) : null}
     </main>
   );
