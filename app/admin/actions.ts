@@ -6,6 +6,7 @@ import { adminQuery } from "@/lib/admin/db";
 import { uploadCmsImage } from "@/lib/admin/storage";
 import { loginAdmin, logoutAdmin, requireAdmin } from "@/lib/admin/auth";
 import { getAdminResource, type AdminField } from "@/lib/admin/resources";
+import { sanitizeRichText } from "@/lib/rich-text";
 
 function quoteIdent(value: string) {
   return `"${value.replaceAll('"', '""')}"`;
@@ -36,6 +37,15 @@ function slugify(value: string) {
 function parseFieldValue(field: AdminField, formData: FormData) {
   const value = String(formData.get(field.name) ?? "").trim();
 
+  if (field.type === "richtext") {
+    try {
+      const blocks = JSON.parse(value);
+      return Array.isArray(blocks) ? blocks.map(String).map(sanitizeRichText).filter(Boolean) : [];
+    } catch {
+      return [];
+    }
+  }
+
   if (field.type === "array") {
     return value
       .split(/\r?\n/)
@@ -57,6 +67,22 @@ function parseFieldValue(field: AdminField, formData: FormData) {
 
   if (field.name === "is_active") {
     return value === "true";
+  }
+
+  if (!value && field.type === "date") {
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  if (!value && field.name === "author_name") {
+    return "LaLu darbnīca";
+  }
+
+  if (!value && field.name === "excerpt") {
+    return "";
+  }
+
+  if (!value && field.name === "image_alt") {
+    return String(formData.get("title") ?? formData.get("name") ?? "").trim() || null;
   }
 
   return value || null;

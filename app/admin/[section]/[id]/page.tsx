@@ -2,12 +2,18 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { saveRecordAction } from "@/app/admin/actions";
 import { DeleteRecordForm } from "@/app/admin/delete-record-form";
+import { RichTextEditor } from "@/app/admin/rich-text-editor";
 import { requireAdmin } from "@/lib/admin/auth";
 import { emptyRecord, getRecord, resolveResourceFields, serializeFieldInputValue } from "@/lib/admin/cms";
+import { prepareRichTextForEditor } from "@/lib/rich-text";
 import { getAdminResource, type AdminField } from "@/lib/admin/resources";
 
 function FieldInput({ field, value }: { field: AdminField; value: unknown }) {
   const serializedValue = serializeFieldInputValue(field.type, value);
+
+  if (field.type === "richtext") {
+    return <RichTextEditor name={field.name} initialHtml={prepareRichTextForEditor(value)} />;
+  }
 
   if (field.type === "textarea" || field.type === "array") {
     return (

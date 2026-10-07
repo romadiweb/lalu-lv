@@ -102,7 +102,9 @@
   margin: clamp(48px, 6vw, 76px) auto 0;
 }
 
-.body p {
+.body p,
+.body div,
+.body li {
   margin: 0;
   color: var(--body);
   font-size: clamp(18px, 1.55vw, 20px);
@@ -112,6 +114,30 @@
 
 .body p + p {
   margin-top: 1.4em;
+}
+
+.body ul,
+.body ol {
+  margin: 1.4em 0 0;
+  padding-left: 1.5em;
+}
+
+.body a {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.body a:hover,
+.body a:focus-visible {
+  color: var(--body);
+}
+
+.body strong {
+  color: var(--ink);
+  font-weight: 720;
 }
 
 .moreSection {

@@ -52,12 +52,25 @@
   border-left: 1px solid var(--hairline);
 }
 
+.cardNoImage {
+  min-height: 320px;
+}
+
 .cardLink {
   display: grid;
   min-height: 100%;
   grid-template-rows: auto 1fr;
   padding: 18px;
   color: inherit;
+}
+
+.cardNoImage .cardLink {
+  grid-template-rows: 1fr;
+}
+
+.cardNoImage .cardBody {
+  justify-content: flex-end;
+  padding-top: 32px;
 }
 
 .cardLink:focus-visible {

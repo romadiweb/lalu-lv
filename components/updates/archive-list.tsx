@@ -62,25 +62,27 @@ export function ArchiveList({ posts }: { posts: BlogPost[] }) {
           <article className={styles.item} key={post.slug}>
             <Link
               aria-label={`Lasīt aktualitāti: ${post.title}`}
-              className={styles.itemLink}
+              className={`${styles.itemLink} ${post.image_url ? "" : styles.itemLinkNoImage}`}
               href={`/aktualitates/${post.slug}/`}
             >
               <div className={styles.copy}>
                 <h2>{post.title}</h2>
-                <p>{post.excerpt}</p>
+                {post.excerpt ? <p>{post.excerpt}</p> : null}
                 <time dateTime={post.published_at}>{formatPostDate(post.published_at)}</time>
               </div>
-              <div className={styles.imageWrap}>
-                <Image
-                  alt={post.image_alt}
-                  className={styles.image}
-                  fill
-                  loading={index === 0 ? "eager" : "lazy"}
-                  sizes="(max-width: 430px) 24vw, (max-width: 720px) 104px, (max-width: 1020px) 136px, 160px"
-                  src={post.image_url}
-                  style={post.image_position ? { objectPosition: post.image_position } : undefined}
-                />
-              </div>
+              {post.image_url ? (
+                <div className={styles.imageWrap}>
+                  <Image
+                    alt={post.image_alt ?? post.title}
+                    className={styles.image}
+                    fill
+                    loading={index === 0 ? "eager" : "lazy"}
+                    sizes="(max-width: 430px) 24vw, (max-width: 720px) 104px, (max-width: 1020px) 136px, 160px"
+                    src={post.image_url}
+                    style={post.image_position ? { objectPosition: post.image_position } : undefined}
+                  />
+                </div>
+              ) : null}
             </Link>
           </article>
         ))}

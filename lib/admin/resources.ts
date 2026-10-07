@@ -1,7 +1,7 @@
 export type AdminField = {
   name: string;
   label: string;
-  type: "text" | "textarea" | "array" | "number" | "date" | "select" | "money";
+  type: "text" | "textarea" | "array" | "richtext" | "number" | "date" | "select" | "money";
   options?: Array<{ label: string; value: string }>;
   optionsFrom?: {
     table: "blog_categories";
@@ -57,12 +57,12 @@ export const adminResources: AdminResource[] = [
         },
         help: "Kategorijas var pārvaldīt sadaļā “Rakstu kategorijas”.",
       },
-      { name: "excerpt", label: "Īsais apraksts", type: "textarea", required: true },
-      { name: "body", label: "Raksta teksts", type: "array", help: "Viens paragrāfs katrā rindā." },
-      { name: "author_name", label: "Autors", type: "text" },
-      { name: "published_at", label: "Publicēšanas datums", type: "date", required: true },
-      { name: "image_url", label: "Attēla URL", type: "text", required: true },
-      { name: "image_alt", label: "Attēla alt teksts", type: "text", required: true },
+      { name: "excerpt", label: "Īsais apraksts", type: "textarea", help: "Nav obligāts." },
+      { name: "body", label: "Raksta teksts", type: "richtext", help: "Iezīmējiet tekstu un izmantojiet rīkjoslu, lai to formatētu." },
+      { name: "author_name", label: "Autors", type: "text", help: "Ja atstāts tukšs, tiks izmantots “LaLu darbnīca”." },
+      { name: "published_at", label: "Publicēšanas datums", type: "date", help: "Ja atstāts tukšs, tiks izmantots šodienas datums." },
+      { name: "image_url", label: "Attēla URL", type: "text", help: "Nav jāaizpilda, ja zemāk augšupielādējat failu. Attēls rakstam nav obligāts." },
+      { name: "image_alt", label: "Attēla alt teksts", type: "text", help: "Ja ir attēls un lauks ir tukšs, tiks izmantots raksta virsraksts." },
       { name: "image_position", label: "Attēla pozīcija", type: "text", help: "Piemēram: 50% center" },
       {
         name: "tone",

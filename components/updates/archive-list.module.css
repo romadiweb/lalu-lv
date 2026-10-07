@@ -94,6 +94,10 @@
   padding: 22px 20px;
 }
 
+.itemLink.itemLinkNoImage {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .itemLink:focus-visible {
   outline: 2px solid var(--primary-active);
   outline-offset: -4px;

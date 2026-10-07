@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/footer/site-footer";
 import { SiteHeader } from "@/components/navigation/site-header";
 import { getBlogPostBySlug, getBlogPosts } from "@/lib/content";
 import { formatPostDate } from "@/lib/format";
+import { prepareRichTextForDisplay } from "@/lib/rich-text";
 import styles from "./page.module.css";
 
 type ArticlePageProps = PageProps<"/aktualitates/[slug]">;
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 
   return {
     title: `${post.title} | LaLu`,
-    description: post.excerpt,
+    description: post.excerpt || undefined,
   };
 }
 
@@ -49,7 +50,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <article className={styles.article}>
         <header className={styles.header}>
           <h1>{post.title}</h1>
-          <p>{post.excerpt}</p>
+          {post.excerpt ? <p>{post.excerpt}</p> : null}
           <dl className={styles.meta}>
             <div>
               <dt>Autors</dt>
@@ -64,22 +65,23 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </dl>
         </header>
 
-        <div className={`${styles.heroImage} ${styles[post.tone]}`}>
-          <Image
-            alt={post.image_alt}
-            fill
-            priority
-            sizes="(max-width: 760px) calc(100vw - 32px), min(1180px, calc(100vw - 48px))"
-            src={post.image_url}
-            style={post.image_position ? { objectPosition: post.image_position } : undefined}
-          />
-        </div>
+        {post.image_url ? (
+          <div className={`${styles.heroImage} ${styles[post.tone]}`}>
+            <Image
+              alt={post.image_alt ?? post.title}
+              fill
+              priority
+              sizes="(max-width: 760px) calc(100vw - 32px), min(1180px, calc(100vw - 48px))"
+              src={post.image_url}
+              style={post.image_position ? { objectPosition: post.image_position } : undefined}
+            />
+          </div>
+        ) : null}
 
-        <div className={styles.body}>
-          {post.body.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </div>
+        <div
+          className={styles.body}
+          dangerouslySetInnerHTML={{ __html: prepareRichTextForDisplay(post.body) }}
+        />
 
         <section className={styles.moreSection} aria-labelledby="more-articles-title">
           <div className={styles.moreHeader}>
@@ -94,19 +96,21 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             {morePosts.map((relatedPost) => (
               <article className={styles.moreCard} key={relatedPost.slug}>
                 <Link href={`/aktualitates/${relatedPost.slug}/`}>
-                  <div className={`${styles.moreImage} ${styles[relatedPost.tone]}`}>
-                    <Image
-                      alt={relatedPost.image_alt}
-                      fill
-                      sizes="(max-width: 760px) 82vw, 360px"
-                      src={relatedPost.image_url}
-                      style={
-                        relatedPost.image_position
-                          ? { objectPosition: relatedPost.image_position }
-                          : undefined
-                      }
-                    />
-                  </div>
+                  {relatedPost.image_url ? (
+                    <div className={`${styles.moreImage} ${styles[relatedPost.tone]}`}>
+                      <Image
+                        alt={relatedPost.image_alt ?? relatedPost.title}
+                        fill
+                        sizes="(max-width: 760px) 82vw, 360px"
+                        src={relatedPost.image_url}
+                        style={
+                          relatedPost.image_position
+                            ? { objectPosition: relatedPost.image_position }
+                            : undefined
+                        }
+                      />
+                    </div>
+                  ) : null}
                   <span>{relatedPost.category}</span>
                   <h3>{relatedPost.title}</h3>
                   <time dateTime={relatedPost.published_at}>{formatPostDate(relatedPost.published_at)}</time>

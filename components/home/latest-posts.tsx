@@ -18,22 +18,24 @@ export async function LatestPosts() {
 
       <div className={styles.grid} aria-label="Jaunākās aktualitātes">
         {posts.map((post) => (
-          <article className={styles.card} key={post.title}>
+          <article className={`${styles.card} ${post.image_url ? "" : styles.cardNoImage}`} key={post.title}>
             <Link
               aria-label={`Lasīt aktualitāti: ${post.title}`}
               className={styles.cardLink}
               href={`/aktualitates/${post.slug}/`}
             >
-              <div className={`${styles.imageWrap} ${styles[post.tone]}`}>
-                <Image
-                  alt={post.image_alt}
-                  className={styles.image}
-                  fill
-                  sizes="(max-width: 720px) 78vw, (max-width: 980px) 50vw, 295px"
-                  src={post.image_url}
-                  style={post.image_position ? { objectPosition: post.image_position } : undefined}
-                />
-              </div>
+              {post.image_url ? (
+                <div className={`${styles.imageWrap} ${styles[post.tone]}`}>
+                  <Image
+                    alt={post.image_alt ?? post.title}
+                    className={styles.image}
+                    fill
+                    sizes="(max-width: 720px) 78vw, (max-width: 980px) 50vw, 295px"
+                    src={post.image_url}
+                    style={post.image_position ? { objectPosition: post.image_position } : undefined}
+                  />
+                </div>
+              ) : null}
               <div className={styles.cardBody}>
                 <span>{post.category}</span>
                 <h3>{post.title}</h3>

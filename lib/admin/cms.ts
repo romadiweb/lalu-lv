@@ -78,7 +78,15 @@ export function emptyRecord(resource: AdminResource) {
         return [field.name, "EUR"];
       }
 
-      if (field.type === "array") {
+      if (field.name === "author_name" && resource.section === "raksti") {
+        return [field.name, "LaLu darbnīca"];
+      }
+
+      if (field.type === "date") {
+        return [field.name, new Date().toISOString().slice(0, 10)];
+      }
+
+      if (field.type === "array" || field.type === "richtext") {
         return [field.name, []];
       }
 

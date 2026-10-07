@@ -7,8 +7,8 @@ export type BlogPost = {
   body: string[];
   author_name: string;
   published_at: string;
-  image_url: string;
-  image_alt: string;
+  image_url: string | null;
+  image_alt: string | null;
   image_position: string | null;
   tone: "lavender" | "warm" | "neutral";
 };
