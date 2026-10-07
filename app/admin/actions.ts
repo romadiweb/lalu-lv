@@ -1,11 +1,9 @@
 "use server";
 
-import crypto from "node:crypto";
-import path from "node:path";
-import { mkdir, writeFile } from "node:fs/promises";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { adminQuery } from "@/lib/admin/db";
+import { uploadCmsImage } from "@/lib/admin/storage";
 import { loginAdmin, logoutAdmin, requireAdmin } from "@/lib/admin/auth";
 import { getAdminResource, type AdminField } from "@/lib/admin/resources";
 
@@ -68,35 +66,8 @@ function fieldSupportsUpload(field: AdminField) {
   return field.name === "image_url" || field.name === "cover_image_url" || field.name === "primary_image_url";
 }
 
-async function saveFileUpload(upload: FormDataEntryValue | null) {
-
-  if (!(upload instanceof File) || upload.size === 0) {
-    return null;
-  }
-
-  if (!upload.type.startsWith("image/")) {
-    throw new Error("Only image uploads are supported.");
-  }
-
-  if (upload.size > 8 * 1024 * 1024) {
-    throw new Error("Image upload is too large. Maximum size is 8 MB.");
-  }
-
-  const extensionFromName = path.extname(upload.name).toLowerCase();
-  const extensionFromType = upload.type.split("/")[1] ? `.${upload.type.split("/")[1]}` : "";
-  const extension = (extensionFromName || extensionFromType || ".png").replace(/[^.a-z0-9]/g, "");
-  const fileName = `${Date.now()}-${crypto.randomUUID()}${extension}`;
-  const uploadDir = path.join(process.cwd(), "public", "uploads", "cms");
-  const filePath = path.join(uploadDir, fileName);
-
-  await mkdir(uploadDir, { recursive: true });
-  await writeFile(filePath, Buffer.from(await upload.arrayBuffer()));
-
-  return `/uploads/cms/${fileName}`;
-}
-
 async function saveUploadedFile(fieldName: string, formData: FormData) {
-  return saveFileUpload(formData.get(`${fieldName}__file`));
+  return uploadCmsImage(formData.get(`${fieldName}__file`), fieldName);
 }
 
 async function saveProductImages(productId: string, formData: FormData) {
@@ -109,7 +80,10 @@ async function saveProductImages(productId: string, formData: FormData) {
   const images: Array<{ url: string; alt: string | null; sortOrder: number }> = [];
 
   for (let index = 0; index < Math.max(typedUrls.length, uploads.length); index += 1) {
-    const uploadedUrl = await saveFileUpload(uploads[index] ?? null);
+    const uploadedUrl = await uploadCmsImage(
+      uploads[index] ?? null,
+      `product-image-${index + 1}`,
+    );
     const imageUrl = uploadedUrl ?? typedUrls[index] ?? "";
 
     if (!imageUrl) {

@@ -271,24 +271,53 @@
 
 .admin-upload {
   display: grid;
-  gap: 7px;
-  padding: 12px;
-  border: 1px dashed var(--hairline);
+  gap: 9px;
+  padding: 14px;
+  border: 1px dashed var(--primary-active);
   border-radius: var(--radius-md);
-  background: var(--surface-soft);
+  background:
+    linear-gradient(180deg, rgb(200 187 251 / 0.18), transparent),
+    var(--surface-soft);
 }
 
 .admin-upload label {
-  color: var(--body);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--ink);
   font-size: 12px;
   font-weight: 720;
 }
 
+.admin-upload label::after {
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fffefb;
+  content: "Izvēlēties";
+  font-size: 12px;
+  font-weight: 720;
+  padding: 6px 10px;
+}
+
 .admin-upload input {
-  padding: 0;
+  border-color: rgb(200 187 251 / 0.55);
+  background: #fffefb;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.admin-upload input::file-selector-button {
+  margin-right: 12px;
   border: 0;
-  border-radius: 0;
-  background: transparent;
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 720;
+  padding: 8px 11px;
 }
 
 .admin-image-list {

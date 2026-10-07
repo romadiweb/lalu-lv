@@ -18,6 +18,11 @@ const nextConfig: NextConfig = {
         hostname: "site-1900478.mozfiles.com",
         pathname: "/files/1900478/catitems/**",
       },
+      {
+        protocol: "https",
+        hostname: "jwckebgsroirjpsffshb.supabase.co",
+        pathname: "/storage/v1/object/public/**",
+      },
     ],
   },
 };

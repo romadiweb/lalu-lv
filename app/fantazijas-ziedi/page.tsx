@@ -13,10 +13,22 @@ export const metadata: Metadata = {
 };
 
 const offeringItems = [
-  "Lielformāta ziedu vai kompozīciju noma svētkiem, fotosesijām un noformējumam.",
-  "Lielformāta ziedu un kompozīciju tirdzniecība.",
-  "Meistarklases, kurās vari iemācīties un pats radīt lielformāta ziedus.",
-  "Ziedu izgatavošana pēc individuāla pasūtījuma.",
+  {
+    title: "Noma",
+    text: "Lielformāta ziedi un kompozīcijas svētkiem, fotosesijām, noformējumam un īpašiem notikumiem.",
+  },
+  {
+    title: "Tirdzniecība",
+    text: "Lielformāta ziedi un kompozīcijas iegādei un pastāvīgam noformējumam.",
+  },
+  {
+    title: "Meistarklases",
+    text: "Iemācies pats radīt lielformāta ziedus LaLu meistarklasēs.",
+  },
+  {
+    title: "Individuāli pasūtījumi",
+    text: "Ziedu un kompozīciju izgatavošana pēc Tavas ieceres un vajadzībām.",
+  },
 ];
 
 export default async function FantasyFlowersPage() {
@@ -43,8 +55,6 @@ export default async function FantasyFlowersPage() {
           <p className={styles.introLead}>
             Lielformāta ziedi un kompozīcijas svētkiem,
             fotosesijām, noformējumam un īpašām iecerēm.
-            Tos vari nomāt, iegādāties, pasūtīt individuāli
-            vai iemācīties radīt LaLu meistarklasēs.
           </p>
         </div>
 
@@ -58,42 +68,26 @@ export default async function FantasyFlowersPage() {
             {offeringItems.map((item, index) => (
               <article
                 className={styles.offerItem}
-                key={item}
+                key={item.title}
               >
-                <span className={styles.offerNumber}>
-                  {String(index + 1).padStart(2, "0")}
-                </span>
+                <div className={styles.offerTop}>
+                  <span className={styles.offerNumber}>
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
 
-                <p>{item}</p>
+                  <span
+                    className={styles.offerAccent}
+                    aria-hidden="true"
+                  />
+                </div>
+
+                <div className={styles.offerCopy}>
+                  <h2>{item.title}</h2>
+                  <p>{item.text}</p>
+                </div>
               </article>
             ))}
           </div>
-        </div>
-
-        <div className={styles.introActions}>
-          <Link
-            className={styles.primaryAction}
-            href="/veikals/category/fantazijas-ziedi/"
-          >
-            <span>Apskatīt veikalā</span>
-
-            <svg viewBox="0 0 18 18" aria-hidden="true">
-              <path d="M5 13 13 5" />
-              <path d="M7 5h6v6" />
-            </svg>
-          </Link>
-
-          <Link
-            className={styles.secondaryAction}
-            href="/social/facebook/"
-          >
-            <span>Fantāzijas ziedi Facebook</span>
-
-            <svg viewBox="0 0 18 18" aria-hidden="true">
-              <path d="M5 13 13 5" />
-              <path d="M7 5h6v6" />
-            </svg>
-          </Link>
         </div>
       </section>
 
