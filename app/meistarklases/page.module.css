@@ -348,11 +348,63 @@
   }
 
   .masterclassGrid {
-    gap: 42px;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: min(78vw, 320px);
+    gap: 16px;
+    margin-inline: -16px;
+    padding: 2px 40px 16px 16px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-padding-inline: 16px;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .masterclassGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .masterclassGrid:focus-visible {
+    border-radius: var(--radius-md);
+    outline: 2px solid var(--primary-active);
+    outline-offset: 4px;
   }
 
   .masterclassCard {
     grid-template-columns: 1fr;
+    gap: 18px;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .masterclassImageWrap {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-lg);
+  }
+
+  .masterclassCopy h2 {
+    font-size: 24px;
+    line-height: 1.04;
+  }
+
+  .masterclassCopy p {
+    margin-top: 14px;
+    line-height: 1.52;
+  }
+
+  .masterclassCopy ul {
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .masterclassCopy li {
+    font-size: 14px;
+  }
+
+  .masterclassCopy dl {
+    margin-top: 20px;
   }
 
   .masterclassCopy dl div {

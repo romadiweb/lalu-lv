@@ -22,8 +22,10 @@ export default async function MeistarklasesPage() {
       <section className={styles.workshopIntro} aria-labelledby="masterclass-list-title">
         <section className={styles.masterclassSection} aria-labelledby="masterclass-list-title">
           <h1 id="masterclass-list-title">Radošās meistarklases</h1>
+
           <div className={styles.masterclassGrid}>
             {workshops.map((item) => (
+
               <article className={styles.masterclassCard} key={item.title}>
                 <div className={styles.masterclassImageWrap}>
                   <Image
@@ -31,7 +33,7 @@ export default async function MeistarklasesPage() {
                     src={item.image_url}
                     alt={item.image_alt}
                     fill
-                    sizes="(max-width: 760px) 86vw, (max-width: 1100px) 38vw, 330px"
+                    sizes="(max-width: 700px) 78vw, (max-width: 1100px) 38vw, 330px"
                   />
                 </div>
                 <div className={styles.masterclassCopy}>
