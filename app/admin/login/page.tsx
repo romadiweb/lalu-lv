@@ -15,6 +15,11 @@ export default async function AdminLoginPage({
   }
 
   const { error } = await searchParams;
+  const errorMessage = error === "service"
+    ? "Neizdevās savienoties ar autentifikācijas pakalpojumu. Lūdzu, mēģiniet vēlreiz pēc brīža."
+    : error
+      ? "Nepareizs e-pasts vai parole. Lūdzu, mēģiniet vēlreiz."
+      : null;
 
   return (
     <main className="admin-login">
@@ -56,7 +61,7 @@ export default async function AdminLoginPage({
         </div>
 
         <form action={loginAction} className="admin-login-form">
-          {error ? (
+          {errorMessage ? (
             <div className="admin-error" role="alert">
               <span className="admin-error-icon" aria-hidden="true">
                 <svg viewBox="0 0 20 20">
@@ -66,9 +71,7 @@ export default async function AdminLoginPage({
                 </svg>
               </span>
 
-              <span>
-                Nepareizs e-pasts vai parole. Lūdzu, mēģiniet vēlreiz.
-              </span>
+              <span>{errorMessage}</span>
             </div>
           ) : null}
 

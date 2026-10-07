@@ -121,10 +121,17 @@ async function saveProductImages(productId: string, formData: FormData) {
 export async function loginAction(formData: FormData) {
   const email = String(formData.get("email") ?? "");
   const password = String(formData.get("password") ?? "");
-  const success = await loginAdmin(email, password);
+  let success = false;
+
+  try {
+    success = await loginAdmin(email, password);
+  } catch (error) {
+    console.error("Admin login failed because the authentication service is unavailable.", error);
+    redirect("/admin/login/?error=service");
+  }
 
   if (!success) {
-    redirect("/admin/login/?error=1");
+    redirect("/admin/login/?error=credentials");
   }
 
   redirect("/admin/");

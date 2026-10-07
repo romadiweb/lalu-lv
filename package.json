@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "cms:check": "node --env-file-if-exists=.env.local scripts/check-admin.mjs",
+    "cms:migrate": "node --env-file-if-exists=.env.local scripts/apply-sql.mjs supabase/migrations/20261007094500_create_admin_cms.sql",
+    "cms:seed": "node --env-file-if-exists=.env.local scripts/seed-admin.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
