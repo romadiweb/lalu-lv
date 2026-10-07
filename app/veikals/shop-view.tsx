@@ -84,7 +84,11 @@ export function ShopView({
   ]);
 
   useEffect(() => {
-    setVisibleCount(PRODUCTS_PER_PAGE);
+    const frame = requestAnimationFrame(() => {
+      setVisibleCount(PRODUCTS_PER_PAGE);
+    });
+
+    return () => cancelAnimationFrame(frame);
   }, [
     activeCategorySlug,
     availableOnly,
