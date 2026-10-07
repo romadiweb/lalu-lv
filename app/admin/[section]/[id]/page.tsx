@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { saveRecordAction } from "@/app/admin/actions";
-import { DeleteRecordForm } from "@/app/admin/delete-record-form";
+import { RecordFormActions } from "@/app/admin/record-form-actions";
 import { RichTextEditor } from "@/app/admin/rich-text-editor";
 import { requireAdmin } from "@/lib/admin/auth";
 import { emptyRecord, getRecord, resolveResourceFields, serializeFieldInputValue } from "@/lib/admin/cms";
@@ -161,15 +161,8 @@ export default async function AdminRecordPage({ params }: PageProps<"/admin/[sec
         {resource.section === "veikala-produkti" ? (
           <ProductImagesInput value={record.product_images} />
         ) : null}
+        <RecordFormActions canDelete={!isNew} />
       </form>
-      <div className="admin-record-actions">
-        <button className="admin-button" type="submit" form="admin-record-form">
-          Saglabāt
-        </button>
-        {!isNew ? (
-          <DeleteRecordForm section={resource.section} id={id} />
-        ) : null}
-      </div>
     </main>
   );
 }

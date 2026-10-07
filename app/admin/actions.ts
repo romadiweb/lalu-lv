@@ -224,7 +224,7 @@ export async function saveRecordAction(formData: FormData) {
   revalidatePath("/aktualitates/");
   revalidatePath("/meistarklases/");
   revalidatePath("/veikals/");
-  redirect(`/admin/${section}/`);
+  redirect(`/admin/${section}/?saved=1`);
 }
 
 export async function deleteRecordAction(formData: FormData) {

@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DeleteRecordForm } from "../delete-record-form";
+import { SaveToast } from "../save-toast";
 import { requireAdmin } from "@/lib/admin/auth";
 import { formatListValue, listRecords } from "@/lib/admin/cms";
 import { getAdminResource } from "@/lib/admin/resources";
 
-export default async function AdminSectionPage({ params }: PageProps<"/admin/[section]">) {
+export default async function AdminSectionPage({ params, searchParams }: PageProps<"/admin/[section]">) {
   await requireAdmin();
   const { section } = await params;
+  const { saved } = await searchParams;
   const resource = getAdminResource(section);
 
   if (!resource) {
@@ -18,6 +20,7 @@ export default async function AdminSectionPage({ params }: PageProps<"/admin/[se
 
   return (
     <main>
+      {saved === "1" ? <SaveToast /> : null}
       <header className="admin-header">
         <div>
           <h1>{resource.label}</h1>

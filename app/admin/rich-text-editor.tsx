@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 type Command = "bold" | "italic" | "underline" | "insertUnorderedList" | "insertOrderedList" | "undo" | "redo" | "createLink" | "foreColor";
 
@@ -15,17 +15,41 @@ const toolbarButtons: Array<{ command: Command; label: string; icon: string }> =
 ];
 
 export function RichTextEditor({ name, initialHtml }: { name: string; initialHtml: string }) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const editorRef = useRef<HTMLDivElement>(null);
-  const valueRef = useRef<HTMLTextAreaElement>(null);
+  const valueRef = useRef<HTMLInputElement>(null);
   const selectionRef = useRef<Range | null>(null);
 
-  function syncValue() {
+  function getCurrentHtml() {
     const html = editorRef.current?.innerHTML.trim() ?? "";
+    return html === "<br>" ? "" : html;
+  }
 
+  function syncValue() {
     if (valueRef.current) {
-      valueRef.current.value = html === "<br>" ? "" : html;
+      valueRef.current.value = getCurrentHtml();
     }
   }
+
+  useEffect(() => {
+    const form = wrapperRef.current?.closest("form");
+
+    if (!form) return;
+
+    const handleSubmit = () => {
+      const html = editorRef.current?.innerHTML.trim() ?? "";
+
+      if (valueRef.current) {
+        valueRef.current.value = html === "<br>" ? "" : html;
+      }
+    };
+
+    form.addEventListener("submit", handleSubmit);
+
+    return () => {
+      form.removeEventListener("submit", handleSubmit);
+    };
+  }, []);
 
   function rememberSelection() {
     const selection = window.getSelection();
@@ -60,7 +84,7 @@ export function RichTextEditor({ name, initialHtml }: { name: string; initialHtm
   }
 
   return (
-    <div className="admin-rich-text">
+    <div ref={wrapperRef} className="admin-rich-text">
       <div className="admin-rich-toolbar" role="toolbar" aria-label="Teksta formatēšana">
         {toolbarButtons.map((button) => (
           <button
@@ -97,6 +121,7 @@ export function RichTextEditor({ name, initialHtml }: { name: string; initialHtm
         </label>
       </div>
       <div
+        ref={editorRef}
         aria-label="Raksta teksts"
         className="admin-rich-editor"
         contentEditable
@@ -108,12 +133,11 @@ export function RichTextEditor({ name, initialHtml }: { name: string; initialHtm
         role="textbox"
         suppressContentEditableWarning
       />
-      <textarea
+      <input
         defaultValue={initialHtml}
-        hidden
         name={name}
-        readOnly
         ref={valueRef}
+        type="hidden"
       />
     </div>
   );
