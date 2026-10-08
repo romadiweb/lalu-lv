@@ -84,6 +84,15 @@
   transition: color 180ms ease;
 }
 
+.footer-links .footer-policy-link {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 12px;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
 .footer-links a:hover,
 .footer-contact a:hover,
 .footer-bottom a:hover {

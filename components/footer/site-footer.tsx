@@ -16,6 +16,11 @@ export function SiteFooter() {
                     {link.label}
                   </a>
                 ))}
+                {group.title === "LaLu" ? (
+                  <a className="footer-policy-link" href="/sikdatnu-politika/">
+                    Privātuma un sīkdatņu politika
+                  </a>
+                ) : null}
               </div>
             ))}
           </div>

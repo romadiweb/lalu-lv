@@ -297,7 +297,7 @@ function CookieFooter({
         </button>
       )}
 
-      <a href="/privacy-policy" className="cookie-footer-link">
+      <a href="/sikdatnu-politika/" className="cookie-footer-link">
         Skatīt mūsu privātuma politiku
       </a>
 
