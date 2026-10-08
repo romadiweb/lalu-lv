@@ -1,16 +1,41 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { type Workshop } from "@/lib/content-types";
 import styles from "./page.module.css";
 
 export function WorkshopCarousel({ workshops }: { workshops: Workshop[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const loopedWorkshops = useMemo(
-    () => (workshops.length > 1 ? [...workshops, ...workshops] : workshops),
-    [workshops],
-  );
+  const [showControls, setShowControls] = useState(false);
+
+  useEffect(() => {
+    const track = trackRef.current;
+
+    if (!track) {
+      return;
+    }
+
+    const updateControls = () => {
+      setShowControls(track.scrollWidth > track.clientWidth + 4);
+    };
+
+    updateControls();
+
+    const resizeObserver = new ResizeObserver(updateControls);
+    resizeObserver.observe(track);
+
+    Array.from(track.children).forEach((child) => {
+      resizeObserver.observe(child);
+    });
+
+    window.addEventListener("resize", updateControls);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", updateControls);
+    };
+  }, [workshops.length]);
 
   const scrollByCard = (direction: 1 | -1) => {
     const track = trackRef.current;
@@ -23,15 +48,16 @@ export function WorkshopCarousel({ workshops }: { workshops: Workshop[] }) {
     const cardWidth = firstCard?.offsetWidth ?? 320;
     const gap = 18;
     const nextLeft = track.scrollLeft + direction * (cardWidth + gap);
+    const maxScrollLeft = track.scrollWidth - track.clientWidth;
 
-    if (direction > 0 && nextLeft >= track.scrollWidth - track.clientWidth - 4) {
+    if (direction > 0 && nextLeft >= maxScrollLeft - 4) {
       track.scrollTo({ left: 0, behavior: "smooth" });
       return;
     }
 
     if (direction < 0 && nextLeft <= 0 && workshops.length > 1) {
       track.scrollTo({
-        left: Math.max(0, track.scrollWidth / 2 - track.clientWidth),
+        left: Math.max(0, maxScrollLeft),
         behavior: "smooth",
       });
       return;
@@ -42,22 +68,24 @@ export function WorkshopCarousel({ workshops }: { workshops: Workshop[] }) {
 
   return (
     <div className={styles.carouselShell}>
-      <div className={styles.carouselControls} aria-label="Meistarklašu karuselis">
-        <button type="button" aria-label="Iepriekšējā meistarklase" onClick={() => scrollByCard(-1)}>
-          <svg viewBox="0 0 14 14" aria-hidden="true">
-            <path d="M9 3 5 7l4 4" />
-          </svg>
-        </button>
-        <button type="button" aria-label="Nākamā meistarklase" onClick={() => scrollByCard(1)}>
-          <svg viewBox="0 0 14 14" aria-hidden="true">
-            <path d="m5 3 4 4-4 4" />
-          </svg>
-        </button>
-      </div>
+      {showControls ? (
+        <div className={styles.carouselControls} aria-label="Meistarklašu karuselis">
+          <button type="button" aria-label="Iepriekšējā meistarklase" onClick={() => scrollByCard(-1)}>
+            <svg viewBox="0 0 14 14" aria-hidden="true">
+              <path d="M9 3 5 7l4 4" />
+            </svg>
+          </button>
+          <button type="button" aria-label="Nākamā meistarklase" onClick={() => scrollByCard(1)}>
+            <svg viewBox="0 0 14 14" aria-hidden="true">
+              <path d="m5 3 4 4-4 4" />
+            </svg>
+          </button>
+        </div>
+      ) : null}
 
       <div className={styles.masterclassGrid} ref={trackRef}>
-        {loopedWorkshops.map((item, index) => (
-          <article className={styles.masterclassCard} data-workshop-card key={`${item.slug}-${index}`}>
+        {workshops.map((item) => (
+          <article className={styles.masterclassCard} data-workshop-card key={item.id}>
             <div className={styles.masterclassImageWrap}>
               <Image
                 className={styles.masterclassImage}
