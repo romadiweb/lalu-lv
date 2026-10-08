@@ -83,6 +83,27 @@ export async function getWorkshopsPageData() {
   };
 }
 
+export async function getPublishedWorkshopOptions() {
+  noStore();
+
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("workshops")
+    .select("id, title")
+    .eq("status", "published")
+    .order("sort_order", { ascending: true })
+    .order("title", { ascending: true });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return (data ?? []).map((workshop) => ({
+    id: String(workshop.id),
+    title: String(workshop.title),
+  }));
+}
+
 export async function getFlowerGalleryBySlug(slug: string) {
   noStore();
 

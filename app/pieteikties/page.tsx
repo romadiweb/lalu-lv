@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/footer/site-footer";
 import { SiteHeader } from "@/components/navigation/site-header";
+import { getPublishedWorkshopOptions } from "@/lib/content";
 import { PieteiktiesForm } from "./pieteikties-form";
 import styles from "./page.module.css";
 
@@ -10,7 +11,9 @@ export const metadata: Metadata = {
     "Piesaki ekskursiju, ciemošanos, meistarklasi vai īpašu notikumu LaLu radošajā darbnīcā Aizputē.",
 };
 
-export default function PieteiktiesPage() {
+export default async function PieteiktiesPage() {
+  const workshopOptions = await getPublishedWorkshopOptions();
+
   return (
     <main className={styles.pageShell}>
       <SiteHeader />
@@ -25,7 +28,7 @@ export default function PieteiktiesPage() {
           </p>
         </div>
 
-        <PieteiktiesForm />
+        <PieteiktiesForm workshopOptions={workshopOptions} />
       </section>
 
       <SiteFooter />

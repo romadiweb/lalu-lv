@@ -5,6 +5,11 @@ import styles from "./page.module.css";
 
 type RequestType = "" | "ekskursija" | "meistarklase" | "pasakums";
 
+type WorkshopOption = {
+  id: string;
+  title: string;
+};
+
 const requestLabels: Record<Exclude<RequestType, "">, string> = {
   ekskursija: "Ekskursija vai ciemošanās",
   meistarklase: "Meistarklase",
@@ -18,9 +23,14 @@ const requestOptions: Array<{ value: RequestType; label: string }> = [
   { value: "pasakums", label: requestLabels.pasakums },
 ];
 
-export function PieteiktiesForm() {
+export function PieteiktiesForm({
+  workshopOptions,
+}: {
+  workshopOptions: WorkshopOption[];
+}) {
   const [requestType, setRequestType] = useState<RequestType>("");
   const [isRequestMenuOpen, setIsRequestMenuOpen] = useState(false);
+  const [selectedWorkshopId, setSelectedWorkshopId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -34,8 +44,14 @@ export function PieteiktiesForm() {
     }
 
     const subject = `Pieteikums: ${requestLabels[requestType]}`;
+    const selectedWorkshop = workshopOptions.find(
+      (workshop) => workshop.id === selectedWorkshopId,
+    );
     const body = [
       `Pieteikuma veids: ${requestLabels[requestType]}`,
+      ...(requestType === "meistarklase"
+        ? [`Meistarklase: ${selectedWorkshop?.title ?? "Nav izvēlēta"}`]
+        : []),
       `Vārds: ${name}`,
       `E-pasts: ${email}`,
       `Tālrunis: ${phone}`,
@@ -47,7 +63,17 @@ export function PieteiktiesForm() {
     ].join("\n");
 
     return `mailto:laila@lalu.lv?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  }, [date, email, groupSize, message, name, phone, requestType]);
+  }, [
+    date,
+    email,
+    groupSize,
+    message,
+    name,
+    phone,
+    requestType,
+    selectedWorkshopId,
+    workshopOptions,
+  ]);
 
   return (
     <form className={styles.form} onSubmit={(event) => event.preventDefault()}>
@@ -57,9 +83,14 @@ export function PieteiktiesForm() {
           <select
             className={styles.nativeSelect}
             value={requestType}
-            onChange={(event) =>
-              setRequestType(event.target.value as RequestType)
-            }
+            onChange={(event) => {
+              const nextRequestType = event.target.value as RequestType;
+              setRequestType(nextRequestType);
+
+              if (nextRequestType !== "meistarklase") {
+                setSelectedWorkshopId("");
+              }
+            }}
           >
             {requestOptions.map((option) => (
               <option key={option.label} value={option.value}>
@@ -96,6 +127,9 @@ export function PieteiktiesForm() {
                     type="button"
                     onClick={() => {
                       setRequestType(option.value);
+                      if (option.value !== "meistarklase") {
+                        setSelectedWorkshopId("");
+                      }
                       setIsRequestMenuOpen(false);
                     }}
                   >
@@ -110,6 +144,27 @@ export function PieteiktiesForm() {
 
       {requestType ? (
         <div className={styles.expandedFields}>
+          {requestType === "meistarklase" ? (
+            <label className={styles.field}>
+              <span>Meistarklase</span>
+              <select
+                value={selectedWorkshopId}
+                onChange={(event) => setSelectedWorkshopId(event.target.value)}
+              >
+                <option value="">
+                  {workshopOptions.length
+                    ? "Izvēlies meistarklasi"
+                    : "Nav publicētu meistarklašu"}
+                </option>
+                {workshopOptions.map((workshop) => (
+                  <option key={workshop.id} value={workshop.id}>
+                    {workshop.title}
+                  </option>
+                ))}
+              </select>
+            </label>
+          ) : null}
+
           <div className={styles.twoColumn}>
             <label className={styles.field}>
               <span>Vārds *</span>
