@@ -5,32 +5,32 @@ const values = [
   {
     title: "Roku darbs",
     copy: "Katrs darbs top ar rokām un savu raksturu.",
-    image: "/images/about-lalu/roku-darbs.png",
-    alt: "Tamborēts zieds krēmkrāsā un maigā lavandas tonī",
+    image: "/images/about-lalu/landing-wood-icon-1.avif",
+    alt: "Koka zieds ar tamborētu lavandas krāsas viduci",
   },
   {
     title: "Dabiski materiāli",
     copy: "Koks, dzija un materiāli ar īstu sajūtu.",
-    image: "/images/about-lalu/dabiski-materiali.png",
-    alt: "Gaiša koka sirds ar izgrebtu vidu",
+    image: "/images/about-lalu/landing-wood-icon-2.avif",
+    alt: "Koka dēļi, dzijas kamols un tamboradata",
   },
   {
     title: "Pašu idejas",
     copy: "Darbi, kas rodas tepat darbnīcā.",
-    image: "/images/about-lalu/pasu-idejas.png",
-    alt: "Ar rokām veidots fantāzijas zieds",
+    image: "/images/about-lalu/landing-wood-icon-5.avif",
+    alt: "Amatniecības darbarīki un adīti cimdi koka rotājumā",
   },
   {
     title: "Latviskais",
     copy: "Raksti, simboli un vietējais rokraksts.",
-    image: "/images/about-lalu/latviskais.png",
-    alt: "Zieds no sarkanbalti rakstītas austas lentes",
+    image: "/images/about-lalu/landing-wood-icon-3.avif",
+    alt: "Koka rozete ar sarkanbaltiem latviskiem rakstiem",
   },
   {
     title: "Radīts Aizputē",
     copy: "Mazā darbnīcā ar lielu uzmanību detaļām.",
-    image: "/images/about-lalu/radits-aizpute.png",
-    alt: "Krēmkrāsas tamborēts lācītis ar lavandas šalli",
+    image: "/images/about-lalu/landing-wood-icon-4.avif",
+    alt: "Dekoratīva koka darbnīcas mājiņa ar lavandas ziediem",
   },
 ];
 
@@ -48,8 +48,8 @@ export function AboutLalu() {
                   className={styles.image}
                   src={value.image}
                   alt={value.alt}
-                  width={1254}
-                  height={1254}
+                  width={768}
+                  height={768}
                   sizes="(max-width: 580px) 116px, (max-width: 980px) 180px, 220px"
                 />
               </div>

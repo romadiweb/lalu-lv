@@ -24,8 +24,8 @@ export function OpeningPanel() {
       <div className="hero-stage">
         <div className="hero-visual">
           <Image
-            src="/images/rustic-knitted-cats.png"
-            alt="Pie koka sienas uz veļas auklas izkārtoti LaLu adīti melnbalti kaķi."
+            src="/images/rustic-lavender-craft-studio-hero.avif"
+            alt="Silta, rustikāla LaLu amatniecības darbnīca ar koka interjeru un lavandas detaļām."
             fill
             sizes="100vw"
             preload
