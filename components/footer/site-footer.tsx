@@ -34,7 +34,38 @@ export function SiteFooter() {
             <LaLuMark />
             <span>LaLu</span>
           </Link>
-          <p style={{ fontWeight: 400 }}>© LaLu. Radošā darbnīca ar neatkārtojamu rokrakstu.</p>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px",
+              textAlign: "center",
+            }}
+          >
+            <p style={{ fontWeight: 400, margin: 0 }}>
+              © LaLu. Radošā darbnīca ar neatkārtojamu rokrakstu.
+            </p>
+            <a
+              href="https://romadi.lv"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="ROMADI"
+              style={{ display: "inline-block" }}
+            >
+              <img
+                src="/romadifootersignatureFINAL.svg"
+                alt="ROMADI"
+                style={{
+                  display: "block",
+                  width: "132px",
+                  maxWidth: "100%",
+                  height: "auto",
+                }}
+              />
+            </a>
+          </div>
           <div className="footer-socials" aria-label="Sociālie kanāli">
             <a href="/social/facebook/" aria-label="Facebook">
               f
