@@ -20,15 +20,67 @@ export async function resolveResourceFields(resource: AdminResource) {
 
     return {
       ...field,
-      options: options.map((option) => ({
-        label: String(option[source.labelColumn]),
-        value: String(option[source.valueColumn]),
-      })),
+      options: [
+        ...(field.name === "parent_id" || field.name === "category_id"
+          ? [{ label: field.name === "parent_id" ? "Nav virs-kategorijas" : "Nav piesaistītas kategorijas", value: "" }]
+          : []),
+        ...options.map((option) => ({
+          label: String(option[source.labelColumn]),
+          value: String(option[source.valueColumn]),
+        })),
+      ],
     };
   }));
 }
 
+export async function getPublishedProductTemplates() {
+  const templates = await adminQuery<{
+    id: string;
+    title: string;
+    template_text: string;
+    category_name: string | null;
+  }>(
+    `
+      select
+        templates.id,
+        templates.title,
+        templates.template_text,
+        categories.name as category_name
+      from public.shop_product_templates templates
+      left join public.shop_categories categories
+        on categories.id = templates.category_id
+      where templates.status = 'published'
+      order by categories.sort_order asc nulls last, categories.name asc nulls last, templates.sort_order asc, templates.title asc
+    `,
+  );
+
+  return templates.map((template) => ({
+    id: template.id,
+    title: template.title,
+    categoryName: template.category_name,
+    templateText: template.template_text,
+  }));
+}
+
 export async function listRecords(resource: AdminResource) {
+  if (resource.section === "produktu-sagataves") {
+    return adminQuery<Record<string, unknown>>(
+      `
+        select
+          templates.id,
+          templates.title,
+          templates.template_text as copy_text,
+          coalesce(categories.name, '') as category_id,
+          templates.status,
+          templates.sort_order
+        from public.shop_product_templates templates
+        left join public.shop_categories categories
+          on categories.id = templates.category_id
+        order by templates.sort_order asc, templates.title asc
+      `,
+    );
+  }
+
   return adminQuery<Record<string, unknown>>(
     `select id, ${resource.listColumns.map(quoteIdent).join(", ")} from public.${quoteIdent(resource.table)} order by ${resource.orderBy}`,
   );
@@ -72,6 +124,10 @@ export function emptyRecord(resource: AdminResource) {
 
       if (field.name === "is_active") {
         return [field.name, "true"];
+      }
+
+      if (field.name === "is_washable" || field.name === "is_top_product") {
+        return [field.name, "false"];
       }
 
       if (field.name === "currency") {

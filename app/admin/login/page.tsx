@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { LaLuMark } from "@/components/brand/lalu-mark";
 import { getCurrentAdmin } from "@/lib/admin/auth";
 import { loginAction } from "../actions";
+import { LoginSubmitButton } from "../login-submit-button";
 
 export default async function AdminLoginPage({
   searchParams,
@@ -120,14 +121,7 @@ export default async function AdminLoginPage({
             </div>
           </div>
 
-          <button className="admin-login-submit" type="submit">
-            <span>Ienākt vadības sistēmā</span>
-
-            <svg viewBox="0 0 20 20" aria-hidden="true">
-              <path d="M4 10h11" />
-              <path d="m11 6 4 4-4 4" />
-            </svg>
-          </button>
+          <LoginSubmitButton />
         </form>
 
         <div className="admin-login-footer">

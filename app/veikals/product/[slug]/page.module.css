@@ -96,15 +96,37 @@
   padding-top: 8px;
 }
 
-.status {
+.statusRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.status,
+.topBadge,
+.washableBadge {
   width: fit-content;
-  margin: 0 0 18px;
+  margin: 0;
   padding: 7px 12px;
   border-radius: 999px;
-  background: var(--surface-soft);
-  color: var(--body);
   font-size: 12px;
   font-weight: 600;
+}
+
+.status {
+  background: var(--surface-soft);
+  color: var(--body);
+}
+
+.topBadge {
+  background: rgb(244 194 72 / 0.92);
+  color: #2c2207;
+}
+
+.washableBadge {
+  background: rgb(190 224 245 / 0.92);
+  color: #123247;
 }
 
 .productSummary h1 {

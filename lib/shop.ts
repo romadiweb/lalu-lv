@@ -4,6 +4,7 @@ export { formatPrice } from "@/lib/format";
 
 export type ShopCategory = {
   id: string;
+  parent_id: string | null;
   slug: string;
   name: string;
   description: string | null;
@@ -20,6 +21,8 @@ export type ShopProduct = {
   price_cents: number | null;
   currency: string;
   stock_status: "in_stock" | "made_to_order" | "sold_out";
+  is_washable: boolean;
+  is_top_product: boolean;
   old_url: string | null;
   images: Array<{
     url: string;
@@ -68,7 +71,7 @@ export async function getShopData() {
   const [categoriesResponse, productsResponse] = await Promise.all([
     supabase
       .from("shop_categories")
-      .select("id, slug, name, description, image_url, image_alt, tone")
+      .select("id, parent_id, slug, name, description, image_url, image_alt, tone")
       .order("sort_order", { ascending: true })
       .order("name", { ascending: true }),
     supabase
@@ -82,6 +85,8 @@ export async function getShopData() {
           price_cents,
           currency,
           stock_status,
+          is_washable,
+          is_top_product,
           old_url,
           shop_product_images(url, alt, is_primary, sort_order),
           shop_product_categories(shop_categories(slug))
@@ -122,6 +127,8 @@ export async function getShopData() {
       price_cents: product.price_cents,
       currency: product.currency,
       stock_status: product.stock_status,
+      is_washable: product.is_washable,
+      is_top_product: product.is_top_product,
       old_url: product.old_url,
       images: productImages,
       image: productImages[0] ?? null,
@@ -152,6 +159,8 @@ export async function getShopProductBySlug(slug: string) {
         price_cents,
         currency,
         stock_status,
+        is_washable,
+        is_top_product,
         old_url,
         shop_product_images(url, alt, is_primary, sort_order),
         shop_product_categories(shop_categories(slug))
@@ -191,6 +200,8 @@ export async function getShopProductBySlug(slug: string) {
     price_cents: product.price_cents,
     currency: product.currency,
     stock_status: product.stock_status,
+    is_washable: product.is_washable,
+    is_top_product: product.is_top_product,
     old_url: product.old_url,
     images: productImages,
     image: productImages[0] ?? null,

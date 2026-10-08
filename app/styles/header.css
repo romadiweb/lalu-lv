@@ -265,6 +265,22 @@
   line-height: 1.35;
 }
 
+.category-children {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 7px;
+}
+
+.category-children span {
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: var(--surface-soft);
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 650;
+}
+
 .mega-feature {
   position: relative;
   display: flex;

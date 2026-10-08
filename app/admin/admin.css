@@ -112,6 +112,14 @@
   padding: 0 16px;
 }
 
+.admin-sidebar button:disabled,
+.admin-button:disabled,
+.admin-delete-button:disabled,
+.admin-login-submit:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
 .admin-sidebar button {
   width: 100%;
   background: var(--surface-soft);
@@ -217,6 +225,58 @@
   background: #fffefb;
 }
 
+.admin-list-section {
+  display: grid;
+  gap: 14px;
+}
+
+.admin-list-toolbar {
+  display: flex;
+  gap: 16px;
+  align-items: end;
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  background: #fffefb;
+}
+
+.admin-list-search {
+  display: grid;
+  width: min(100%, 460px);
+  gap: 7px;
+}
+
+.admin-list-search span {
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 720;
+}
+
+.admin-list-search input {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: var(--canvas);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  padding: 0 13px;
+}
+
+.admin-list-search input:focus {
+  border-color: var(--primary-active);
+  outline: 3px solid rgb(200 187 251 / 0.2);
+}
+
+.admin-list-toolbar p {
+  margin: 0 0 11px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 650;
+}
+
 .admin-table {
   width: 100%;
   border-collapse: collapse;
@@ -250,6 +310,13 @@
   font-weight: 700;
 }
 
+.admin-empty-row {
+  height: 132px;
+  color: var(--muted);
+  text-align: center;
+  vertical-align: middle;
+}
+
 .admin-table-actions {
   display: flex;
   align-items: center;
@@ -257,7 +324,8 @@
   white-space: nowrap;
 }
 
-.admin-edit-button {
+.admin-edit-button,
+.admin-copy-button {
   display: inline-flex;
   min-height: 34px;
   align-items: center;
@@ -271,7 +339,12 @@
   font-weight: 700;
 }
 
-.admin-edit-button:hover {
+.admin-copy-button {
+  cursor: pointer;
+}
+
+.admin-edit-button:hover,
+.admin-copy-button:hover {
   border-color: var(--primary-active);
   background: var(--primary-disabled);
 }
@@ -617,6 +690,36 @@
   animation: admin-toast-in 280ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+.admin-template-picker {
+  display: grid;
+  gap: 14px;
+  margin-top: 4px;
+  padding: 16px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  background: var(--surface-soft);
+}
+
+.admin-template-picker h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 720;
+  letter-spacing: -0.01em;
+}
+
+.admin-template-picker p {
+  margin: 5px 0 0;
+  color: var(--body);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.admin-template-picker label {
+  display: grid;
+  gap: 7px;
+}
+
 .admin-save-toast svg {
   width: 20px;
   height: 20px;
@@ -912,9 +1015,18 @@
 }
 
 .admin-login-field label {
+  min-height: 15px;
   color: var(--ink);
   font-size: 12px;
   font-weight: 600;
+  transition:
+    opacity 160ms ease,
+    visibility 160ms ease;
+}
+
+.admin-login-field:focus-within label {
+  visibility: hidden;
+  opacity: 0;
 }
 
 .admin-login-input {
@@ -952,6 +1064,7 @@
   flex: 0 0 44px;
   place-items: center;
   color: var(--muted);
+  pointer-events: none;
 }
 
 .admin-login-input-icon svg {
@@ -979,6 +1092,10 @@
 
 .admin-login-input input::placeholder {
   color: var(--muted-soft);
+}
+
+.admin-login-input input:focus::placeholder {
+  color: transparent;
 }
 
 /* =========================================================

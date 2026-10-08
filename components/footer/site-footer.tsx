@@ -34,7 +34,7 @@ export function SiteFooter() {
             <LaLuMark />
             <span>LaLu</span>
           </Link>
-          <p>© LaLu. Radošā darbnīca ar neatkārtojamu rokrakstu.</p>
+          <p style={{ fontWeight: 400 }}>© LaLu. Radošā darbnīca ar neatkārtojamu rokrakstu.</p>
           <div className="footer-socials" aria-label="Sociālie kanāli">
             <a href="/social/facebook/" aria-label="Facebook">
               f

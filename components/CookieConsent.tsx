@@ -212,7 +212,7 @@ export function CookieConsent() {
                 className="cookie-consent-button cookie-consent-button--confirm"
                 onClick={confirmChoices}
               >
-                Apstirpināt
+                Apstiprināt
               </button>
             </div>
 

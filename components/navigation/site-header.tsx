@@ -97,13 +97,20 @@ export function SiteHeader() {
                         <span>
                           <span className="category-title">
                             {category.name}
-                            {category.nested ? (
+                            {category.children?.length ? (
                               <svg className="chevron" viewBox="0 0 14 14" aria-hidden="true">
                                 <path d="m5 3 4 4-4 4" />
                               </svg>
                             ) : null}
                           </span>
                           <span className="category-description">{category.description}</span>
+                          {category.children?.length ? (
+                            <span className="category-children">
+                              {category.children.map((child) => (
+                                <span key={child.name}>{child.name}</span>
+                              ))}
+                            </span>
+                          ) : null}
                         </span>
                       </a>
                     ))}

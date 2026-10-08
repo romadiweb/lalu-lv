@@ -22,6 +22,24 @@ const sortLabels: Record<SortKey, string> = {
   price_desc: "Cena: augstākā",
 };
 
+function getCategorySlugsForFilter(categories: ShopCategory[], activeSlug?: string) {
+  if (!activeSlug) {
+    return [];
+  }
+
+  const activeCategory = categories.find((category) => category.slug === activeSlug);
+
+  if (!activeCategory) {
+    return [activeSlug];
+  }
+
+  const childSlugs = categories
+    .filter((category) => category.parent_id === activeCategory.id)
+    .map((category) => category.slug);
+
+  return [activeSlug, ...childSlugs];
+}
+
 export function ShopView({
   activeCategorySlug,
   categories,
@@ -37,10 +55,26 @@ export function ShopView({
     (category) => category.slug === activeCategorySlug,
   );
 
+  const categoryGroups = useMemo(
+    () =>
+      categories
+        .filter((category) => !category.parent_id)
+        .map((category) => ({
+          ...category,
+          children: categories.filter((child) => child.parent_id === category.id),
+        })),
+    [categories],
+  );
+
+  const activeCategorySlugs = useMemo(
+    () => getCategorySlugsForFilter(categories, activeCategorySlug),
+    [activeCategorySlug, categories],
+  );
+
   const visibleProducts = useMemo(() => {
     let nextProducts = activeCategorySlug
       ? products.filter((product) =>
-          product.categorySlugs.includes(activeCategorySlug),
+          product.categorySlugs.some((slug) => activeCategorySlugs.includes(slug)),
         )
       : [...products];
 
@@ -77,6 +111,7 @@ export function ShopView({
     return nextProducts;
   }, [
     activeCategorySlug,
+    activeCategorySlugs,
     availableOnly,
     products,
     search,
@@ -169,26 +204,48 @@ export function ShopView({
                 <span>Visi produkti</span>
               </Link>
 
-              {categories.map((category) => {
+              {categoryGroups.map((category) => {
                 const isActive =
                   category.slug === activeCategorySlug;
+                const hasChildren = category.children.length > 0;
+                const isChildActive = category.children.some(
+                  (child) => child.slug === activeCategorySlug,
+                );
 
                 return (
-                  <Link
-                    className={`${styles.filterOption} ${
-                      isActive
-                        ? styles.filterOptionActive
-                        : ""
-                    }`}
-                    href={`/veikals/category/${category.slug}/`}
-                    key={category.id}
-                  >
-                    <span
-                      className={styles.filterCheckbox}
-                    />
+                  <div className={styles.categoryGroup} key={category.id}>
+                    <Link
+                      className={`${styles.filterOption} ${
+                        isActive || isChildActive
+                          ? styles.filterOptionActive
+                          : ""
+                      } ${hasChildren ? styles.filterOptionParent : ""}`}
+                      href={`/veikals/category/${category.slug}/`}
+                    >
+                      <span className={styles.filterCheckbox} />
 
-                    <span>{category.name}</span>
-                  </Link>
+                      <span>{category.name}</span>
+                    </Link>
+
+                    {hasChildren ? (
+                      <div className={styles.subcategoryOptions}>
+                        {category.children.map((child) => (
+                          <Link
+                            className={`${styles.filterOption} ${
+                              child.slug === activeCategorySlug
+                                ? styles.filterOptionActive
+                                : ""
+                            } ${styles.subcategoryOption}`}
+                            href={`/veikals/category/${child.slug}/`}
+                            key={child.id}
+                          >
+                            <span className={styles.filterCheckbox} />
+                            <span>{child.name}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
                 );
               })}
             </nav>

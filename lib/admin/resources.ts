@@ -4,9 +4,9 @@ export type AdminField = {
   type: "text" | "textarea" | "array" | "richtext" | "number" | "date" | "select" | "money";
   options?: Array<{ label: string; value: string }>;
   optionsFrom?: {
-    table: "blog_categories";
+    table: "blog_categories" | "shop_categories";
     labelColumn: "name";
-    valueColumn: "name";
+    valueColumn: "name" | "id";
     orderBy: "sort_order asc, name asc";
   };
   required?: boolean;
@@ -17,7 +17,7 @@ export type AdminField = {
 
 export type AdminResource = {
   section: string;
-  icon: "article" | "tag" | "workshop" | "cards" | "gallery" | "image" | "store" | "product";
+  icon: "article" | "tag" | "workshop" | "cards" | "gallery" | "image" | "store" | "product" | "template";
   label: string;
   description: string;
   table: string;
@@ -181,6 +181,18 @@ export const adminResources: AdminResource[] = [
     fields: [
       { name: "name", label: "Nosaukums", type: "text", required: true },
       { name: "slug", label: "Slug", type: "text", autoSlugFrom: "name", help: "Var atstāt tukšu - CMS izveidos no nosaukuma." },
+      {
+        name: "parent_id",
+        label: "Virs-kategorija",
+        type: "select",
+        optionsFrom: {
+          table: "shop_categories",
+          labelColumn: "name",
+          valueColumn: "id",
+          orderBy: "sort_order asc, name asc",
+        },
+        help: "Atstāj tukšu, ja kategorija ir augšējā līmeņa sadaļa.",
+      },
       { name: "description", label: "Apraksts", type: "textarea" },
       { name: "image_url", label: "Attēla URL", type: "text" },
       { name: "image_alt", label: "Attēla alt teksts", type: "text" },
@@ -222,6 +234,35 @@ export const adminResources: AdminResource[] = [
           { label: "Izpārdots", value: "sold_out" },
         ],
       },
+      { name: "status", label: "Statuss", type: "select", options: statusOptions },
+      { name: "is_washable", label: "Mazgājams", type: "select", options: [{ label: "Nē", value: "false" }, { label: "Jā", value: "true" }] },
+      { name: "is_top_product", label: "Top produkts", type: "select", options: [{ label: "Nē", value: "false" }, { label: "Jā", value: "true" }] },
+      { name: "sort_order", label: "Secība", type: "number" },
+    ],
+  },
+  {
+    section: "produktu-sagataves",
+    icon: "template",
+    label: "Produktu sagataves",
+    description: "Gatavie produktu aprakstu teksti, sakārtoti pa veikala kategorijām.",
+    table: "shop_product_templates",
+    orderBy: "sort_order asc, title asc",
+    listColumns: ["title", "category_id", "status", "sort_order"],
+    fields: [
+      { name: "title", label: "Nosaukums", type: "text", required: true },
+      {
+        name: "category_id",
+        label: "Veikala kategorija",
+        type: "select",
+        optionsFrom: {
+          table: "shop_categories",
+          labelColumn: "name",
+          valueColumn: "id",
+          orderBy: "sort_order asc, name asc",
+        },
+        help: "Izmanto, lai sagataves būtu sakārtotas pēc produktu kategorijām.",
+      },
+      { name: "template_text", label: "Sagataves teksts", type: "textarea", required: true },
       { name: "status", label: "Statuss", type: "select", options: statusOptions },
       { name: "sort_order", label: "Secība", type: "number" },
     ],

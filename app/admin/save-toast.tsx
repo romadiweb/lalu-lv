@@ -2,7 +2,18 @@
 
 import { useEffect, useState } from "react";
 
-export function SaveToast() {
+const messages = {
+  saved: "Izmaiņas saglabātas",
+  created: "Ieraksts izveidots",
+  updated: "Izmaiņas saglabātas",
+  deleted: "Ieraksts dzēsts",
+};
+
+export function SaveToast({
+  type = "saved",
+}: {
+  type?: keyof typeof messages;
+}) {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -17,7 +28,7 @@ export function SaveToast() {
       <svg viewBox="0 0 20 20" aria-hidden="true">
         <path d="m4.5 10.5 3.25 3.25L15.5 6" />
       </svg>
-      <span>Izmaiņas saglabātas</span>
+      <span>{messages[type]}</span>
     </div>
   );
 }

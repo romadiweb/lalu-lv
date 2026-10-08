@@ -71,6 +71,18 @@ export function ProductCard({
             Izpārdots
           </span>
         ) : null}
+
+        {product.is_top_product ? (
+          <span className={`${styles.productFlag} ${styles.productFlagTop}`}>
+            Top produkts
+          </span>
+        ) : null}
+
+        {product.is_washable ? (
+          <span className={`${styles.productFlag} ${styles.productFlagWashable}`}>
+            Mazgājams
+          </span>
+        ) : null}
       </div>
 
       <div className={styles.productInfo}>

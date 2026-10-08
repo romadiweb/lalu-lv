@@ -6,14 +6,6 @@ const { Client } = pg;
 
 const categories = [
   {
-    slug: "peles",
-    name: "Peles",
-    description: "Roku darinātas peles ar raksturu.",
-    image_url: "/images/category-icons/peles-warm.png",
-    image_alt: "Pelēka tamborēta pele",
-    tone: "lavender",
-  },
-  {
     slug: "rotallietas",
     name: "Rotaļlietas",
     description: "Mīksti, koši un bērniem draudzīgi darbi.",
@@ -22,7 +14,43 @@ const categories = [
     tone: "cream",
   },
   {
+    slug: "peles",
+    parent_slug: "rotallietas",
+    name: "Peles",
+    description: "Roku darinātas peles ar raksturu.",
+    image_url: "/images/category-icons/peles-warm.png",
+    image_alt: "Pelēka tamborēta pele",
+    tone: "lavender",
+  },
+  {
+    slug: "lelles",
+    parent_slug: "rotallietas",
+    name: "Lelles",
+    description: "Mīkstas lelles rotaļām un dāvināšanai.",
+    image_url: "/images/category-icons/rotallietas-warm.png",
+    image_alt: "Roku darinātas rotaļlietas",
+    tone: "cream",
+  },
+  {
+    slug: "grabulisi",
+    parent_slug: "rotallietas",
+    name: "Grabulīši",
+    description: "Mazajiem piemēroti grabulīši.",
+    image_url: "/images/category-icons/rotallietas-warm.png",
+    image_alt: "Tamborēts lācis, zaķis un koka grabulis",
+    tone: "warm",
+  },
+  {
+    slug: "apgerbs",
+    name: "Apģērbs",
+    description: "Adīti un tamborēti aksesuāri ikdienai.",
+    image_url: "/images/category-icons/cepures-warm.png",
+    image_alt: "Adīti apģērba aksesuāri",
+    tone: "warm",
+  },
+  {
     slug: "cepures",
+    parent_slug: "apgerbs",
     name: "Cepures",
     description: "Siltas sezonas izvēles katrai dienai.",
     image_url: "/images/category-icons/cepures-warm.png",
@@ -31,6 +59,7 @@ const categories = [
   },
   {
     slug: "cimdi",
+    parent_slug: "apgerbs",
     name: "Cimdi",
     description: "Adīti pāri ar amatnieces rokrakstu.",
     image_url: "/images/category-icons/cimdi-warm.png",
@@ -39,6 +68,7 @@ const categories = [
   },
   {
     slug: "mauci-jeb-durgali",
+    parent_slug: "apgerbs",
     name: "Mauči jeb dūrgaļi",
     description: "Praktiski un dekoratīvi plaukstu sildītāji.",
     image_url: "/images/category-icons/mauci-jeb-durgali-warm.png",
@@ -47,6 +77,7 @@ const categories = [
   },
   {
     slug: "atstarotaji",
+    parent_slug: "dazadi",
     name: "Latviski darbi / Atstarotāji",
     description: "Gaismai, drošībai un latviskai noskaņai.",
     image_url: "/images/category-icons/atstarotaji-warm.png",
@@ -54,15 +85,16 @@ const categories = [
     tone: "warm",
   },
   {
-    slug: "atslegu-piekarini",
-    name: "Dažādi",
-    description: "Nelieli atradumi un dāvanu nieki.",
+    slug: "davanas",
+    name: "Dāvanas",
+    description: "Nelieli, sirsnīgi roku darba nieki dāvanām.",
     image_url: "/images/category-icons/dazadi-warm.png",
     image_alt: "Rokdarbu sirds, zieds un smaržu maisiņš",
     tone: "lavender",
   },
   {
     slug: "magnetini",
+    parent_slug: "davanas",
     name: "Magnētiņi",
     description: "Mazie piemiņas darbi ikdienai.",
     image_url: "/images/category-icons/magnetini-warm.png",
@@ -71,14 +103,23 @@ const categories = [
   },
   {
     slug: "pasutijumi",
-    name: "Pasūtījumi",
+    name: "Individuāli pasūtījumi",
     description: "Individuāli darinājumi pēc vienošanās.",
     image_url: "/images/category-icons/pasutijumi-warm.png",
     image_alt: "Tamborētu rokdarbu kompozīcija",
     tone: "warm",
   },
   {
+    slug: "ziedi",
+    name: "Ziedi",
+    description: "Ziedi, kuri paliek ilgāk par sezonu.",
+    image_url: "/images/category-icons/fantazijas-ziedi-warm.png",
+    image_alt: "Maigi rozā fantāzijas zieds",
+    tone: "lavender",
+  },
+  {
     slug: "fantazijas-ziedi",
+    parent_slug: "ziedi",
     name: "Fantāzijas ziedi",
     description: "Ziedi, kuri paliek ilgāk par sezonu.",
     image_url: "/images/category-icons/fantazijas-ziedi-warm.png",
@@ -95,6 +136,9 @@ if (!connectionString) {
 }
 
 const products = JSON.parse(await readFile(".tmp-old-products.json", "utf8"));
+const categorySlugAliases = new Map([
+  ["atslegu-piekarini", "davanas"],
+]);
 const client = new Client({
   connectionString,
   ssl: { rejectUnauthorized: false },
@@ -133,6 +177,15 @@ try {
     categoryIds.set(category.slug, result.rows[0].id);
   }
 
+  for (const category of categories) {
+    await client.query(
+      `update public.shop_categories
+       set parent_id = $2
+       where id = $1`,
+      [categoryIds.get(category.slug), category.parent_slug ? categoryIds.get(category.parent_slug) : null],
+    );
+  }
+
   for (const [index, product] of products.entries()) {
     const productResult = await client.query(
       `insert into public.shop_products
@@ -163,7 +216,7 @@ try {
     );
 
     const productId = productResult.rows[0].id;
-    const categoryId = categoryIds.get(product.categorySlug);
+    const categoryId = categoryIds.get(categorySlugAliases.get(product.categorySlug) ?? product.categorySlug);
     if (categoryId) {
       await client.query(
         `insert into public.shop_product_categories

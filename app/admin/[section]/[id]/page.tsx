@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { saveRecordAction } from "@/app/admin/actions";
+import { ProductTemplatePicker } from "@/app/admin/product-template-picker";
 import { RecordFormActions } from "@/app/admin/record-form-actions";
 import { RichTextEditor } from "@/app/admin/rich-text-editor";
 import { requireAdmin } from "@/lib/admin/auth";
-import { emptyRecord, getRecord, resolveResourceFields, serializeFieldInputValue } from "@/lib/admin/cms";
+import { emptyRecord, getPublishedProductTemplates, getRecord, resolveResourceFields, serializeFieldInputValue } from "@/lib/admin/cms";
 import { prepareRichTextForEditor } from "@/lib/rich-text";
 import { getAdminResource, type AdminField } from "@/lib/admin/resources";
 
@@ -124,6 +125,9 @@ export default async function AdminRecordPage({ params }: PageProps<"/admin/[sec
     isNew ? emptyRecord(resource) : getRecord(resource, id),
     resolveResourceFields(resource),
   ]);
+  const productTemplates = resource.section === "veikala-produkti"
+    ? await getPublishedProductTemplates()
+    : [];
 
   if (!record) {
     notFound();
@@ -148,6 +152,9 @@ export default async function AdminRecordPage({ params }: PageProps<"/admin/[sec
           <div className="admin-field" key={field.name}>
             <label htmlFor={field.name}>{field.label}</label>
             <FieldInput field={field} value={record[field.name]} />
+            {field.name === "short_description" && productTemplates.length ? (
+              <ProductTemplatePicker templates={productTemplates} />
+            ) : null}
             {fieldSupportsUpload(field) ? (
               <div className="admin-upload">
                 <label htmlFor={`${field.name}__file`}>Augšupielādēt failu</label>

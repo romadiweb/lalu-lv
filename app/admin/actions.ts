@@ -71,7 +71,7 @@ function parseFieldValue(field: AdminField, formData: FormData) {
     return Math.round(Number(value.replace(",", ".")) * 100);
   }
 
-  if (field.name === "is_active") {
+  if (field.name === "is_active" || field.name === "is_washable" || field.name === "is_top_product") {
     return value === "true";
   }
 
@@ -200,8 +200,9 @@ export async function saveRecordAction(formData: FormData) {
   }));
 
   let savedRecordId = id;
+  const isCreating = id === "new";
 
-  if (id === "new") {
+  if (isCreating) {
     const placeholders = columns.map((_, index) => `$${index + 1}`).join(", ");
     const [savedRecord] = await adminQuery<{ id: string }>(
       `insert into public.${quoteIdent(resource.table)} (${columns.map(quoteIdent).join(", ")}) values (${placeholders}) returning id`,
@@ -224,7 +225,7 @@ export async function saveRecordAction(formData: FormData) {
   revalidatePath("/aktualitates/");
   revalidatePath("/meistarklases/");
   revalidatePath("/veikals/");
-  redirect(`/admin/${section}/?saved=1`);
+  redirect(`/admin/${section}/?saved=${isCreating ? "created" : "updated"}`);
 }
 
 export async function deleteRecordAction(formData: FormData) {
@@ -243,5 +244,5 @@ export async function deleteRecordAction(formData: FormData) {
   revalidatePath("/aktualitates/");
   revalidatePath("/meistarklases/");
   revalidatePath("/veikals/");
-  redirect(`/admin/${section}/`);
+  redirect(`/admin/${section}/?deleted=1`);
 }

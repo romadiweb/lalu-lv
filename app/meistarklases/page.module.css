@@ -172,23 +172,73 @@
   text-wrap: balance;
 }
 
+.carouselShell {
+  position: relative;
+  margin-top: clamp(28px, 4vw, 46px);
+}
+
+.carouselControls {
+  position: absolute;
+  right: 0;
+  top: clamp(-74px, -5vw, -58px);
+  display: flex;
+  gap: 8px;
+}
+
+.carouselControls button {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: #fffdf9;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.carouselControls svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .masterclassGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(26px, 4vw, 56px);
-  margin-top: clamp(28px, 4vw, 46px);
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(260px, 31%);
+  gap: 18px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-padding-inline: 2px;
+  scroll-snap-type: inline mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.masterclassGrid::-webkit-scrollbar {
+  display: none;
 }
 
 .masterclassCard {
   display: grid;
-  gap: 24px;
+  gap: 16px;
   align-content: start;
   min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  background: #fffdf9;
+  scroll-snap-align: start;
 }
 
 .masterclassImageWrap {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: var(--radius-xl);
   background: var(--surface-soft);
@@ -205,26 +255,26 @@
 .masterclassCopy h2 {
   margin: 0;
   color: var(--ink);
-  font-size: clamp(26px, 2.7vw, 38px);
+  font-size: clamp(20px, 1.8vw, 25px);
   font-weight: 600;
   letter-spacing: -0.035em;
   line-height: 1;
-  min-height: 2em;
+  min-height: 2.08em;
   text-wrap: balance;
 }
 
 .masterclassCopy p {
-  margin: 18px 0 0;
+  margin: 12px 0 0;
   color: var(--body);
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 13px;
+  line-height: 1.48;
   text-wrap: pretty;
 }
 
 .masterclassCopy ul {
   display: grid;
   gap: 10px;
-  margin: 22px 0 0;
+  margin: 16px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -233,7 +283,7 @@
   display: flex;
   gap: 10px;
   color: var(--body);
-  font-size: 15px;
+  font-size: 12px;
   line-height: 1.45;
 }
 
@@ -250,7 +300,7 @@
 .masterclassCopy dl {
   display: grid;
   gap: 10px;
-  margin: 24px 0 0;
+  margin: 16px 0 0;
 }
 
 .masterclassCopy dl div {
@@ -295,12 +345,7 @@
   }
 
   .masterclassGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .masterclassCard {
-    grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1fr);
-    align-items: start;
+    grid-auto-columns: minmax(250px, 44%);
   }
 }
 
@@ -347,23 +392,16 @@
     font-size: clamp(34px, 11vw, 46px);
   }
 
+  .carouselControls {
+    top: auto;
+    bottom: calc(100% + 16px);
+  }
+
   .masterclassGrid {
-    grid-template-columns: none;
-    grid-auto-flow: column;
     grid-auto-columns: min(78vw, 320px);
     gap: 16px;
     margin-inline: -16px;
     padding: 2px 40px 16px 16px;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scroll-padding-inline: 16px;
-    scroll-snap-type: inline mandatory;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .masterclassGrid::-webkit-scrollbar {
-    display: none;
   }
 
   .masterclassGrid:focus-visible {
@@ -373,10 +411,7 @@
   }
 
   .masterclassCard {
-    grid-template-columns: 1fr;
     gap: 18px;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
   }
 
   .masterclassImageWrap {

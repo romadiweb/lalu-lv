@@ -12,7 +12,7 @@ export type StoreCategory = {
     src: string;
     alt: string;
   };
-  nested?: boolean;
+  children?: StoreCategory[];
 };
 
 export type FooterGroup = {
@@ -22,16 +22,6 @@ export type FooterGroup = {
 
 export const storeCategories: StoreCategory[] = [
   {
-    name: "Peles",
-    href: "/veikals/category/peles/",
-    tone: "lavender",
-    description: "Roku darinātas peles ar raksturu.",
-    image: {
-      src: "/images/category-icons/peles-warm.png",
-      alt: "Pelēka tamborēta pele",
-    },
-  },
-  {
     name: "Rotaļlietas",
     href: "/veikals/category/rotallietas/",
     tone: "cream",
@@ -40,88 +30,143 @@ export const storeCategories: StoreCategory[] = [
       src: "/images/category-icons/rotallietas-warm.png",
       alt: "Tamborēts lācis, zaķis un koka grabulis",
     },
-    nested: true,
+    children: [
+      {
+        name: "Peles",
+        href: "/veikals/category/peles/",
+        tone: "lavender",
+        description: "Roku darinātas peles ar raksturu.",
+        image: {
+          src: "/images/category-icons/peles-warm.png",
+          alt: "Pelēka tamborēta pele",
+        },
+      },
+      {
+        name: "Lelles",
+        href: "/veikals/category/lelles/",
+        tone: "cream",
+        description: "Mīkstas lelles rotaļām un dāvināšanai.",
+        image: {
+          src: "/images/category-icons/rotallietas-warm.png",
+          alt: "Roku darinātas rotaļlietas",
+        },
+      },
+      {
+        name: "Grabulīši",
+        href: "/veikals/category/grabulisi/",
+        tone: "warm",
+        description: "Mazajiem piemēroti grabulīši.",
+        image: {
+          src: "/images/category-icons/rotallietas-warm.png",
+          alt: "Tamborēts lācis, zaķis un koka grabulis",
+        },
+      },
+    ],
   },
   {
-    name: "Cepures",
-    href: "/veikals/category/cepures/",
+    name: "Apģērbs",
+    href: "/veikals/category/apgerbs/",
     tone: "warm",
-    description: "Siltas sezonas izvēles katrai dienai.",
+    description: "Adīti un tamborēti aksesuāri ikdienai.",
     image: {
       src: "/images/category-icons/cepures-warm.png",
-      alt: "Krēmīga adīta cepure ar bumbuli",
+      alt: "Adīti apģērba aksesuāri",
     },
+    children: [
+      {
+        name: "Cepures",
+        href: "/veikals/category/cepures/",
+        tone: "warm",
+        description: "Siltas sezonas izvēles katrai dienai.",
+        image: {
+          src: "/images/category-icons/cepures-warm.png",
+          alt: "Krēmīga adīta cepure ar bumbuli",
+        },
+      },
+      {
+        name: "Cimdi",
+        href: "/veikals/category/cimdi/",
+        tone: "lavender",
+        description: "Adīti pāri ar amatnieces rokrakstu.",
+        image: {
+          src: "/images/category-icons/cimdi-warm.png",
+          alt: "Gaiši adīti cimdi",
+        },
+      },
+      {
+        name: "Mauči jeb dūrgaļi",
+        href: "/veikals/category/mauci-jeb-durgali/",
+        tone: "cream",
+        description: "Praktiski un dekoratīvi plaukstu sildītāji.",
+        image: {
+          src: "/images/category-icons/mauci-jeb-durgali-warm.png",
+          alt: "Rakstaini vilnas mauči",
+        },
+      },
+    ],
   },
   {
-    name: "Cimdi",
-    href: "/veikals/category/cimdi/",
+    name: "Dāvanas",
+    href: "/veikals/category/davanas/",
     tone: "lavender",
-    description: "Adīti pāri ar amatnieces rokrakstu.",
-    image: {
-      src: "/images/category-icons/cimdi-warm.png",
-      alt: "Gaiši adīti cimdi",
-    },
-    nested: true,
-  },
-  {
-    name: "Mauči jeb dūrgaļi",
-    href: "/veikals/category/mauci-jeb-durgali/",
-    tone: "cream",
-    description: "Praktiski un dekoratīvi plaukstu sildītāji.",
-    image: {
-      src: "/images/category-icons/mauci-jeb-durgali-warm.png",
-      alt: "Rakstaini vilnas mauči",
-    },
-  },
-  {
-    name: "Latviski darbi / Atstarotāji",
-    href: "/veikals/category/atstarotaji/",
-    tone: "warm",
-    description: "Gaismai, drošībai un latviskai noskaņai.",
-    image: {
-      src: "/images/category-icons/atstarotaji-warm.png",
-      alt: "Latviskas lentītes emblēma",
-    },
-  },
-  {
-    name: "Dažādi",
-    href: "/veikals/category/atslegu-piekarini/",
-    tone: "lavender",
-    description: "Nelieli atradumi un dāvanu nieki.",
+    description: "Nelieli, sirsnīgi roku darba nieki dāvanām.",
     image: {
       src: "/images/category-icons/dazadi-warm.png",
       alt: "Rokdarbu sirds, zieds un smaržu maisiņš",
     },
-    nested: true,
+    children: [
+      {
+        name: "Latviskie darbi",
+        href: "/veikals/category/atstarotaji/",
+        tone: "warm",
+        description: "Gaismai, drošībai un latviskai noskaņai.",
+        image: {
+          src: "/images/category-icons/atstarotaji-warm.png",
+          alt: "Latviskas lentītes emblēma",
+        },
+      },
+      {
+        name: "Magnētiņi",
+        href: "/veikals/category/magnetini/",
+        tone: "cream",
+        description: "Mazie piemiņas darbi ikdienai.",
+        image: {
+          src: "/images/category-icons/magnetini-warm.png",
+          alt: "Koka sirds magnētiņi",
+        },
+      },
+    ],
   },
   {
-    name: "Magnētiņi",
-    href: "/veikals/category/magnetini/",
-    tone: "cream",
-    description: "Mazie piemiņas darbi ikdienai.",
+    name: "Ziedi",
+    href: "/veikals/category/ziedi/",
+    tone: "lavender",
+    description: "Ziedi, kuri paliek ilgāk par sezonu.",
     image: {
-      src: "/images/category-icons/magnetini-warm.png",
-      alt: "Koka sirds magnētiņi",
+      src: "/images/category-icons/fantazijas-ziedi-warm.png",
+      alt: "Maigi rozā fantāzijas zieds",
     },
+    children: [
+      {
+        name: "Fantāzijas ziedi",
+        href: "/veikals/category/fantazijas-ziedi/",
+        tone: "lavender",
+        description: "Ziedi, kuri paliek ilgāk par sezonu.",
+        image: {
+          src: "/images/category-icons/fantazijas-ziedi-warm.png",
+          alt: "Maigi rozā fantāzijas zieds",
+        },
+      },
+    ],
   },
   {
-    name: "Pasūtījumi",
+    name: "Individuāli pasūtījumi",
     href: "/veikals/category/pasutijumi/",
     tone: "warm",
     description: "Individuāli darinājumi pēc vienošanās.",
     image: {
       src: "/images/category-icons/pasutijumi-warm.png",
       alt: "Tamborētu rokdarbu kompozīcija",
-    },
-  },
-  {
-    name: "Fantāzijas ziedi",
-    href: "/veikals/category/fantazijas-ziedi/",
-    tone: "lavender",
-    description: "Ziedi, kuri paliek ilgāk par sezonu.",
-    image: {
-      src: "/images/category-icons/fantazijas-ziedi-warm.png",
-      alt: "Maigi rozā fantāzijas zieds",
     },
   },
 ];

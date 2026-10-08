@@ -527,3 +527,7 @@
     transition: none;
   }
 }
+
+.cookie-consent-root:not(.cookie-consent-root--visible) .cookie-consent-panel {
+  pointer-events: none;
+}

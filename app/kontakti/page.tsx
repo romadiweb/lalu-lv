@@ -6,13 +6,13 @@ import { PreFooterCta } from "@/components/home/pre-footer-cta";
 import { SiteHeader } from "@/components/navigation/site-header";
 import styles from "./page.module.css";
 
-const address = "Cepļa iela 4 - 9, Aizpute, Dienvidkurzemes novads, LV-3456";
+const address = "Sakas iela 15, Aizpute, Dienvidkurzemes novads";
 const phone = "+371 26878579";
 const email = "laila@lalu.lv";
 const mapsUrl =
-  "https://www.google.com/maps/search/?api=1&query=Cep%C4%BCa%20iela%204%2C%20Aizpute%2C%20Dienvidkurzemes%20novads%2C%20Latvia";
+  "https://www.google.com/maps/search/?api=1&query=Sakas%20iela%2015%2C%20Aizpute%2C%20Dienvidkurzemes%20novads%2C%20Latvia";
 const mapsEmbedUrl =
-  "https://www.google.com/maps?q=Cep%C4%BCa%20iela%204%2C%20Aizpute%2C%20Dienvidkurzemes%20novads%2C%20Latvia&output=embed";
+  "https://www.google.com/maps?q=Sakas%20iela%2015%2C%20Aizpute%2C%20Dienvidkurzemes%20novads%2C%20Latvia&output=embed";
 
 export const metadata: Metadata = {
   title: "Kontakti | LaLu",
@@ -201,7 +201,7 @@ export default function KontaktiPage() {
             />
             <div className={styles.mapNote} aria-hidden="true">
               <span>Google Maps</span>
-              <strong>Cepļa iela 4, Aizpute</strong>
+              <strong>Sakas iela 15, Aizpute</strong>
             </div>
           </div>
         </div>

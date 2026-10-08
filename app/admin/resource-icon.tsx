@@ -10,6 +10,7 @@ const paths: Record<AdminResource["icon"], ReactNode> = {
   image: <><path d="M10 17c4 0 6-2.5 6-5.5S13.5 4 10 3c-3.5 1-6 5.5-6 8.5S6 17 10 17Z" /><path d="M7 13c1.5-2.5 3.5-4 6-5" /></>,
   store: <><path d="M3 7.5h14l-1.5-4h-11zM4.5 7.5v9h11v-9" /><path d="M8 16.5v-5h4v5" /></>,
   product: <><path d="m4 7 6-3.5L16 7v7l-6 3-6-3z" /><path d="m4 7 6 3 6-3M10 10v7" /></>,
+  template: <><path d="M5 3.5h10v13H5z" /><path d="M8 7h4M8 10h4M8 13h2.5" /></>,
 };
 
 export function ResourceIcon({ icon }: { icon: AdminResource["icon"] }) {

@@ -1,6 +1,17 @@
 "use client";
 
+import { useFormStatus } from "react-dom";
 import { deleteRecordAction } from "./actions";
+
+function DeleteButton({ compact }: { compact: boolean }) {
+  const { pending } = useFormStatus();
+
+  return (
+    <button className="admin-delete-button" type="submit" disabled={pending}>
+      {pending ? "Dzēš..." : compact ? "Dzēst" : "Dzēst ierakstu"}
+    </button>
+  );
+}
 
 export function DeleteRecordForm({
   section,
@@ -23,9 +34,7 @@ export function DeleteRecordForm({
     >
       <input type="hidden" name="_section" value={section} />
       <input type="hidden" name="_id" value={id} />
-      <button className="admin-delete-button" type="submit">
-        {compact ? "Dzēst" : "Dzēst ierakstu"}
-      </button>
+      <DeleteButton compact={compact} />
     </form>
   );
 }

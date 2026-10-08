@@ -83,9 +83,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </div>
 
           <aside className={styles.productSummary}>
-            <p className={styles.status}>
-              {product.stock_status === "sold_out" ? "Izpārdots" : "Pieejams pasūtīšanai"}
-            </p>
+            <div className={styles.statusRow}>
+              <p className={styles.status}>
+                {product.stock_status === "sold_out" ? "Izpārdots" : "Pieejams pasūtīšanai"}
+              </p>
+              {product.is_top_product ? <span className={styles.topBadge}>Top produkts</span> : null}
+              {product.is_washable ? <span className={styles.washableBadge}>Mazgājams</span> : null}
+            </div>
             <h1 id="product-title">{product.name}</h1>
             <p className={styles.price}>{formatPrice(product.price_cents, product.currency)}</p>
             <p className={styles.intro}>
