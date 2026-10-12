@@ -41,6 +41,11 @@
   z-index: 2;
 }
 
+.site-header .brand > span {
+  font-weight: 520;
+  letter-spacing: -0.02em;
+}
+
 .desktop-nav {
   display: flex;
   align-items: center;

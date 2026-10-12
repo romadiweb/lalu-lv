@@ -53,14 +53,8 @@
   transition: background-color 180ms ease;
 }
 
-.controls button:hover:not(:disabled) {
+.controls button:hover {
   background: var(--primary);
-}
-
-.controls button:disabled {
-  color: var(--muted-soft);
-  cursor: default;
-  opacity: 0.55;
 }
 
 .controls svg,
@@ -76,13 +70,6 @@
 
 .arrowLeft {
   transform: rotate(180deg);
-}
-
-.controls span {
-  min-width: 44px;
-  color: var(--muted);
-  font-size: 13px;
-  font-variant-numeric: tabular-nums;
 }
 
 .viewport {

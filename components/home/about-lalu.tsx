@@ -38,7 +38,7 @@ export function AboutLalu() {
   return (
     <section className={styles.section} aria-labelledby="about-lalu-title">
       <div className={styles.panel}>
-        <h2 id="about-lalu-title">Mazās detaļās dzīvo rokraksts.</h2>
+        <h2 id="about-lalu-title">Mazās detaļās dzīvo rokraksts</h2>
 
         <div className={styles.values}>
           {values.map((value) => (

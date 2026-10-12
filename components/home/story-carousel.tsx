@@ -74,6 +74,8 @@ export function StoryCarousel() {
     }, 0);
   };
 
+  const getLoopedIndex = (index: number) => (index + STORY_COUNT) % STORY_COUNT;
+
   const settleToCard = (index: number, behavior: ScrollBehavior = "smooth") => {
     const viewport = viewportRef.current;
 
@@ -82,7 +84,8 @@ export function StoryCarousel() {
     }
 
     const cards = getCards(viewport);
-    const card = cards[index];
+    const targetIndex = getLoopedIndex(index);
+    const card = cards[targetIndex];
 
     if (!card) {
       return;
@@ -100,7 +103,7 @@ export function StoryCarousel() {
       left: targetLeft,
       behavior: reducedMotion ? "auto" : behavior,
     });
-    setActiveIndex(index);
+    setActiveIndex(targetIndex);
   };
 
   const updateActiveCard = () => {
@@ -205,15 +208,10 @@ export function StoryCarousel() {
     const startingCard = cards[dragState.current.startIndex];
     const dragDistance = viewport.scrollLeft - dragState.current.startScrollLeft;
     const advanceThreshold = Math.min((startingCard?.offsetWidth ?? 640) * 0.14, 110);
+    const direction = dragDistance > 0 ? 1 : -1;
     const targetIndex =
       Math.abs(dragDistance) >= advanceThreshold
-        ? Math.max(
-            0,
-            Math.min(
-              STORY_COUNT - 1,
-              dragState.current.startIndex + (dragDistance > 0 ? 1 : -1),
-            ),
-          )
+        ? getLoopedIndex(dragState.current.startIndex + direction)
         : getClosestCardIndex(viewport);
 
     settleToCard(targetIndex);
@@ -222,12 +220,12 @@ export function StoryCarousel() {
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "ArrowRight") {
       event.preventDefault();
-      settleToCard(Math.min(activeIndex + 1, STORY_COUNT - 1));
+      settleToCard(activeIndex + 1);
     }
 
     if (event.key === "ArrowLeft") {
       event.preventDefault();
-      settleToCard(Math.max(activeIndex - 1, 0));
+      settleToCard(activeIndex - 1);
     }
   };
 
@@ -239,20 +237,15 @@ export function StoryCarousel() {
         <div className={styles.controls} aria-label="Karuseļa vadība">
           <button
             aria-label="Iepriekšējais stāsts"
-            disabled={activeIndex === 0}
             type="button"
-            onClick={() => settleToCard(Math.max(activeIndex - 1, 0))}
+            onClick={() => settleToCard(activeIndex - 1)}
           >
             <ArrowIcon direction="left" />
           </button>
-          <span aria-live="polite">
-            {activeIndex + 1} / {STORY_COUNT}
-          </span>
           <button
             aria-label="Nākamais stāsts"
-            disabled={activeIndex === STORY_COUNT - 1}
             type="button"
-            onClick={() => settleToCard(Math.min(activeIndex + 1, STORY_COUNT - 1))}
+            onClick={() => settleToCard(activeIndex + 1)}
           >
             <ArrowIcon direction="right" />
           </button>
