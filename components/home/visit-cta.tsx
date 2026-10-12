@@ -13,12 +13,13 @@ export function VisitCta() {
   return (
     <section className={styles.section} aria-labelledby="visit-cta-title">
       <div className={styles.panel}>
-        <h2 id="visit-cta-title">Atbrauc ciemos uz darbnīcu</h2>
+        <h2 id="visit-cta-title">Atbrauc ciemos uz radošo darbnīcu LaLu</h2>
         <div className={styles.content}>
           <p>
-            Iepazīsti radošo darbnīcu, “Vectēva stāstu” un pagalmu, kur kopā var
-            darboties, atklāt un piedzīvot. Uzņemam ģimenes, skolēnu un pieaugušo
-            grupas — apmeklējumu piesaki iepriekš.
+            Iepazīsti radošo darbnīcu LaLu, Puķu namu, senlietu kolekciju
+            “Vectāva stāsts” un pagalmu, kur kopā var darboties, atklāt un
+            piedzīvot. Uzņemam ģimenes, skolēnu un pieaugušo grupas -
+            apmeklējumu piesaki iepriekš.
           </p>
           <div className={styles.actions}>
             <Link className={styles.primaryAction} href="/pieteikties/">

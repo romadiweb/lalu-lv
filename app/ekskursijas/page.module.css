@@ -118,6 +118,7 @@
 .visitBoardImage {
   width: min(100%, 520px);
   height: auto;
+  border-radius: var(--radius-xl);
   filter: drop-shadow(0 28px 52px rgb(23 23 23 / 0.12));
 }
 
@@ -164,18 +165,65 @@
 
 .cardGrid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 28px 12px;
 }
 
 .offerCard {
   position: relative;
   display: grid;
-  min-height: 600px;
+  grid-column: span 2;
+  min-height: 560px;
   overflow: visible;
   border: 1px solid var(--hairline);
   border-radius: var(--radius-lg);
   background: var(--canvas);
+}
+
+.offerCard:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.offerCard:nth-child(5) {
+  grid-column: 4 / span 2;
+}
+
+.featuredCard {
+  overflow: visible;
+  border-color: rgb(181 164 243 / 0.7);
+  isolation: isolate;
+}
+
+.featuredCard::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: -14px;
+  border-radius: var(--radius-xl);
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgb(200 187 251 / 0.08) 62deg,
+      rgb(200 187 251 / 0.42) 105deg,
+      transparent 156deg,
+      transparent 360deg
+    );
+  animation: featuredGlow 9s linear infinite;
+}
+
+.featuredCard::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 2px;
+  border-radius: var(--radius-lg);
+  background: var(--canvas);
+}
+
+.featuredCard > * {
+  position: relative;
+  z-index: 1;
 }
 
 .cardBand {
@@ -200,6 +248,7 @@
   height: 104px;
   place-items: center;
   pointer-events: none;
+  z-index: 2;
 }
 
 .cardIcon {
@@ -291,6 +340,12 @@
 .featuredCard .cardBody a {
   background: var(--ink);
   color: var(--canvas);
+}
+
+@keyframes featuredGlow {
+  to {
+    transform: rotate(1turn);
+  }
 }
 
 .kitchenSection {
@@ -418,6 +473,12 @@
     gap: 28px 12px;
   }
 
+  .offerCard,
+  .offerCard:nth-child(4),
+  .offerCard:nth-child(5) {
+    grid-column: auto;
+  }
+
   .offerCard {
     min-height: 540px;
   }
@@ -473,6 +534,12 @@
     grid-template-columns: 1fr;
   }
 
+  .offerCard,
+  .offerCard:nth-child(4),
+  .offerCard:nth-child(5) {
+    grid-column: auto;
+  }
+
   .offerCard {
     min-height: 0;
   }
@@ -495,8 +562,10 @@
 @media (prefers-reduced-motion: reduce) {
   .heroActions a,
   .cardBody a,
-  .rollingArrow svg {
+  .rollingArrow svg,
+  .featuredCard::before {
     transition: none;
+    animation: none;
   }
 
   .heroActions a:hover,

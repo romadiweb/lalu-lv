@@ -11,7 +11,7 @@ const phoneHref = `tel:${phone.replace(/\s/g, "")}`;
 export const metadata: Metadata = {
   title: "Ekskursijas | LaLu",
   description:
-    "LaLu radošās darbnīcas ekskursijas, Vectēva stāsts, pagalma piedzīvojumi, Lauku ķēķa degustācijas un meistarklases Aizputē.",
+    "LaLu radošās darbnīcas ekskursijas, Vectāva stāsts, pagalma piedzīvojumi, Lauku ķēķa pieredze un meistarklases Aizputē.",
 };
 
 function ArrowIcon() {
@@ -33,37 +33,66 @@ const excursionCards = [
     kicker: "Bezmaksas",
     price: "Iepirkšanās un apskate",
     description:
-      "Ienāc LaLu darbnīcā, apskati rokdarbus un izvēlies sirsnīgu dāvanu turpat Aizputē.",
-    details: ["Rokdarbu apskate", "Iespēja iepirkties", "Pēc iepriekšējas vienošanās"],
+      "Radošajā darbnīcā LaLu apskatāmi un iegādājami amatnieces darinātie darbi ar īpašu, neatkārtojamu rokrakstu un oriģinalitāti.",
+    details: [
+      "Adīti, tamborēti, šūti, tapoti, filcēti, veidoti un pērļoti darbi",
+      "Katrs darbs ir roku darbs - unikāls un neatkārtojams",
+      "Skaistums, kvalitāte un sirds siltums",
+    ],
     icon: "/images/custom-icons/Cozy Crochet Teddy Craft Table.png",
   },
   {
-    title: "Vectēva stāsts",
-    kicker: "Ekskursija",
-    price: "Pieaugušajiem 4 EUR, bērniem 3 EUR",
-    description:
-      "LaLu stāsts ar darbnīcas sajūtu, senām atmiņām un mierīgu ciemošanos nelielām grupām.",
-    details: ["Stāstījums darbnīcā", "Piemērots ģimenēm un skolām", "Var apvienot ar pagalmu"],
-    icon: "/images/custom-icons/Nostalgic Heirloom Chest with Keepsakes.png",
-    featured: true,
-  },
-  {
     title: "Pagalma piedzīvojumi",
-    kicker: "Pasaku taka",
-    price: "Aktivitātes pēc vienošanās",
+    kicker: "Āra aktivitātes",
+    price: "Programma pēc vienošanās",
     description:
-      "Pagalma apskate ar darbošanos, pasaku noskaņu un mazu līdzi ņemamu prieku.",
-    details: ["Pelnrušķītes kurpīte", "Aktivitātes ārā", "Radošs pārsteigums līdzi"],
+      "Iespēja darboties pašiem, atklāt neparasto, izmēģināt ko jaunu, ļaut vaļu iztēlei un baudīt kopā būšanas prieku.",
+    details: [
+      "Aktivitātes pielāgojam vecumam un interesēm",
+      "Radošums, pārsteigumi un pozitīvas emocijas",
+      "Piedzīvojums kļūst par atmiņām, ko paņemt līdzi",
+    ],
     icon: "/images/custom-icons/Miniature Woodland Discovery Diorama.png",
   },
   {
-    title: "Meistarklases",
-    kicker: "Radošā darbnīca",
+    title: "Vectāva stāsts",
+    kicker: "Ekskursija",
+    price: "Pieaugušajiem 4 EUR, bērniem 3 EUR",
+    description:
+      "Privātkolekcijā apskatāmi seni sadzīves priekšmeti, darba rīki, rokdarbi un citi eksponāti no pirmskara gadiem līdz padomju laikam.",
+    details: [
+      "Saimnieces stāsts par lietām, cilvēkiem un notikumiem",
+      "Kolekcija izveidota atjaunotā, gandrīz 100 gadus vecā mājā",
+      "Senlietu kolekcija nepārtraukti tiek papildināta",
+    ],
+    icon: "/images/custom-icons/Nostalgic Heirloom Chest with Keepsakes.png",
+  },
+  {
+    title: "Meistarklases un Lauku ķēķa pieredze",
+    kicker: "Radoši un gardi",
     price: "Programma pēc sarunas",
     description:
-      "Roku darbs, kopā būšana un īpašs process dzimšanas dienām, nometnēm vai radu salidojumiem.",
-    details: ["Svētki un pasākumi", "Nometnes un grupas", "Saturs pielāgots vecumam"],
+      "Ja Tevi saista māksla, jauna apgūšana un radīšana, šis piedāvājums ir domāts tieši Tev.",
+    details: [
+      "Izvēlies sev tīkamāko nodarbību",
+      "Cenā ietilpst visi nepieciešamie materiāli 1 personai",
+      "Lauku ķēķa pieredzi var pievienot pēc sarunas",
+    ],
     icon: "/images/custom-icons/Cozy Crochet Craft Still Life.png",
+  },
+  {
+    title: "Pilns komplekts",
+    kicker: "Īpašais ciemošanās maršruts",
+    price: "Programma un cena pēc vienošanās",
+    description:
+      "Apvieno darbnīcas apmeklējumu, Vectāva stāstu, pagalma piedzīvojumu un radošu vai gardu meistarklasi vienā notikumā.",
+    details: [
+      "Labs risinājums skolām, nometnēm un svētku grupām",
+      "Saturs tiek salikts pēc vecuma, ilguma un intereses",
+      "Piesaki savu grupu, un dosimies piedzīvojumā kopā",
+    ],
+    icon: "/images/custom-icons/crocheted-flame-icon.png",
+    featured: true,
   },
 ];
 
@@ -107,11 +136,12 @@ export default function EkskursijasPage() {
 
       <section className={styles.hero} aria-labelledby="excursion-title">
         <div className={styles.heroCopy}>
-          <h1 id="excursion-title">Ekskursijas LaLu darbnīcā</h1>
+          <h1 id="excursion-title">Ekskursijas radošajā darbnīcā LaLu</h1>
           <p>
-            Aicinām braukt ciemos uz radošo darbnīcu LaLu Aizputē: apskatīt
-            rokdarbus, klausīties Vectēva stāstu, doties pagalma piedzīvojumos
-            vai pievienot siltu Lauku ķēķa meistarklasi.
+            Aicinām braukt ciemos uz radošo darbnīcu LaLu Aizputē: iepazīt
+            rokdarbu pasauli, klausīties Vectāva stāstu, noķert īpašu sajūtu
+            Puķu namā, doties pagalma piedzīvojumos vai darboties kādā no
+            meistarklasēm.
           </p>
           <div className={styles.heroActions}>
             <a href="/pieteikties/">
@@ -125,10 +155,10 @@ export default function EkskursijasPage() {
         <aside className={styles.visitBoard} aria-label="Ciemošanās izvēles priekšskatījums">
           <Image
             className={styles.visitBoardImage}
-            src="/images/custom-icons/latvian-adventure-selection-ui.png"
-            alt="Ilustrēta ciemošanās izvēles grafika ar vairākiem darbnīcas piedzīvojumu variantiem."
-            width={1170}
-            height={1408}
+            src="/images/ekskursijas-foto.webp"
+            alt="LaLu ekskursiju piedāvājuma ilustrācija."
+            width={900}
+            height={1125}
             priority
             sizes="(max-width: 980px) min(100vw - 48px, 620px), 520px"
           />
@@ -139,9 +169,9 @@ export default function EkskursijasPage() {
         <div className={styles.sectionIntro}>
           <h2 id="offers-title">Izvēlies savu ciemošanās veidu</h2>
           <p>
-            Piedāvājumus var kombinēt pēc grupas vecuma, ilguma un notikuma
-            sajūtas. Visdrošāk ir uzrakstīt vai piezvanīt, lai vienotos par
-            konkrētu datumu un programmu.
+            Piedāvājumus var kombinēt pēc grupas vecuma, interesēm un vēlamās
+            sajūtas. Izvēlies savu piedzīvojumu, un programmu pielāgosim pēc
+            sarunas.
           </p>
         </div>
 

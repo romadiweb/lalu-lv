@@ -678,6 +678,13 @@
   font: inherit;
   font-size: 14px;
   font-weight: 720;
+  cursor: pointer;
+  transition: background-color 160ms ease, opacity 160ms ease;
+}
+
+.cart-summary button:disabled {
+  cursor: wait;
+  opacity: 0.68;
 }
 
 .cart-summary p {
@@ -685,6 +692,11 @@
   color: var(--muted);
   font-size: 12px;
   line-height: 1.45;
+}
+
+.cart-summary .cart-error {
+  color: var(--error);
+  font-weight: 650;
 }
 
 .cart-empty {

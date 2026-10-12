@@ -77,6 +77,60 @@ button:focus-visible {
   outline-offset: 4px;
 }
 
+.payment-status-page {
+  display: grid;
+  min-height: 70svh;
+  place-items: center;
+  padding: 140px 24px 80px;
+  background: var(--surface-soft);
+}
+
+.payment-status-page section {
+  width: min(680px, 100%);
+  padding: clamp(28px, 5vw, 56px);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  background: #fffefb;
+  text-align: center;
+}
+
+.payment-status-page p:first-child {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 720;
+  text-transform: uppercase;
+}
+
+.payment-status-page h1 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(34px, 5vw, 56px);
+  font-weight: 560;
+  line-height: 1.02;
+}
+
+.payment-status-page p:not(:first-child) {
+  margin: 18px auto 0;
+  max-width: 520px;
+  color: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.payment-status-page a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 28px;
+  padding: 0 22px;
+  border-radius: var(--radius-md);
+  background: var(--ink);
+  color: #fffefb;
+  font-weight: 720;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

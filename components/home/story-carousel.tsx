@@ -13,7 +13,7 @@ import styles from "./story-carousel.module.css";
 
 const VIDEO_ID = "Gs507EVZiOc";
 const VIDEO_TITLE = "Aizputes novada rokdarbu izstādes atklāšana";
-const STORY_COUNT = 3;
+const STORY_COUNT = 6;
 const INITIAL_STORY_INDEX = Math.floor(STORY_COUNT / 2);
 
 function ArrowIcon({ direction }: { direction: "left" | "right" }) {
@@ -321,7 +321,7 @@ export function StoryCarousel() {
               draggable={false}
               fill
               sizes="(max-width: 720px) calc(100vw - 48px), 860px"
-              src="https://lastatic.ams3.cdn.digitaloceanspaces.com/2013/10/g1/Tirdzins_KM_72.jpg"
+              src="/images/story-thumbnails/la-lv-lustes.webp"
             />
             <div className={styles.cardShade} />
             <div className={styles.cardCopy}>
@@ -347,7 +347,7 @@ export function StoryCarousel() {
               draggable={false}
               fill
               sizes="(max-width: 720px) calc(100vw - 48px), 860px"
-              src="/images/darbnica_lalu_eka_2021_web-800x450.jpg"
+              src="/images/story-thumbnails/retv-lalu-darbnica.webp"
             />
             <div className={styles.cardShade} />
             <div className={styles.cardCopy}>
@@ -361,6 +361,83 @@ export function StoryCarousel() {
                 target="_blank"
               >
                 Lasīt un skatīties
+                <ArrowIcon direction="right" />
+              </a>
+            </div>
+          </article>
+
+          <article className={`${styles.card} ${styles.articleCard}`} data-story-card>
+            <Image
+              alt="LaLu radošā darbnīca Aizputē"
+              className={styles.cardImage}
+              draggable={false}
+              fill
+              sizes="(max-width: 720px) calc(100vw - 48px), 860px"
+              src="/images/story-thumbnails/liepajniekiem-laila-luzere.webp"
+            />
+            <div className={styles.cardShade} />
+            <div className={styles.cardCopy}>
+              <span>Publikācija · Liepājniekiem.lv</span>
+              <h3>Foto: Rokdarbnieces Lailas Luzeres darbs ir svētki</h3>
+              <a
+                className={styles.underlinedAction}
+                href="https://www.liepajniekiem.lv/tema/laila-luzere/"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Lasīt publikāciju
+                <ArrowIcon direction="right" />
+              </a>
+            </div>
+          </article>
+
+          <article className={`${styles.card} ${styles.articleCard}`} data-story-card>
+            <Image
+              alt="LaLu radošās darbnīcas ēka Aizputē"
+              className={styles.cardImage}
+              draggable={false}
+              fill
+              sizes="(max-width: 720px) calc(100vw - 48px), 860px"
+              src="/images/story-thumbnails/lasi-kur-jaunais-sastopas.webp"
+            />
+            <div className={styles.cardShade} />
+            <div className={styles.cardCopy}>
+              <span>Raksts · Lasi.lv</span>
+              <h3>Kur jaunais sastopas ar veco</h3>
+              <p>Stāsts par privātkolekciju, senatnes elpu un LaLu darbnīcas tapšanu.</p>
+              <a
+                className={styles.underlinedAction}
+                href="https://lasi.lv/maja-gimene/majas-viesis/kur-jaunais-sastopas-ar-veco-privatkolekcija-ar-senatnes-elpu.11377"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Lasīt rakstu
+                <ArrowIcon direction="right" />
+              </a>
+            </div>
+          </article>
+
+          <article className={`${styles.card} ${styles.articleCard}`} data-story-card>
+            <Image
+              alt="LaLu radošā darbnīca Aizputē"
+              className={styles.cardImage}
+              draggable={false}
+              fill
+              sizes="(max-width: 720px) calc(100vw - 48px), 860px"
+              src="/images/story-thumbnails/dienvidkurzeme-lalu.webp"
+            />
+            <div className={styles.cardShade} />
+            <div className={styles.cardCopy}>
+              <span>Tūrisms · Dienvidkurzeme Travel</span>
+              <h3>Veikals un radošā darbnīca LaLu</h3>
+              <p>Tūrisma ieraksts par darbnīcu, rokdarbiem, pasākumiem un ciemošanos Aizputē.</p>
+              <a
+                className={styles.underlinedAction}
+                href="https://www.dienvidkurzeme.travel/visainfo/item/majrazotaji-un-amatnieki/vietejo-labumu-veikali/radosa-darbnica-lalu-3/"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Skatīt ierakstu
                 <ArrowIcon direction="right" />
               </a>
             </div>

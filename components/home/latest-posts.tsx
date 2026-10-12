@@ -58,6 +58,7 @@ export async function LatestPosts() {
           </svg>
         </Link>
       </div>
+
     </section>
   );
 }

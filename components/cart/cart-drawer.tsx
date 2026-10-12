@@ -2,12 +2,47 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { formatPrice } from "@/lib/format";
 import { useCart } from "./cart-provider";
 
 export function CartDrawer() {
-  const { closeCart, isCartOpen, itemCount, items, removeItem, setItemQuantity } = useCart();
+  const { clearCart, closeCart, isCartOpen, itemCount, items, removeItem, setItemQuantity } = useCart();
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
   const totalCents = items.reduce((total, item) => total + (item.price_cents ?? 0) * item.quantity, 0);
+
+  async function startCheckout() {
+    setCheckoutError(null);
+    setIsCheckingOut(true);
+
+    try {
+      const response = await fetch("/api/paysera/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: items.map((item) => ({
+            id: item.id,
+            quantity: item.quantity,
+          })),
+        }),
+      });
+
+      const data = (await response.json()) as { paymentUrl?: string; error?: string };
+
+      if (!response.ok || !data.paymentUrl) {
+        throw new Error(data.error ?? "Neizdevās sākt apmaksu.");
+      }
+
+      clearCart();
+      window.location.assign(data.paymentUrl);
+    } catch (error) {
+      setCheckoutError(error instanceof Error ? error.message : "Neizdevās sākt apmaksu.");
+      setIsCheckingOut(false);
+    }
+  }
 
   return (
     <>
@@ -69,8 +104,11 @@ export function CartDrawer() {
                 <span>Kopā</span>
                 <strong>{formatPrice(totalCents, "EUR")}</strong>
               </div>
-              <button type="button">Turpināt pasūtījumu</button>
-              <p>Pasūtījuma noformēšanu pievienosim nākamajā solī.</p>
+              <button type="button" onClick={startCheckout} disabled={isCheckingOut}>
+                {isCheckingOut ? "Pārsūtām uz Paysera..." : "Apmaksāt ar Paysera"}
+              </button>
+              {checkoutError ? <p className="cart-error">{checkoutError}</p> : null}
+              <p>Apmaksa notiek drošā Paysera logā ārpus šīs lapas.</p>
             </div>
           </>
         ) : (

@@ -34,9 +34,9 @@ export function OpeningPanel() {
 
         <div className="hero-content">
           <h1 id="home-hero-title">
-            Radīts Latvijā.
+            Radīts Latvijā
             <br />
-            <span>Radīts ar mīlestību.</span>
+            <span>Radīts ar mīlestību</span>
           </h1>
 
           <div className="hero-copy">

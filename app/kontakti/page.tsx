@@ -141,8 +141,8 @@ export default function KontaktiPage() {
         <div className={styles.heroCopy}>
           <h1 id="contact-title">Sazinies ar LaLu</h1>
           <p>
-            Radošā darbnīca Aizputē uzņem ciemiņus, veido meistarklases, ekskursijas,
-            pasākumus un rokām darinātus darbus ar savu neatkārtojamo rokrakstu.
+            Radošā darbnīca Aizputē uzņem ciemiņus, piedāvā meistarklases,
+            ekskursijas, pasākumus un rokām darinātus darbus ar savu neatkārtojamo rokrakstu.
             Vislabākā saruna sākas ar zvanu vai īsu ziņu par tavu ieceri.
           </p>
 

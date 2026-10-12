@@ -20,6 +20,7 @@ export type CartItem = CartItemInput & {
 
 type CartContextValue = {
   addItem: (item: CartItemInput) => void;
+  clearCart: () => void;
   closeCart: () => void;
   itemCount: number;
   items: CartItem[];
@@ -70,6 +71,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const value = useMemo<CartContextValue>(
     () => ({
       addItem,
+      clearCart: () => setItems([]),
       closeCart: () => setIsCartOpen(false),
       itemCount: items.reduce((total, item) => total + item.quantity, 0),
       items,
