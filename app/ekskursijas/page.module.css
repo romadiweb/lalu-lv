@@ -194,24 +194,6 @@
   isolation: isolate;
 }
 
-.featuredCard::before {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  inset: -14px;
-  border-radius: var(--radius-xl);
-  background:
-    conic-gradient(
-      from 0deg,
-      transparent 0deg,
-      rgb(200 187 251 / 0.08) 62deg,
-      rgb(200 187 251 / 0.42) 105deg,
-      transparent 156deg,
-      transparent 360deg
-    );
-  animation: featuredGlow 9s linear infinite;
-}
-
 .featuredCard::after {
   content: "";
   position: absolute;
@@ -340,12 +322,6 @@
 .featuredCard .cardBody a {
   background: var(--ink);
   color: var(--canvas);
-}
-
-@keyframes featuredGlow {
-  to {
-    transform: rotate(1turn);
-  }
 }
 
 .kitchenSection {
@@ -563,11 +539,6 @@
   .heroActions a,
   .cardBody a,
   .rollingArrow svg,
-  .featuredCard::before {
-    transition: none;
-    animation: none;
-  }
-
   .heroActions a:hover,
   .heroActions a:focus-visible,
   .cardBody a:hover,
