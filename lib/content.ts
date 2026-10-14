@@ -6,7 +6,42 @@ import type {
   FlowerGalleryItem,
   Workshop,
   WorkshopFeatureCard,
+  HomepageReview,
 } from "@/lib/content-types";
+
+const fallbackHomepageReviews: HomepageReview[] = [
+  { id: "jolanta-g", name: "Jolanta G.", quote: "Ļoti jauka vieta, burvīgas pašdarinātas lellītes un arī ļoti interesanta senlietu kolekcija.", rating: 5, source_label: "Google atsauksme" },
+  { id: "liga-z", name: "Līga Z.", quote: "Burvīga, ideju pilna un radoša vieta Aizputē.", rating: 5, source_label: "Google atsauksme" },
+  { id: "diana-d", name: "Diana D.", quote: "Ļoti silta sagaidīšana. Interesanta prezentācija un ļoti laba fantāzija.", rating: 5, source_label: "Google atsauksme" },
+  { id: "sandija-a", name: "Sandija A.", quote: "Ļoti skaista vieta, fantastiski pasniegts stāstījums un jauka, sirsnīga vadītāja.", rating: 5, source_label: "Google atsauksme" },
+  { id: "mara-v", name: "Māra V.", quote: "Iesaku ģimenēm. Jauniešiem var pieteikt radošās darbnīcas.", rating: 5, source_label: "Google atsauksme" },
+  { id: "sandra-k", name: "Sandra K.", quote: "Bērniem patika atrakcijas, interesantā pasaku taka un izveidotais namiņš.", rating: 5, source_label: "Google atsauksme" },
+  { id: "ivars-l", name: "Ivars L.", quote: "Izcili skaista vieta!", rating: 5, source_label: "Google atsauksme" },
+  { id: "oksana-h", name: "Oksana H.", quote: null, rating: 5, source_label: "Google atsauksme" },
+  { id: "gunita-b", name: "Gunita B.", quote: null, rating: 5, source_label: "Google atsauksme" },
+];
+
+export async function getHomepageReviews() {
+  noStore();
+
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("homepage_reviews")
+    .select("id, name, quote, rating, source_label")
+    .eq("status", "published")
+    .order("sort_order", { ascending: true })
+    .order("created_at", { ascending: true });
+
+  if (error) {
+    if (error.code === "42P01" || error.code === "PGRST205") {
+      return fallbackHomepageReviews;
+    }
+
+    throw new Error(error.message);
+  }
+
+  return (data ?? []) as HomepageReview[];
+}
 
 export async function getBlogPosts() {
   noStore();

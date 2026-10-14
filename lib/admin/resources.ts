@@ -17,7 +17,7 @@ export type AdminField = {
 
 export type AdminResource = {
   section: string;
-  icon: "article" | "tag" | "workshop" | "cards" | "gallery" | "image" | "store" | "product" | "template";
+  icon: "article" | "tag" | "workshop" | "cards" | "gallery" | "image" | "store" | "product" | "template" | "review";
   label: string;
   description: string;
   table: string;
@@ -33,6 +33,29 @@ const statusOptions = [
 ];
 
 export const adminResources: AdminResource[] = [
+  {
+    section: "atsauksmes",
+    icon: "review",
+    label: "Atsauksmes",
+    description: "Atsauksmes, kas redzamas sākumlapā uzreiz zem galvenā attēla.",
+    table: "homepage_reviews",
+    orderBy: "sort_order asc, created_at asc",
+    listColumns: ["name", "rating", "status", "sort_order"],
+    fields: [
+      { name: "name", label: "Vārds", type: "text", required: true },
+      { name: "quote", label: "Atsauksmes teksts", type: "textarea", help: "Var atstāt tukšu, ja vēlies rādīt tikai zvaigžņu vērtējumu." },
+      {
+        name: "rating",
+        label: "Zvaigžņu vērtējums",
+        type: "select",
+        required: true,
+        options: [5, 4, 3, 2, 1].map((rating) => ({ label: `${rating} zvaigznes`, value: String(rating) })),
+      },
+      { name: "source_label", label: "Avots", type: "text", required: true, help: "Piemēram: Google atsauksme." },
+      { name: "status", label: "Statuss", type: "select", options: statusOptions },
+      { name: "sort_order", label: "Secība", type: "number", help: "Mazāks skaitlis tiek parādīts agrāk." },
+    ],
+  },
   {
     section: "raksti",
     icon: "article",

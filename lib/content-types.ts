@@ -54,3 +54,11 @@ export type FlowerGalleryItem = {
   image_alt: string;
   image_position: string | null;
 };
+
+export type HomepageReview = {
+  id: string;
+  name: string;
+  quote: string | null;
+  rating: number;
+  source_label: string;
+};

@@ -1,66 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { HomepageReview } from "@/lib/content-types";
 
-type Review = {
-  name: string;
-  quote: string | null;
-  size: "compact" | "medium" | "wide";
-};
-
-const reviews: Review[] = [
-  {
-    name: "Jolanta G.",
-    quote:
-      "Ļoti jauka vieta, burvīgas pašdarinātas lellītes un arī ļoti interesanta senlietu kolekcija.",
-    size: "wide",
-  },
-  {
-    name: "Līga Z.",
-    quote: "Burvīga, ideju pilna un radoša vieta Aizputē.",
-    size: "medium",
-  },
-  {
-    name: "Diana D.",
-    quote: "Ļoti silta sagaidīšana. Interesanta prezentācija un ļoti laba fantāzija.",
-    size: "wide",
-  },
-  {
-    name: "Sandija A.",
-    quote: "Ļoti skaista vieta, fantastiski pasniegts stāstījums un jauka, sirsnīga vadītāja.",
-    size: "wide",
-  },
-  {
-    name: "Māra V.",
-    quote: "Iesaku ģimenēm. Jauniešiem var pieteikt radošās darbnīcas.",
-    size: "medium",
-  },
-  {
-    name: "Sandra K.",
-    quote: "Bērniem patika atrakcijas, interesantā pasaku taka un izveidotais namiņš.",
-    size: "wide",
-  },
-  {
-    name: "Ivars L.",
-    quote: "Izcili skaista vieta!",
-    size: "compact",
-  },
-  {
-    name: "Oksana H.",
-    quote: null,
-    size: "compact",
-  },
-  {
-    name: "Gunita B.",
-    quote: null,
-    size: "compact",
-  },
-];
-
-const reviewRows = [
-  reviews.filter((_, index) => index % 2 === 0),
-  reviews.filter((_, index) => index % 2 !== 0),
-];
+function getReviewSize(review: HomepageReview) {
+  if (!review.quote || review.quote.length <= 28) return "compact";
+  if (review.quote.length <= 68) return "medium";
+  return "wide";
+}
 
 function StarIcon() {
   return (
@@ -70,43 +17,45 @@ function StarIcon() {
   );
 }
 
-function ReviewCard({ review }: { review: Review }) {
+function ReviewCard({ review }: { review: HomepageReview }) {
+  const size = getReviewSize(review);
+
   return (
-    <article className={`review-card review-card--${review.size}`}>
+    <article className={`review-card review-card--${size}`}>
       <div className="review-card-heading">
         <span className="review-avatar" aria-hidden="true">
           {review.name.charAt(0)}
         </span>
         <span>
           <strong>{review.name}</strong>
-          <small>Google atsauksme</small>
+          <small>{review.source_label}</small>
         </span>
       </div>
-      <div className="review-stars" aria-label="5 no 5 zvaigznēm">
-        {Array.from({ length: 5 }, (_, index) => (
-          <StarIcon key={index} />
+      <div className="review-stars" aria-label={`${review.rating} no 5 zvaigznēm`}>
+        {Array.from({ length: review.rating }, (_, index) => (
+          <StarIcon key={`${review.id}-star-${index}`} />
         ))}
       </div>
       {review.quote ? (
         <p>“{review.quote}”</p>
       ) : (
         <p className="review-rating-only">
-          <strong>5,0</strong>
-          <span>Piecu zvaigžņu vērtējums</span>
+          <strong>{review.rating.toFixed(1).replace(".", ",")}</strong>
+          <span>{review.rating} zvaigžņu vērtējums</span>
         </p>
       )}
     </article>
   );
 }
 
-function ReviewRow({ row }: { row: Review[] }) {
+function ReviewRow({ row }: { row: HomepageReview[] }) {
   return (
     <div className="review-row">
       <div className="review-track">
         {[0, 1].map((copyIndex) => (
           <div className="review-group" aria-hidden={copyIndex === 1} key={copyIndex}>
             {row.map((review) => (
-              <ReviewCard key={`${copyIndex}-${review.name}`} review={review} />
+              <ReviewCard key={`${copyIndex}-${review.id}`} review={review} />
             ))}
           </div>
         ))}
@@ -115,7 +64,7 @@ function ReviewRow({ row }: { row: Review[] }) {
   );
 }
 
-export function ReviewMarquee() {
+export function ReviewMarquee({ reviews }: { reviews: HomepageReview[] }) {
   const panelRef = useRef<HTMLElement>(null);
   const [isActive, setIsActive] = useState(true);
 
@@ -144,6 +93,17 @@ export function ReviewMarquee() {
       document.removeEventListener("visibilitychange", syncMotion);
     };
   }, []);
+
+  if (reviews.length === 0) {
+    return null;
+  }
+
+  const reviewRows = reviews.length === 1
+    ? [reviews]
+    : [
+        reviews.filter((_, index) => index % 2 === 0),
+        reviews.filter((_, index) => index % 2 !== 0),
+      ];
 
   return (
     <section

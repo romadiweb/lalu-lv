@@ -134,6 +134,14 @@ export function emptyRecord(resource: AdminResource) {
         return [field.name, "EUR"];
       }
 
+      if (field.name === "rating" && resource.section === "atsauksmes") {
+        return [field.name, "5"];
+      }
+
+      if (field.name === "source_label" && resource.section === "atsauksmes") {
+        return [field.name, "Google atsauksme"];
+      }
+
       if (field.name === "author_name" && resource.section === "raksti") {
         return [field.name, "LaLu darbnīca"];
       }

@@ -11,6 +11,7 @@ const paths: Record<AdminResource["icon"], ReactNode> = {
   store: <><path d="M3 7.5h14l-1.5-4h-11zM4.5 7.5v9h11v-9" /><path d="M8 16.5v-5h4v5" /></>,
   product: <><path d="m4 7 6-3.5L16 7v7l-6 3-6-3z" /><path d="m4 7 6 3 6-3M10 10v7" /></>,
   template: <><path d="M5 3.5h10v13H5z" /><path d="M8 7h4M8 10h4M8 13h2.5" /></>,
+  review: <><path d="M4 4.5h12v8.5H9l-3.5 3v-3H4z" /><path d="m7.2 8.8 1.5 1.1 3.5-3.5" /></>,
 };
 
 export function ResourceIcon({ icon }: { icon: AdminResource["icon"] }) {
