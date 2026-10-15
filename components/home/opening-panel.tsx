@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getHomepageReviews } from "@/lib/content";
 import { ReviewMarquee } from "./review-marquee";
 
 function ArrowIcon() {
@@ -18,7 +19,9 @@ function RollingArrowIcon() {
   );
 }
 
-export function OpeningPanel() {
+export async function OpeningPanel() {
+  const reviews = await getHomepageReviews();
+
   return (
     <section className="opening-panel" aria-labelledby="home-hero-title">
       <div className="hero-stage">
@@ -55,7 +58,7 @@ export function OpeningPanel() {
         </div>
       </div>
 
-      <ReviewMarquee />
+      <ReviewMarquee reviews={reviews} />
     </section>
   );
 }
