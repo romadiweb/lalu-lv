@@ -11,7 +11,9 @@ export const metadata: Metadata = {
     "Piesaki ekskursiju, ciemošanos, meistarklasi vai īpašu notikumu LaLu radošajā darbnīcā Aizputē.",
 };
 
-export default async function PieteiktiesPage() {
+export default async function PieteiktiesPage({ searchParams }: PageProps<"/pieteikties">) {
+  const { veids } = await searchParams;
+  const isCustomOrder = veids === "individuals-pasutijums";
   const workshopOptions = await getPublishedWorkshopOptions();
 
   return (
@@ -20,15 +22,13 @@ export default async function PieteiktiesPage() {
 
       <section className={styles.section} aria-labelledby="signup-title">
         <div className={styles.copy}>
-          <h1 id="signup-title">Sarunāsim jūsu LaLu apmeklējumu.</h1>
+          <h1 id="signup-title">{isCustomOrder ? "Radīsim kaut ko īpašu Tev." : "Sarunāsim jūsu LaLu apmeklējumu."}</h1>
           <p>
-            Pastāsti, vai plāno ekskursiju, meistarklasi vai īpašu notikumu.
-            Mēs palīdzēsim piemeklēt piemērotu programmu, laiku un ritmu jūsu
-            grupai.
+            {isCustomOrder ? "Pastāsti par vēlamo izstrādājumu, krāsu un dizainu. Vienosimies par iespējām, cenu un izgatavošanas laiku." : "Pastāsti, vai plāno ekskursiju, meistarklasi vai īpašu notikumu. Mēs palīdzēsim piemeklēt piemērotu programmu, laiku un ritmu jūsu grupai."}
           </p>
         </div>
 
-        <PieteiktiesForm workshopOptions={workshopOptions} />
+        <PieteiktiesForm workshopOptions={workshopOptions} initialRequestType={isCustomOrder ? "individuals-pasutijums" : ""} />
       </section>
 
       <SiteFooter />

@@ -740,3 +740,13 @@
     transform: none;
   }
 }
+
+.productFlagLimited { top: 9px; right: 9px; max-width: calc(100% - 60px); background: var(--primary); color: var(--ink); line-height: 1.35; }
+
+.toolbarControls[hidden] { display: none; }
+
+.customOrderIntro { margin-bottom: 32px; max-width: 65ch; }
+.customOrderIntro p { color: var(--body); font-size: 16px; line-height: 1.6; margin: 0 0 20px; }
+.customOrderIntro a { display: inline-flex; align-items: center; min-height: 46px; padding: 10px 18px; border-radius: var(--radius-md); background: var(--primary); color: var(--ink); font-size: 14px; font-weight: 600; }
+.customOrderIntro a:hover { background: var(--primary-active); }
+.customOrderIntro a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }

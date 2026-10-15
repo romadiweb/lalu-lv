@@ -11,7 +11,7 @@ const phoneHref = `tel:${phone.replace(/\s/g, "")}`;
 export const metadata: Metadata = {
   title: "Ekskursijas | LaLu",
   description:
-    "LaLu radošās darbnīcas ekskursijas, Vectāva stāsts, pagalma piedzīvojumi, Lauku ķēķa pieredze un meistarklases Aizputē.",
+    "LaLu radošās darbnīcas ekskursijas, Vectēva stāsts, pagalma piedzīvojumi, Lauku ķēķa pieredze un meistarklases Aizputē.",
 };
 
 function ArrowIcon() {
@@ -42,30 +42,34 @@ const excursionCards = [
     icon: "/images/custom-icons/Cozy Crochet Teddy Craft Table.png",
   },
   {
-    title: "Pagalma piedzīvojumi",
-    kicker: "Āra aktivitātes",
-    price: "Programma pēc vienošanās",
+    title: "Pagalma piedzīvojumi un Vectēva stāsts",
+    kicker: "Atklāj un piedzīvo",
+    price: "",
     description:
-      "Iespēja darboties pašiem, atklāt neparasto, izmēģināt ko jaunu, ļaut vaļu iztēlei un baudīt kopā būšanas prieku.",
+      "Atklāj neparasto, izmēģini ko jaunu un iepazīsti senlietu kolekciju gandrīz 100 gadus vecā mājā. Saimnieces stāsti par lietām, cilvēkiem un notikumiem savijas ar darbošanos un kopā būšanas prieku.",
     details: [
-      "Aktivitātes pielāgojam vecumam un interesēm",
-      "Radošums, pārsteigumi un pozitīvas emocijas",
-      "Piedzīvojums kļūst par atmiņām, ko paņemt līdzi",
+      "Pagalma piedzīvojumi — programma un cena pēc vienošanās; aktivitātes pielāgojam vecumam un interesēm",
+      "Vectēva stāsts — pieaugušajiem 4 €, bērniem 3 €",
+      "Seni sadzīves priekšmeti, darba rīki un rokdarbi no pirmskara gadiem līdz padomju laikam",
+      "Radošums, pārsteigumi un atmiņas, ko paņemt līdzi",
     ],
     icon: "/images/custom-icons/Miniature Woodland Discovery Diorama.png",
   },
   {
-    title: "Vectāva stāsts",
-    kicker: "Ekskursija",
-    price: "Pieaugušajiem 4 EUR, bērniem 3 EUR",
+    title: "Puķu nams",
+    kicker: "Tava īpašā miera un svētku vieta",
+    price: "Vieta Taviem īpašajiem mirkļiem",
     description:
-      "Privātkolekcijā apskatāmi seni sadzīves priekšmeti, darba rīki, rokdarbi un citi eksponāti no pirmskara gadiem līdz padomju laikam.",
+      "Vai esi sapņojis par vietu, kur uz brīdi apstāties, atvilkt elpu un baudīt skaisto? Sajūta, ka šis mirklis pieder tikai Tev un Taviem cilvēkiem.",
     details: [
-      "Saimnieces stāsts par lietām, cilvēkiem un notikumiem",
-      "Kolekcija izveidota atjaunotā, gandrīz 100 gadus vecā mājā",
-      "Senlietu kolekcija nepārtraukti tiek papildināta",
+      "Svētkiem un dzimšanas dienām — sviniet ar ģimeni un draugiem skaistā, neierastā vidē un radiet atmiņas, ko saglabāt",
+      "Draudzeņu un draugu vakariem — sarunām, smiekliem, tējai un nesteidzīgiem mirkļiem tuvāko lokā",
+      "Semināriem un darba tikšanām — gaiša, iedvesmojoša vieta idejām, sarunām un jaunām iecerēm",
+      "Radošajām nodarbībām un meistarklasēm — apgūsti ko jaunu un baudi kopā būšanu",
+      "Sievišķīgiem un romantiskiem pasākumiem — fotosesijām, nelieliem svētkiem un īpašiem pārsteigumiem",
     ],
-    icon: "/images/custom-icons/Nostalgic Heirloom Chest with Keepsakes.png",
+    icon: "/images/custom-icons/puku-nams.webp",
+    flowerHouse: true,
   },
   {
     title: "Meistarklases un Lauku ķēķa pieredze",
@@ -85,7 +89,7 @@ const excursionCards = [
     kicker: "Īpašais ciemošanās maršruts",
     price: "Programma un cena pēc vienošanās",
     description:
-      "Apvieno darbnīcas apmeklējumu, Vectāva stāstu, pagalma piedzīvojumu un radošu vai gardu meistarklasi vienā notikumā.",
+      "Pilnā komplektā iekļautas visas ekskursijas, ēdināšana un meistarklase — viss vienā kopīgā piedzīvojumā.",
     details: [
       "Labs risinājums skolām, nometnēm un svētku grupām",
       "Saturs tiek salikts pēc vecuma, ilguma un intereses",
@@ -115,12 +119,7 @@ const kitchenCards = [
     note: "1,5-2 stundas",
     text: "Pagalma un darbnīcas apskate, līdzi darbošanās un zupa pēc izvēles.",
   },
-  {
-    title: "Īpašās tējas rituāls",
-    price: "7 EUR no personas",
-    note: "Degustācija un meistarklase",
-    text: "LaLu pagalma tējas rituāls kopā ar darbnīcas apmeklējumu un Vectēva stāstu.",
-  },
+
 ];
 
 const bookingNotes = [
@@ -139,7 +138,7 @@ export default function EkskursijasPage() {
           <h1 id="excursion-title">Ekskursijas radošajā darbnīcā LaLu</h1>
           <p>
             Aicinām braukt ciemos uz radošo darbnīcu LaLu Aizputē: iepazīt
-            rokdarbu pasauli, klausīties Vectāva stāstu, noķert īpašu sajūtu
+            rokdarbu pasauli, klausīties Vectēva stāstu, noķert īpašu sajūtu
             Puķu namā, doties pagalma piedzīvojumos vai darboties kādā no
             meistarklasēm.
           </p>
@@ -196,13 +195,33 @@ export default function EkskursijasPage() {
                 <h3>{card.title}</h3>
               </div>
               <div className={styles.cardBody}>
-                <strong>{card.price}</strong>
+                {card.price ? <strong>{card.price}</strong> : null}
                 <p>{card.description}</p>
                 <ul>
                   {card.details.map((detail) => (
                     <li key={detail}>{detail}</li>
                   ))}
                 </ul>
+                {card.flowerHouse ? (
+                  <>
+                    <details className={styles.flowerDetails}>
+                      <summary>Dienā un vakarā — visos gadalaikos</summary>
+                      <p>Vasarā baudi gaismu un debesu plašumu, rudenī — lietus lāšu deju stiklā, ziemā — īpašu mājīgumu, bet vakaros ļaujies zvaigžņotās debess burvībai. Te var satikties, svinēt, radīt, sarunāties un vienkārši būt.</p>
+                      <p>Izīrē privātiem pasākumiem, tikšanās reizēm un radošām aktivitātēm. Raksti un piesaki savu datumu! Kopīgi atradīsim piemērotāko risinājumu Tavam īpašajam notikumam.</p>
+                      <p>Puķu nams — vieta, kur skaisti mirkļi kļūst par atmiņām.</p>
+                    </details>
+                    <details className={styles.flowerDetails}>
+                      <summary>Puķu nama cenrādis</summary>
+                      <dl className={styles.priceList}>
+                        <div><dt>Pirmdiena–ceturtdiena</dt><dd>15 € / h</dd></div>
+                        <div><dt>Piektdienās un brīvdienās</dt><dd>20 € / h</dd></div>
+                        <div><dt>Vakars līdz 4 h</dt><dd>70 €</dd></div>
+                        <div><dt>Vakars līdz 6 h</dt><dd>80 €</dd></div>
+                      </dl>
+                      <p>Minimālā rezervācija — 2 h. Par beigu laiku vienojamies iepriekš.</p>
+                    </details>
+                  </>
+                ) : null}
                 <a href="/pieteikties/">
                   Pieteikt
                   <ArrowIcon />
@@ -241,7 +260,7 @@ export default function EkskursijasPage() {
                 <p>{card.text}</p>
               </div>
               <div className={styles.kitchenMeta}>
-                <strong>{card.price}</strong>
+                {card.price ? <strong>{card.price}</strong> : null}
                 <span>{card.note}</span>
               </div>
             </article>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { type ShopCategory, type ShopProduct } from "@/lib/shop";
+import { GiftCard } from "./gift-card";
 import { ProductCard } from "./product-card";
 import styles from "./page.module.css";
 
@@ -72,11 +73,12 @@ export function ShopView({
   );
 
   const visibleProducts = useMemo(() => {
+    const catalogProducts = products.filter((product) => !product.categorySlugs.includes("davanu-kartes"));
     let nextProducts = activeCategorySlug
-      ? products.filter((product) =>
+      ? catalogProducts.filter((product) =>
           product.categorySlugs.some((slug) => activeCategorySlugs.includes(slug)),
         )
-      : [...products];
+      : [...catalogProducts];
 
     if (search.trim()) {
       const normalizedSearch = search.trim().toLowerCase();
@@ -290,7 +292,7 @@ export function ShopView({
               </h1>
             </div>
 
-            <div className={styles.toolbarControls}>
+            <div className={styles.toolbarControls} hidden={activeCategorySlug === "davanu-kartes" && visibleProducts.length === 0}>
               <span className={styles.resultCount}>
                 {visibleProducts.length}{" "}
                 {visibleProducts.length === 1
@@ -334,7 +336,14 @@ export function ShopView({
             </div>
           </div>
 
-          {visibleProducts.length ? (
+          {activeCategorySlug === "pasutijumi" ? (
+            <div className={styles.customOrderIntro}>
+              <p>Vēlies darinājumu savās krāsās vai īpašu dizainu? Pastāsti par savu ieceri, un vienosimies par iespējām, cenu un izgatavošanas laiku.</p>
+              <Link href="/pieteikties/?veids=individuals-pasutijums">Pieteikt individuālu pasūtījumu</Link>
+            </div>
+          ) : null}
+          {(activeCategorySlug === "davanu-kartes") && !search.trim() ? <GiftCard products={products.filter((product) => product.categorySlugs.includes("davanu-kartes"))} /> : null}
+          {activeCategorySlug === "davanu-kartes" && !search.trim() && visibleProducts.length === 0 ? null : visibleProducts.length ? (
             <>
               <div className={styles.productGrid}>
                 {displayedProducts.map((product) => (

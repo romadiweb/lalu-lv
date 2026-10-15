@@ -333,3 +333,24 @@
     transform: none;
   }
 }
+
+.limitedBadge { padding: 6px 10px; border-radius: 999px; background: var(--primary); color: var(--ink); font-size: 12px; font-weight: 600; }
+
+.detailList p a { text-decoration: underline; text-underline-offset: 3px; }
+.shareRow { display: flex; justify-content: flex-end; padding: 16px 0; }
+.productLayout { border-bottom: 1px solid var(--hairline); }
+.facebookShare { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 10px 16px; border: 1px solid #334b81; border-radius: var(--radius-md); background: #334b81; color: #fff; font-size: 14px; }
+.facebookShare svg { width: 18px; height: 18px; fill: currentColor; }
+.facebookShare:hover { background: #334b81; }
+.facebookShare:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .facebookShare { transition: none; } }
+
+.facebookIconRoll { display: block; width: 18px; height: 18px; flex: 0 0 18px; overflow: hidden; }
+.facebookIconRoll svg { display: block; transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1); }
+.facebookShare:hover .facebookIconRoll svg,
+.facebookShare:focus-visible .facebookIconRoll svg { transform: translateY(-100%); }
+@media (prefers-reduced-motion: reduce) {
+  .facebookIconRoll svg { transition: none; }
+  .facebookShare:hover .facebookIconRoll svg,
+  .facebookShare:focus-visible .facebookIconRoll svg { transform: none; }
+}

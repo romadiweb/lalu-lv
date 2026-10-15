@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import styles from "./page.module.css";
 
-type RequestType = "" | "ekskursija" | "meistarklase" | "pasakums";
+type RequestType = "" | "ekskursija" | "meistarklase" | "pasakums" | "individuals-pasutijums";
 
 type WorkshopOption = {
   id: string;
@@ -14,6 +14,7 @@ const requestLabels: Record<Exclude<RequestType, "">, string> = {
   ekskursija: "Ekskursija vai ciemošanās",
   meistarklase: "Meistarklase",
   pasakums: "Svētki, nometne vai īpašs pasākums",
+  "individuals-pasutijums": "Individuāls pasūtījums",
 };
 
 const requestOptions: Array<{ value: RequestType; label: string }> = [
@@ -21,14 +22,17 @@ const requestOptions: Array<{ value: RequestType; label: string }> = [
   { value: "ekskursija", label: requestLabels.ekskursija },
   { value: "meistarklase", label: requestLabels.meistarklase },
   { value: "pasakums", label: requestLabels.pasakums },
+  { value: "individuals-pasutijums", label: requestLabels["individuals-pasutijums"] },
 ];
 
 export function PieteiktiesForm({
   workshopOptions,
+  initialRequestType = "",
 }: {
   workshopOptions: WorkshopOption[];
+  initialRequestType?: RequestType;
 }) {
-  const [requestType, setRequestType] = useState<RequestType>("");
+  const [requestType, setRequestType] = useState<RequestType>(initialRequestType);
   const [isRequestMenuOpen, setIsRequestMenuOpen] = useState(false);
   const [selectedWorkshopId, setSelectedWorkshopId] = useState("");
   const [name, setName] = useState("");
@@ -55,8 +59,8 @@ export function PieteiktiesForm({
       `Vārds: ${name}`,
       `E-pasts: ${email}`,
       `Tālrunis: ${phone}`,
-      `Vēlamais datums/laiks: ${date}`,
-      `Cilvēku skaits un vecums: ${groupSize}`,
+      `${requestType === "individuals-pasutijums" ? "Vēlamais izpildes termiņš" : "Vēlamais datums/laiks"}: ${date}`,
+      ...(requestType === "individuals-pasutijums" ? [] : [`Cilvēku skaits un vecums: ${groupSize}`]),
       "",
       "Papildu informācija:",
       message,
@@ -204,7 +208,7 @@ export function PieteiktiesForm({
 
           <div className={styles.twoColumn}>
             <label className={styles.field}>
-              <span>Vēlamais datums vai laiks</span>
+              <span>{requestType === "individuals-pasutijums" ? "Vēlamais izpildes termiņš" : "Vēlamais datums vai laiks"}</span>
               <input
                 placeholder="Piemēram, aprīļa otrā puse"
                 type="text"
@@ -213,7 +217,7 @@ export function PieteiktiesForm({
               />
             </label>
 
-            <label className={styles.field}>
+            {requestType !== "individuals-pasutijums" ? <label className={styles.field}>
               <span>Cilvēku skaits un vecums</span>
               <input
                 placeholder="Piemēram, 18 skolēni, 4. klase"
@@ -221,7 +225,7 @@ export function PieteiktiesForm({
                 value={groupSize}
                 onChange={(event) => setGroupSize(event.target.value)}
               />
-            </label>
+            </label> : null}
           </div>
 
           <label className={styles.field}>
@@ -229,7 +233,9 @@ export function PieteiktiesForm({
             <textarea
               required
               placeholder={
-                requestType === "meistarklase"
+                requestType === "individuals-pasutijums"
+                  ? "Kādu izstrādājumu vēlies? Pastāsti par krāsām, dizainu, izmēru un citām vēlmēm."
+                  : requestType === "meistarklase"
                   ? "Kura meistarklase interesē? Vai tā būs darbnīcā vai izbraukumā?"
                   : "Ko vēlaties piedzīvot, cik ilga varētu būt ciemošanās un kas jāņem vērā?"
               }

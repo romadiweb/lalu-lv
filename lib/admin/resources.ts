@@ -1,10 +1,10 @@
 export type AdminField = {
   name: string;
   label: string;
-  type: "text" | "textarea" | "array" | "richtext" | "number" | "date" | "select" | "money";
+  type: "text" | "textarea" | "array" | "richtext" | "number" | "date" | "select" | "money" | "multiselect";
   options?: Array<{ label: string; value: string }>;
   optionsFrom?: {
-    table: "blog_categories" | "shop_categories";
+    table: "blog_categories" | "shop_categories" | "shop_colors";
     labelColumn: "name";
     valueColumn: "name" | "id";
     orderBy: "sort_order asc, name asc";
@@ -221,6 +221,9 @@ export const adminResources: AdminResource[] = [
     fields: [
       { name: "name", label: "Nosaukums", type: "text", required: true },
       { name: "slug", label: "Slug", type: "text", autoSlugFrom: "name", help: "Var atstāt tukšu - CMS izveidos no nosaukuma." },
+      { name: "color_ids", label: "Krāsas", type: "multiselect", dbColumn: false,
+        optionsFrom: { table: "shop_colors", labelColumn: "name", valueColumn: "id", orderBy: "sort_order asc, name asc" },
+        help: "Izvēlies vienu vai vairākas krāsas vai atstāj visas neatzīmētas. Sarakstu pārvaldi sadaļā “Produktu krāsas”." },
       { name: "short_description", label: "Īsais apraksts", type: "textarea" },
       { name: "price_cents", label: "Cena EUR", type: "money", help: "Piemēram: 30.00 vai 30,00. Datubāzē saglabājas centos." },
       { name: "currency", label: "Valūta", type: "text" },
@@ -237,6 +240,20 @@ export const adminResources: AdminResource[] = [
       { name: "status", label: "Statuss", type: "select", options: statusOptions },
       { name: "is_washable", label: "Mazgājams", type: "select", options: [{ label: "Nē", value: "false" }, { label: "Jā", value: "true" }] },
       { name: "is_top_product", label: "Top produkts", type: "select", options: [{ label: "Nē", value: "false" }, { label: "Jā", value: "true" }] },
+      { name: "is_limited_stock", label: "Atlikuši pēdējie gabali", type: "select", options: [{ label: "Nē", value: "false" }, { label: "Jā", value: "true" }] },
+      { name: "sort_order", label: "Secība", type: "number" },
+    ],
+  },
+  {
+    section: "produktu-krasas",
+    icon: "tag",
+    label: "Produktu krāsas",
+    description: "Krāsu saraksts izvēlei pie veikala produktiem.",
+    table: "shop_colors",
+    orderBy: "sort_order asc, name asc",
+    listColumns: ["name", "sort_order"],
+    fields: [
+      { name: "name", label: "Krāsas nosaukums", type: "text", required: true },
       { name: "sort_order", label: "Secība", type: "number" },
     ],
   },

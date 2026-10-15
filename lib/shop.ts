@@ -23,6 +23,7 @@ export type ShopProduct = {
   stock_status: "in_stock" | "made_to_order" | "sold_out";
   is_washable: boolean;
   is_top_product: boolean;
+  is_limited_stock: boolean;
   old_url: string | null;
   images: Array<{
     url: string;
@@ -33,9 +34,11 @@ export type ShopProduct = {
     alt: string | null;
   } | null;
   categorySlugs: string[];
+  colors: string[];
 };
 
-type ProductRow = Omit<ShopProduct, "image" | "images" | "categorySlugs"> & {
+type ProductRow = Omit<ShopProduct, "image" | "images" | "categorySlugs" | "colors"> & {
+  shop_product_colors: Array<{ shop_colors: { name: string } | Array<{ name: string }> | null }>;
   shop_product_images: Array<{
     url: string;
     alt: string | null;
@@ -53,6 +56,12 @@ type ProductRow = Omit<ShopProduct, "image" | "images" | "categorySlugs"> & {
       | null;
   }>;
 };
+
+function getProductColors(product: ProductRow) {
+  return (product.shop_product_colors ?? []).flatMap(({ shop_colors }) =>
+    Array.isArray(shop_colors) ? shop_colors.map((color) => color.name) : shop_colors ? [shop_colors.name] : [],
+  ).sort((a, b) => a.localeCompare(b, "lv"));
+}
 
 function getCategorySlug(
   relation: ProductRow["shop_product_categories"][number]["shop_categories"],
@@ -87,9 +96,11 @@ export async function getShopData() {
           stock_status,
           is_washable,
           is_top_product,
+          is_limited_stock,
           old_url,
           shop_product_images(url, alt, is_primary, sort_order),
-          shop_product_categories(shop_categories(slug))
+          shop_product_categories(shop_categories(slug)),
+          shop_product_colors(shop_colors(name))
         `,
       )
       .eq("status", "published")
@@ -129,6 +140,8 @@ export async function getShopData() {
       stock_status: product.stock_status,
       is_washable: product.is_washable,
       is_top_product: product.is_top_product,
+      is_limited_stock: product.is_limited_stock,
+      colors: getProductColors(product),
       old_url: product.old_url,
       images: productImages,
       image: productImages[0] ?? null,
@@ -161,9 +174,11 @@ export async function getShopProductBySlug(slug: string) {
         stock_status,
         is_washable,
         is_top_product,
+        is_limited_stock,
         old_url,
         shop_product_images(url, alt, is_primary, sort_order),
-        shop_product_categories(shop_categories(slug))
+        shop_product_categories(shop_categories(slug)),
+          shop_product_colors(shop_colors(name))
       `,
     )
     .eq("status", "published")
@@ -202,6 +217,8 @@ export async function getShopProductBySlug(slug: string) {
     stock_status: product.stock_status,
     is_washable: product.is_washable,
     is_top_product: product.is_top_product,
+    is_limited_stock: product.is_limited_stock,
+    colors: getProductColors(product),
     old_url: product.old_url,
     images: productImages,
     image: productImages[0] ?? null,

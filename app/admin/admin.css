@@ -318,6 +318,10 @@
 }
 
 .admin-table-actions {
+  white-space: nowrap;
+}
+
+.admin-table-action-buttons {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1368,4 +1372,31 @@
   .admin-login-submit:hover svg {
     transform: none;
   }
+}
+
+.admin-list-toolbar { flex-wrap: wrap; }
+.admin-category-filter { display: grid; gap: 7px; flex: 1; min-width: 200px; max-width: 340px; }
+.admin-category-filter span { color: var(--ink); font-size: 12px; font-weight: 720; }
+.admin-category-filter select { width: 100%; min-height: 42px; padding: 0 13px; border: 1px solid var(--hairline); border-radius: var(--radius-md); background: var(--canvas); color: var(--ink); font: inherit; font-size: 14px; }
+.admin-category-filter select:focus-visible, .admin-product-thumbnail:focus-visible { outline: 2px solid var(--primary-active); outline-offset: 3px; }
+.admin-table .admin-thumbnail-cell { min-width: 88px; width: 88px; }
+.admin-product-thumbnail { display: grid; width: 56px; height: 56px; place-items: center; overflow: hidden; border-radius: 8px; background: var(--surface-soft); }
+.admin-product-thumbnail img { width: 56px; height: 56px; object-fit: cover; }
+.admin-thumbnail-fallback { font-size: 10px; color: var(--muted); font-weight: 400; text-align: center; }
+
+.admin-color-options { display: flex; flex-wrap: wrap; gap: 10px 20px; margin: 0; padding: 16px; border: 1px solid var(--hairline); border-radius: var(--radius-md); }
+.admin-color-options label { display: inline-flex; align-items: center; gap: 8px; min-height: 32px; cursor: pointer; }
+.admin-color-options input[type="checkbox"] { width: 18px; height: 18px; min-height: 0; margin: 0; accent-color: var(--primary-active); }
+
+.admin-image-row > .admin-image-editor { grid-column: 1 / -1; }
+.admin-image-editor { display: grid; grid-template-columns: minmax(0, 1fr) 144px; gap: 20px; align-items: center; }
+.admin-image-editor-fields { display: grid; gap: 10px; min-width: 0; }
+.admin-image-editor-fields input { min-width: 0; width: 100%; }
+.admin-image-preview { display: grid; width: 144px; height: 144px; place-items: center; border: 1px solid var(--hairline); border-radius: var(--radius-md); overflow: hidden; background: var(--canvas); }
+.admin-image-preview img { width: 100%; height: 100%; object-fit: contain; }
+.admin-image-preview span { padding: 12px; text-align: center; font-size: 12px; color: var(--muted); }
+@media (max-width: 560px) {
+  .admin-image-editor { grid-template-columns: minmax(0, 1fr) 88px; gap: 12px; }
+  .admin-image-preview { width: 88px; height: 88px; }
+  .admin-image-editor-fields .admin-upload { padding: 10px; }
 }

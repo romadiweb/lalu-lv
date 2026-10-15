@@ -167,12 +167,14 @@
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 28px 12px;
+  align-items: start;
 }
 
 .offerCard {
   position: relative;
   display: grid;
   grid-column: span 2;
+  grid-template-rows: 230px auto;
   min-height: 560px;
   overflow: visible;
   border: 1px solid var(--hairline);
@@ -192,6 +194,8 @@
   overflow: visible;
   border-color: rgb(181 164 243 / 0.7);
   isolation: isolate;
+
+
 }
 
 .featuredCard::after {
@@ -210,7 +214,7 @@
 
 .cardBand {
   position: relative;
-  min-height: 180px;
+  min-height: 230px;
   padding: 82px 16px 18px;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   background: var(--surface-card);
@@ -521,7 +525,7 @@
   }
 
   .cardBand {
-    min-height: 172px;
+    min-height: 230px;
   }
 
   .kitchenSection,
@@ -552,4 +556,32 @@
   .cardBody a:focus-visible .rollingArrow svg {
     transform: none;
   }
+}
+
+.featuredCard .cardIcon { animation: complete-attention 3.6s ease-out infinite; }
+@keyframes complete-attention {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+.flowerDetails {
+  margin-bottom: 18px;
+  border-top: 1px solid var(--hairline);
+  padding-top: 12px;
+  interpolate-size: allow-keywords;
+}
+.flowerDetails summary { cursor: pointer; font-size: 14px; font-weight: 600; padding: 8px 0; }
+.flowerDetails summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.flowerDetails::details-content {
+  block-size: 0;
+  overflow: clip;
+  opacity: 0;
+  transition: block-size 320ms ease-out, opacity 220ms ease-out, content-visibility 320ms allow-discrete;
+}
+.flowerDetails[open]::details-content { block-size: auto; opacity: 1; }
+.priceList { font-size: 13px; line-height: 1.5; }
+.priceList div { display: flex; justify-content: space-between; gap: 12px; margin-top: 10px; }
+.priceList dd { margin: 0; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) {
+  .featuredCard .cardIcon { animation: none; }
+  .flowerDetails::details-content { transition: none; }
 }

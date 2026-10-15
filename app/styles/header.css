@@ -473,7 +473,7 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 220ms ease, visibility 220ms ease;
+  transition: opacity 220ms ease, visibility 220ms ease, background-color 220ms ease;
 }
 
 .cart-backdrop.is-open {
@@ -643,6 +643,13 @@
 }
 
 .cart-remove {
+  display: grid;
+  align-self: center;
+  place-items: center;
+  width: 36px;
+  height: 44px;
+  padding: 0;
+  transition: color 180ms ease;
   border: 0;
   background: transparent;
   color: var(--muted);
@@ -1271,14 +1278,11 @@
   }
 
   .cart-item {
-    grid-template-columns: 72px 1fr;
+    grid-template-columns: 64px minmax(0, 1fr) 36px;
+    gap: 8px;
   }
 
-  .cart-remove {
-    grid-column: 2;
-    width: max-content;
-    padding: 0;
-  }
+  .cart-item-image { width: 64px; }
 }
 
 @keyframes logo-pop {
@@ -1291,4 +1295,34 @@
     opacity: 1;
     transform: scale(1);
   }
+}
+
+.cart-remove svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+}
+.cart-remove:hover, .cart-remove:focus-visible { color: var(--error); }
+.cart-remove:focus-visible, .cart-drawer-header button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+.cart-close-roll { display: block; width: 16px; height: 16px; overflow: hidden; }
+.cart-close-roll svg {
+  display: block;
+  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cart-close-roll svg + svg { color: var(--muted); }
+.cart-drawer-header button { transition: background-color 220ms ease; }
+.cart-drawer-header button:hover, .cart-drawer-header button:focus-visible { background: var(--primary); }
+.cart-drawer-header button:hover .cart-close-roll svg,
+.cart-drawer-header button:focus-visible .cart-close-roll svg { transform: translateY(-100%); }
+.cart-backdrop.is-open:hover, .cart-backdrop.is-open:focus-visible { background: rgb(23 23 23 / 0.26); }
+@media (prefers-reduced-motion: reduce) {
+  .cart-close-roll svg, .cart-remove, .cart-backdrop, .cart-drawer-header button { transition: none; }
+  .cart-drawer-header button:hover .cart-close-roll svg,
+  .cart-drawer-header button:focus-visible .cart-close-roll svg { transform: none; }
 }

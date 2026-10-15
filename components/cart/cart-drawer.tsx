@@ -59,9 +59,10 @@ export function CartDrawer() {
             <h2>{itemCount ? `${itemCount} prece${itemCount === 1 ? "" : "s"}` : "Tavs grozs"}</h2>
           </div>
           <button type="button" aria-label="Aizvērt grozu" onClick={closeCart}>
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="m4 4 8 8M12 4l-8 8" />
-            </svg>
+            <span className="cart-close-roll" aria-hidden="true">
+              <svg viewBox="0 0 16 16"><path d="m4 4 8 8M12 4l-8 8" /></svg>
+              <svg viewBox="0 0 16 16"><path d="m4 4 8 8M12 4l-8 8" /></svg>
+            </span>
           </button>
         </div>
 
@@ -92,8 +93,8 @@ export function CartDrawer() {
                       </button>
                     </div>
                   </div>
-                  <button className="cart-remove" type="button" onClick={() => removeItem(item.id)}>
-                    Noņemt
+                  <button className="cart-remove" type="button" aria-label={`Noņemt no groza: ${item.name}`} onClick={() => removeItem(item.id)}>
+                    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 4 8 8M12 4l-8 8" /></svg>
                   </button>
                 </article>
               ))}

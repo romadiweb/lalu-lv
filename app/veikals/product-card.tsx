@@ -72,6 +72,9 @@ export function ProductCard({
           </span>
         ) : null}
 
+        {product.is_limited_stock && product.stock_status === "in_stock" ? (
+          <span className={`${styles.productFlag} ${styles.productFlagLimited}`}>Atlikuši pēdējie gabali</span>
+        ) : null}
         {product.is_top_product ? (
           <span className={`${styles.productFlag} ${styles.productFlagTop}`}>
             Top produkts

@@ -71,7 +71,7 @@ function parseFieldValue(field: AdminField, formData: FormData) {
     return Math.round(Number(value.replace(",", ".")) * 100);
   }
 
-  if (field.name === "is_active" || field.name === "is_washable" || field.name === "is_top_product") {
+  if (field.name === "is_active" || field.name === "is_washable" || field.name === "is_top_product" || field.name === "is_limited_stock") {
     return value === "true";
   }
 
@@ -219,12 +219,24 @@ export async function saveRecordAction(formData: FormData) {
 
   if (resource.section === "veikala-produkti") {
     await saveProductImages(savedRecordId, formData);
+    const colorIds = [...new Set(formData.getAll("color_ids").map(String))];
+    if (colorIds.some((value) => !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value))) {
+      throw new Error("Nederīga krāsas izvēle.");
+    }
+    await adminQuery(`
+      with removed as (
+        delete from public.shop_product_colors where product_id = $1 and not (color_id = any($2::uuid[]))
+      )
+      insert into public.shop_product_colors(product_id, color_id)
+      select $1, id from public.shop_colors where id = any($2::uuid[])
+      on conflict (product_id, color_id) do nothing
+    `, [savedRecordId, colorIds]);
   }
 
   revalidatePath("/");
   revalidatePath("/aktualitates/");
   revalidatePath("/meistarklases/");
-  revalidatePath("/veikals/");
+  revalidatePath("/veikals", "layout");
   redirect(`/admin/${section}/?saved=${isCreating ? "created" : "updated"}`);
 }
 
@@ -243,6 +255,6 @@ export async function deleteRecordAction(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/aktualitates/");
   revalidatePath("/meistarklases/");
-  revalidatePath("/veikals/");
+  revalidatePath("/veikals", "layout");
   redirect(`/admin/${section}/?deleted=1`);
 }

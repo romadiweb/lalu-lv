@@ -116,6 +116,13 @@ export const storeCategories: StoreCategory[] = [
     },
     children: [
       {
+        name: "Dāvanu kartes",
+        href: "/veikals/category/davanu-kartes/",
+        tone: "lavender",
+        description: "Dāvini radošu piedzīvojumu un skaistas atmiņas.",
+        image: { src: "/images/category-icons/dazadi-warm.png", alt: "LaLu dāvanas" },
+      },
+      {
         name: "Latviskie darbi",
         href: "/veikals/category/atstarotaji/",
         tone: "warm",

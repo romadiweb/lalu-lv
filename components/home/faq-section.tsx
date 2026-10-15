@@ -32,7 +32,7 @@ const faqItems = [
   {
     question: "Kur atrodas LaLu darbnīca?",
     answer:
-      "LaLu darbnīca atrodas Cepļa ielā 4–9, Aizputē, Dienvidkurzemes novadā. Pirms ciemošanās aicinām iepriekš sazināties.",
+      "LaLu darbnīca atrodas Sakas ielā 15, Aizputē, Dienvidkurzemes novadā. Pirms ciemošanās aicinām iepriekš sazināties.",
   },
 ];
 

@@ -62,7 +62,27 @@ export async function getPublishedProductTemplates() {
   }));
 }
 
+export async function getProductListCategories() {
+  return adminQuery<{ id: string; name: string; parent_id: string | null }>(
+    `select id, name, parent_id from public.shop_categories order by sort_order asc, name asc`,
+  );
+}
+
 export async function listRecords(resource: AdminResource) {
+  if (resource.section === "veikala-produkti") {
+    return adminQuery<Record<string, unknown>>(`
+      select products.id, products.name, products.status, products.price_cents, products.stock_status,
+        (select images.url from public.shop_product_images images
+         where images.product_id = products.id
+         order by images.is_primary desc, images.sort_order asc, images.created_at asc, images.id asc
+         limit 1) as image_url,
+        array(select links.category_id::text from public.shop_product_categories links
+              where links.product_id = products.id) as category_ids
+      from public.shop_products products
+      order by products.sort_order asc, products.name asc
+    `);
+  }
+
   if (resource.section === "produktu-sagataves") {
     return adminQuery<Record<string, unknown>>(
       `
@@ -108,6 +128,10 @@ export async function getRecord(resource: AdminResource, id: string) {
       [id],
     );
 
+    const colors = await adminQuery<{ color_id: string }>(
+      "select color_id from public.shop_product_colors where product_id = $1", [id],
+    );
+    record.color_ids = colors.map((color) => color.color_id);
     record.product_images = images;
     record.primary_image_url = images[0]?.url ?? "";
   }
@@ -126,7 +150,7 @@ export function emptyRecord(resource: AdminResource) {
         return [field.name, "true"];
       }
 
-      if (field.name === "is_washable" || field.name === "is_top_product") {
+      if (field.name === "is_washable" || field.name === "is_top_product" || field.name === "is_limited_stock") {
         return [field.name, "false"];
       }
 
@@ -142,7 +166,7 @@ export function emptyRecord(resource: AdminResource) {
         return [field.name, new Date().toISOString().slice(0, 10)];
       }
 
-      if (field.type === "array" || field.type === "richtext") {
+      if (field.type === "array" || field.type === "richtext" || field.type === "multiselect") {
         return [field.name, []];
       }
 
