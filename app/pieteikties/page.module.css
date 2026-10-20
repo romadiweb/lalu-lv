@@ -235,3 +235,41 @@
     display: none;
   }
 }
+
+.formFields {
+  display: grid;
+  gap: 22px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.formNote {
+  margin: 0;
+  color: var(--body);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.formNote a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.submitButton {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 12px 20px;
+}
+
+.submitButton:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.submitButton:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}

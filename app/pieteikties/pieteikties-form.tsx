@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import styles from "./page.module.css";
 
 type RequestType = "" | "ekskursija" | "meistarklase" | "pasakums" | "individuals-pasutijums";
@@ -42,45 +42,80 @@ export function PieteiktiesForm({
   const [groupSize, setGroupSize] = useState("");
   const [message, setMessage] = useState("");
 
-  const mailtoHref = useMemo(() => {
-    if (!requestType) {
-      return "mailto:laila@lalu.lv";
-    }
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const submitting = useRef(false);
 
-    const subject = `Pieteikums: ${requestLabels[requestType]}`;
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (submitting.current || !requestType) return;
+
     const selectedWorkshop = workshopOptions.find(
       (workshop) => workshop.id === selectedWorkshopId,
     );
-    const body = [
-      `Pieteikuma veids: ${requestLabels[requestType]}`,
-      ...(requestType === "meistarklase"
-        ? [`Meistarklase: ${selectedWorkshop?.title ?? "Nav izvēlēta"}`]
-        : []),
-      `Vārds: ${name}`,
-      `E-pasts: ${email}`,
-      `Tālrunis: ${phone}`,
-      `${requestType === "individuals-pasutijums" ? "Vēlamais izpildes termiņš" : "Vēlamais datums/laiks"}: ${date}`,
-      ...(requestType === "individuals-pasutijums" ? [] : [`Cilvēku skaits un vecums: ${groupSize}`]),
-      "",
-      "Papildu informācija:",
-      message,
-    ].join("\n");
+    const payload = new FormData();
+    payload.set("subject", `LaLu pieteikums: ${requestLabels[requestType]}`);
+    payload.set("Pieteikuma veids", requestLabels[requestType]);
+    payload.set("Vārds", name.trim());
+    payload.set("Tālrunis", phone.trim());
+    if (email.trim()) {
+      // Formspree uses this special field for the email's Reply-To address.
+      payload.set("email", email.trim());
+      payload.set("E-pasts", email.trim());
+    }
+    if (requestType === "meistarklase") {
+      payload.set("Meistarklase", selectedWorkshop?.title ?? "Nav izvēlēta");
+    }
+    payload.set(
+      requestType === "individuals-pasutijums" ? "Vēlamais izpildes termiņš" : "Vēlamais datums vai laiks",
+      date.trim() || "Nav norādīts",
+    );
+    if (requestType !== "individuals-pasutijums") {
+      payload.set("Dalībnieku skaits un vecums", groupSize.trim() || "Nav norādīts");
+    }
+    payload.set("Papildu informācija", message.trim());
 
-    return `mailto:laila@lalu.lv?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  }, [
-    date,
-    email,
-    groupSize,
-    message,
-    name,
-    phone,
-    requestType,
-    selectedWorkshopId,
-    workshopOptions,
-  ]);
+    submitting.current = true;
+    setStatus("sending");
+    try {
+      const response = await fetch("https://formspree.io/f/xwlvjywq", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: payload,
+      });
+      if (!response.ok) throw new Error("Submission failed");
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    } finally {
+      submitting.current = false;
+    }
+  }
 
   return (
-    <form className={styles.form} onSubmit={(event) => event.preventDefault()}>
+    <form
+      className={styles.form}
+      onSubmit={handleSubmit}
+      onInvalidCapture={(event) => {
+        const field = event.target as HTMLInputElement;
+        field.setCustomValidity(
+          field.validity.typeMismatch
+            ? "Ievadi derīgu e-pasta adresi, piemēram, vards@epasts.lv."
+            : "Lūdzu, aizpildi šo lauku.",
+        );
+      }}
+      onInputCapture={(event) => {
+        const field = event.target;
+        if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement || field instanceof HTMLSelectElement) {
+          field.setCustomValidity("");
+        }
+      }}
+    >
+      {status === "success" ? (
+        <div className={styles.closedPanel} role="status">
+          <p>Paldies! Tavs pieteikums ir nosūtīts. Sazināsimies ar tevi pa norādīto tālruni vai e-pastu, lai vienotos par detaļām.</p>
+        </div>
+      ) : (
+      <fieldset className={styles.formFields} disabled={status === "sending"}>
       <label className={styles.field}>
         <span>Ko vēlies pieteikt?</span>
         <div className={styles.requestPicker}>
@@ -148,6 +183,7 @@ export function PieteiktiesForm({
 
       {requestType ? (
         <div className={styles.expandedFields}>
+          <p className={styles.formNote}>Ar * atzīmētie lauki ir obligāti.</p>
           {requestType === "meistarklase" ? (
             <label className={styles.field}>
               <span>Meistarklase</span>
@@ -196,10 +232,10 @@ export function PieteiktiesForm({
           </div>
 
           <label className={styles.field}>
-            <span>E-pasts</span>
+            <span>E-pasts (nav obligāts)</span>
             <input
               autoComplete="email"
-              placeholder="epasts@example.com"
+              placeholder="vards@epasts.lv"
               type="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
@@ -218,7 +254,7 @@ export function PieteiktiesForm({
             </label>
 
             {requestType !== "individuals-pasutijums" ? <label className={styles.field}>
-              <span>Cilvēku skaits un vecums</span>
+              <span>Dalībnieku skaits un vecums</span>
               <input
                 placeholder="Piemēram, 18 skolēni, 4. klase"
                 type="text"
@@ -236,25 +272,32 @@ export function PieteiktiesForm({
                 requestType === "individuals-pasutijums"
                   ? "Kādu izstrādājumu vēlies? Pastāsti par krāsām, dizainu, izmēru un citām vēlmēm."
                   : requestType === "meistarklase"
-                  ? "Kura meistarklase interesē? Vai tā būs darbnīcā vai izbraukumā?"
-                  : "Ko vēlaties piedzīvot, cik ilga varētu būt ciemošanās un kas jāņem vērā?"
+                  ? "Vai vēlies meistarklasi LaLu darbnīcā vai izbraukumā? Pastāsti par savām vēlmēm."
+                  : "Ko vēlies piedzīvot? Pastāsti par plānoto apmeklējumu un īpašām vēlmēm."
               }
               value={message}
               onChange={(event) => setMessage(event.target.value)}
             />
           </label>
 
-          <a className={styles.submitButton} href={mailtoHref}>
-            Nosūtīt pieteikumu
-          </a>
+          {status === "error" ? (
+            <p className={styles.formNote} role="alert">
+              Pieteikumu neizdevās nosūtīt. Mēģini vēlreiz vai raksti uz <a href="mailto:laila@lalu.lv">laila@lalu.lv</a>. Tava ievadītā informācija ir saglabāta šajā formā.
+            </p>
+          ) : null}
+          <button className={styles.submitButton} type="submit">
+            {status === "sending" ? "Nosūta pieteikumu…" : "Nosūtīt pieteikumu"}
+          </button>
         </div>
       ) : (
         <div className={styles.closedPanel}>
           <p>
             Izvēlies pieteikuma veidu, un forma atvērs jautājumus, kas vajadzīgi
-            tieši ekskursijai, meistarklasei vai īpašam notikumam.
+            tavam apmeklējumam, meistarklasei, pasākumam vai individuālam pasūtījumam.
           </p>
         </div>
+      )}
+      </fieldset>
       )}
     </form>
   );
