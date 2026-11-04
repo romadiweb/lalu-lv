@@ -28,19 +28,23 @@ const requestOptions: Array<{ value: RequestType; label: string }> = [
 export function PieteiktiesForm({
   workshopOptions,
   initialRequestType = "",
+  initialWorkshopId = "",
+  initialMessage = "",
 }: {
   workshopOptions: WorkshopOption[];
   initialRequestType?: RequestType;
+  initialWorkshopId?: string;
+  initialMessage?: string;
 }) {
   const [requestType, setRequestType] = useState<RequestType>(initialRequestType);
   const [isRequestMenuOpen, setIsRequestMenuOpen] = useState(false);
-  const [selectedWorkshopId, setSelectedWorkshopId] = useState("");
+  const [selectedWorkshopId, setSelectedWorkshopId] = useState(initialWorkshopId);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [date, setDate] = useState("");
   const [groupSize, setGroupSize] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(initialMessage);
 
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const submitting = useRef(false);

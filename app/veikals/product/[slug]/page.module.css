@@ -354,3 +354,42 @@
   .facebookShare:hover .facebookIconRoll svg,
   .facebookShare:focus-visible .facebookIconRoll svg { transform: none; }
 }
+
+.fullDescription { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--hairline); }
+.fullDescription h2 { margin: 0 0 16px; font-size: 22px; font-weight: 500; letter-spacing: -0.025em; }
+.fullDescription p { margin: 0 0 16px; color: var(--body); font-size: 15px; line-height: 1.65; white-space: pre-line; }
+
+.galleryStack { min-width: 0; }
+.galleryPanel img { object-fit: contain; }
+.thumbnailGrid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+.thumbnail { width: 80px; height: 80px; overflow: hidden; padding: 4px; border: 1px solid var(--hairline); border-radius: var(--radius-md); background: var(--canvas); cursor: pointer; }
+.thumbnail[aria-pressed="true"] { border-color: var(--ink); }
+.thumbnail img { display: block; width: 100%; height: 100%; object-fit: contain; }
+
+.productOptions {
+  display: grid;
+  gap: 18px;
+  margin: 0 0 28px;
+  padding: 0;
+  border: 0;
+}
+.productOptions legend {
+  margin-bottom: 16px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+.optionField { display: grid; gap: 8px; color: var(--body); font-size: 14px; }
+.optionField select {
+  width: min(100%, 420px);
+  min-height: 48px;
+  padding: 10px 36px 10px 14px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: var(--canvas);
+  color: var(--ink);
+  font: inherit;
+}
+.optionField select:focus-visible { outline: 2px solid var(--primary-active); outline-offset: 3px; }
+.giftBoxOption { display: flex; min-height: 44px; gap: 12px; align-items: center; color: var(--ink); font-size: 14px; cursor: pointer; }
+.giftBoxOption input { width: 20px; height: 20px; accent-color: var(--primary); }

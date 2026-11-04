@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default async function PieteiktiesPage({ searchParams }: PageProps<"/pieteikties">) {
-  const { veids } = await searchParams;
+  const { veids, meistarklase, prece } = await searchParams;
   const isCustomOrder = veids === "individuals-pasutijums";
   const workshopOptions = await getPublishedWorkshopOptions();
 
@@ -28,7 +28,7 @@ export default async function PieteiktiesPage({ searchParams }: PageProps<"/piet
           </p>
         </div>
 
-        <PieteiktiesForm workshopOptions={workshopOptions} initialRequestType={isCustomOrder ? "individuals-pasutijums" : ""} />
+        <PieteiktiesForm workshopOptions={workshopOptions} initialRequestType={isCustomOrder ? "individuals-pasutijums" : veids === "meistarklase" ? "meistarklase" : ""} initialWorkshopId={typeof meistarklase === "string" && workshopOptions.some((item) => item.id === meistarklase) ? meistarklase : ""} initialMessage={isCustomOrder && typeof prece === "string" ? `Vēlos pasūtīt: ${prece.slice(0, 500)}` : ""} />
       </section>
 
       <SiteFooter />

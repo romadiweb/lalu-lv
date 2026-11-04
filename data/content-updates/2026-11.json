@@ -1,0 +1,957 @@
+{
+  "sources": [
+    "Apraksti LaLu 6.docx",
+    "Apraksti LaLu 2.docx",
+    "https://failiem.lv/u/ahe9zsnjtydbt8md"
+  ],
+  "notes": [
+    "Gliemezīšu grabulīšiem dokumentā nav cenas; publicēti ar cenas saskaņošanu un bez tūlītējas pievienošanas grozam.",
+    "Nav norādīta cena vai ilgums sēnīšu, lakatu aušanas un organzas brošu meistarklasēm; attiecīgie lauki ir pēc vienošanās.",
+    "Lina rotu avotā atsevišķi auskari maksā 15 €, krelles 80 €, bet komplekts 100 €; šīs atšķirīgās cenas saglabātas bez pārrēķina.",
+    "Nav pievienota maksa par kastīti precēm, kurām avotā tā nav norādīta.",
+    "Dokumenta eņģeļu meistarklasē minēts gan viens, gan trīs eņģelīši; pilnajā aprakstā daudzums jāprecizē ar LaLu.",
+    "Dokumentā pie sēnītēm un eņģeļiem kļūdaini minēts peles garums; izmantoti tikai norādītie attiecīgā izstrādājuma centimetri."
+  ],
+  "assets": [
+    {
+      "url": "/images/updates-2026-11/pelites-sarkanas.jpg",
+      "docImage": 1,
+      "shareIndex": 47,
+      "alt": "Četri numurēti sarkani un pelēki peļu grabulīši",
+      "sourceFile": "20251123_134736.jpg",
+      "sourceHash": "r88p9gynf3cu2ejn"
+    },
+    {
+      "url": "/images/updates-2026-11/pelites-pelekas.jpg",
+      "docImage": 2,
+      "shareIndex": 58,
+      "alt": "Divi numurēti pelēki peļu grabulīši ar rozā un fuksijas detaļām",
+      "sourceFile": "20251123_135553.jpg",
+      "sourceHash": "8m7href8kd87en9h"
+    },
+    {
+      "url": "/images/updates-2026-11/atstarotaji-karodzins.jpg",
+      "docImage": 3,
+      "shareIndex": 67,
+      "alt": "Atstarotāji ar Latvijas karodziņa lentīti",
+      "sourceFile": "20251123_135948.jpg",
+      "sourceHash": "7aqde7mrmjskt63g"
+    },
+    {
+      "url": "/images/updates-2026-11/atstarotaji-tautiska-lente.jpg",
+      "docImage": 4,
+      "shareIndex": 89,
+      "alt": "Atstarotāji ar tautisku rakstu lentītēm",
+      "sourceFile": "DSC05459.JPG",
+      "sourceHash": "qncbbgf583pmghu9"
+    },
+    {
+      "url": "/images/updates-2026-11/rokasspradzes-patriots.jpg",
+      "docImage": 5,
+      "shareIndex": 34,
+      "alt": "Rokassprādzes ar tautiskiem rakstiem",
+      "sourceFile": "20220724_125557.jpg",
+      "sourceHash": "xepvp7tgjbkuytsh"
+    },
+    {
+      "url": "/images/updates-2026-11/latviskas-brosas.jpg",
+      "docImage": 7,
+      "shareIndex": null,
+      "alt": "Latviskas sarkanas un baltas ziedu brošas",
+      "sourceFile": "public/images/piespraude.jpg (same photograph as document, higher resolution)",
+      "sourceHash": null
+    },
+    {
+      "url": "/images/updates-2026-11/lina-krelles-dzintars.jpg",
+      "docImage": 8,
+      "shareIndex": 84,
+      "alt": "Lina un dzintara rotas, iekārtas zarā",
+      "sourceFile": "DSC05379.JPG",
+      "sourceHash": "ktktpg8nxh8yfzz3"
+    },
+    {
+      "url": "/images/updates-2026-11/dzintara-putas.jpg",
+      "docImage": 9,
+      "shareIndex": 92,
+      "alt": "Gaisīgas dzintara kaklarotas uz koka virsmas",
+      "sourceFile": "DSC08292.JPG",
+      "sourceHash": "8vzkydpnn2rwpxca"
+    },
+    {
+      "url": "/images/updates-2026-11/dekorativas-senites.jpg",
+      "docImage": 10,
+      "shareIndex": 18,
+      "alt": "Sarkanas un baltas dekoratīvas koka un ģipša sēnītes",
+      "sourceFile": "20220311_111117.jpg",
+      "sourceHash": "t4m8bmuwdgfwy297"
+    },
+    {
+      "url": "/images/updates-2026-11/grabulisi-gliemezi.jpg",
+      "docImage": 11,
+      "shareIndex": 119,
+      "alt": "Rozā, dzeltens un bēšs tamborēts gliemezīša grabulītis",
+      "sourceFile": "DSC_0040.JPG",
+      "sourceHash": "qefd7kxp7rasyhvw"
+    },
+    {
+      "url": "/images/updates-2026-11/davanu-komplekts-kengurs.jpg",
+      "docImage": 12,
+      "shareIndex": 30,
+      "alt": "Zils tamborēts ķengurs, zaķīša grabulītis, knupīša turētājs un grabulīšu riņķītis",
+      "sourceFile": "20220316_122650.jpg",
+      "sourceHash": "9zj26wssn7xcx4v5"
+    },
+    {
+      "url": "/images/updates-2026-11/mezginota-volansalle.jpg",
+      "docImage": 13,
+      "shareIndex": 91,
+      "alt": "Mežģīņota volānšalle rozā un violetos toņos",
+      "sourceFile": "DSC07338.JPG",
+      "sourceHash": "temqtjw2g5rp87kp"
+    },
+    {
+      "url": "/images/updates-2026-11/austi-plecu-lakati.jpg",
+      "docImage": 14,
+      "shareIndex": 17,
+      "alt": "Uz rāmja austi plecu lakati dažādās krāsās",
+      "sourceFile": "20210929_142042.jpg",
+      "sourceHash": "kgsty6x8jerju34e"
+    },
+    {
+      "url": "/images/updates-2026-11/austs-lakats.jpg",
+      "docImage": 15,
+      "shareIndex": null,
+      "alt": "Uz rāmja austs plecu lakats",
+      "sourceFile": "Apraksti LaLu 6.docx / word/media/image15.jpeg",
+      "sourceHash": null
+    },
+    {
+      "url": "/images/updates-2026-11/tapota-salle.jpg",
+      "docImage": 16,
+      "shareIndex": 93,
+      "alt": "Tumša tapota šalle ar ziedu rotājumiem",
+      "sourceFile": "DSC08311.JPG",
+      "sourceHash": "pvsvxd7rv3qtduwa"
+    },
+    {
+      "url": "/images/updates-2026-11/smalkie-auskari.jpg",
+      "docImage": 17,
+      "shareIndex": 7,
+      "alt": "Tamborēti stieplīšu auskari ar pērlītēm",
+      "sourceFile": "20151027_085949.jpg",
+      "sourceHash": "fpgwe4fbufubwgss"
+    },
+    {
+      "url": "/images/updates-2026-11/organzas-ziedu-brosa.jpg",
+      "docImage": 18,
+      "shareIndex": 1,
+      "alt": "Gaisīga sarkana organzas ziedu broša",
+      "sourceFile": "20150208_165521.jpg",
+      "sourceHash": "d3rjnw2m34k8jb7n"
+    },
+    {
+      "url": "/images/updates-2026-11/engeli.jpg",
+      "docImage": 19,
+      "shareIndex": 44,
+      "alt": "Gaisīgi balti auduma eņģelīši",
+      "sourceFile": "20231218_210313.jpg",
+      "sourceHash": "73r5vvmgkan274br"
+    },
+    {
+      "url": "/images/updates-2026-11/dzijas-krasu-palete.jpg",
+      "docImage": 21,
+      "shareIndex": 167,
+      "alt": "Grabulīšu dzijas krāsu paraugi",
+      "sourceFile": "dzija.JPG",
+      "sourceHash": "93qmangktvz9fvjz"
+    }
+  ],
+  "workshops": [
+    {
+      "slug": "atstarotaju-meistarklase",
+      "title": "Izveido savu unikālo atstarotāju",
+      "intro": "Radi savu latvisko atstarotāju — piespraudi, brošiņu vai piekariņu ikdienai.",
+      "details": [
+        "Nodarbības laikā katrs dalībnieks izgatavos savu latviska dizaina piespraudi, brošiņu vai piekariņu. Atstarotājs būs īpašs — paša rokām darināts, ar latvisku noskaņu un praktisku pielietojumu.",
+        "Gatavo piespraudi varēs piestiprināt pie apģērba, somas vai cita piemērota priekšmeta, lai tumsā un diennakts tumšajā laikā palīdzētu kļūt labāk pamanāmam uz ceļa.",
+        "Iespēju radoši darboties un izpaust savu iztēli.",
+        "Iepazīt latviskos rakstus un tautiskos motīvus.",
+        "Apgūt prasmes, veidojot savu unikālo aksesuāru.",
+        "Atgādinājumu par atstarotāju nozīmi ceļu satiksmes drošībā.",
+        "Pašu rokām darinātu piespraudi vai piekariņu, ko lietot ikdienā.",
+        "Kam piemērota meistarklase?",
+        "Nodarbība piemērota bērniem no 7 gadu vecuma, gan meitenēm, gan zēniem, kā arī jauniešiem un pieaugušajiem.",
+        "skolām un skolēnu grupām;",
+        "drošības nedēļām un ceļu satiksmes drošības pasākumiem;",
+        "uzņēmumu kolektīviem un komandas saliedēšanai;",
+        "ģimenēm un dažādu paaudžu kopīgām aktivitātēm;",
+        "svētku un tematiskajiem pasākumiem.",
+        "Meistarklases norise",
+        "Radošajā darbnīcā LaLu.",
+        "Izbraukumā jūsu skolā, uzņēmumā, kolektīvā vai citā iepriekš saskaņotā vietā 3 e + ceļa izdevumi",
+        "Izbraukuma nodarbības ilgums ir atkarīgs no dalībnieku skaita un grupas darba tempa aptuveni vienas mācību stundas garumā. Precīzu ilgumu saskaņosim, vienojoties par dalībnieku skaitu un norises vietu.",
+        "Visi nepieciešamie materiāli tiek nodrošināti.",
+        "Izbraukuma meistarklasēm papildus tiek aprēķināti ceļa izdevumi. Dalībnieku skaitu, norises laiku un pārējos organizatoriskos jautājumus saskaņosim individuāli.",
+        "Dalībnieku skaits nav ierobežots; grupas sastāvu un norisi saskaņosim individuāli."
+      ],
+      "duration_label": "Aptuveni viena mācību stunda",
+      "price_label": "3 € no dalībnieka",
+      "travel_label": "Radošajā darbnīcā LaLu vai izbraukumā jūsu skolā, uzņēmumā vai citā saskaņotā vietā. Izbraukumiem papildus tiek aprēķināti ceļa izdevumi. Precīzu ilgumu, dalībnieku skaitu un norises laiku saskaņosim individuāli.",
+      "image_url": "/images/updates-2026-11/atstarotaji-tautiska-lente.jpg",
+      "image_alt": "Atstarotāji ar tautisku rakstu lentītēm",
+      "cta_label": "Pieteikties meistarklasei",
+      "cta_href": "/pieteikties/",
+      "sort_order": 10
+    },
+    {
+      "slug": "piespraudes-brosas-meistarklase",
+      "title": "Izveido savu unikālo piespraudi vai brošu",
+      "intro": "Paša rokām darināts latvisks aksesuārs apģērbam vai somai.",
+      "details": [
+        "Nodarbības laikā katrs dalībnieks izgatavos savu latviska dizaina piespraudi, brošiņu vai piekariņu. Atstarotājs būs īpašs — paša rokām darināts, ar latvisku noskaņu un praktisku pielietojumu.",
+        "Gatavo piespraudi varēs piestiprināt pie apģērba, somas vai cita piemērota priekšmeta, lai tumsā un diennakts tumšajā laikā palīdzētu kļūt labāk pamanāmam uz ceļa.",
+        "Iespēju radoši darboties un lieliski pavadīt laiku.",
+        "Apgūt prasmes, veidojot savu unikālo aksesuāru.",
+        "Pašu rokām darinātu piespraudi vai piekariņu, ko lietot ikdienā.",
+        "uzņēmumu kolektīviem un komandas saliedēšanai;",
+        "ģimenēm un dažādu paaudžu kopīgām aktivitātēm;",
+        "drošības nedēļām un ceļu satiksmes drošības pasākumiem;",
+        "svētku un tematiskajiem pasākumiem.",
+        "Meistarklases norise",
+        "Radošajā darbnīcā LaLu.",
+        "Izbraukumā jūsu uzņēmumā, kolektīvā, skolā vai citā iepriekš saskaņotā vietā10 e + ceļa izdevumi",
+        "Izbraukuma nodarbības ilgums ir atkarīgs no dalībnieku skaita un grupas darba tempa aptuveni vienas mācību stundas garumā. Precīzu ilgumu saskaņosim, vienojoties par dalībnieku skaitu un norises vietu.",
+        "Visi nepieciešamie materiāli tiek nodrošināti.",
+        "Izbraukuma meistarklasēm papildus tiek aprēķināti ceļa izdevumi. Dalībnieku skaitu, norises laiku un pārējos organizatoriskos jautājumus saskaņosim individuāli."
+      ],
+      "duration_label": "Aptuveni viena mācību stunda",
+      "price_label": "10 € no dalībnieka",
+      "travel_label": "Radošajā darbnīcā LaLu vai izbraukumā jūsu skolā, uzņēmumā vai citā saskaņotā vietā. Izbraukumiem papildus tiek aprēķināti ceļa izdevumi. Precīzu ilgumu, dalībnieku skaitu un norises laiku saskaņosim individuāli.",
+      "image_url": "/images/updates-2026-11/latviskas-brosas.jpg",
+      "image_alt": "Latviskas sarkanas un baltas ziedu brošas",
+      "cta_label": "Pieteikties meistarklasei",
+      "cta_href": "/pieteikties/",
+      "sort_order": 20
+    },
+    {
+      "slug": "rokasspradze-patriots",
+      "title": "Rokassprādze “Patriots”",
+      "intro": "Radi savu latviska dizaina rokas lentiņu ar tautiskiem rakstiem.",
+      "details": [
+        "Nodarbības laikā katrs dalībnieks izgatavos savu latviska dizaina lentiņu. Lentiņa būs īpaša — paša rokām darināta, ar latvisku noskaņu un praktisku pielietojumu.",
+        "Iespēju radoši darboties un izpaust savu iztēli.",
+        "Iepazīt latviskos rakstus un tautiskos motīvus.",
+        "Apgūt prasmes, veidojot savu unikālo aksesuāru.",
+        "Pašu rokām darinātu rotu ko lietot ikdienā.",
+        "Kam piemērota meistarklase?",
+        "Nodarbība piemērota bērniem no 7 gadu vecuma, gan meitenēm, gan zēniem, kā arī jauniešiem un pieaugušajiem.",
+        "skolām un skolēnu grupām;",
+        "drošības nedēļām un ceļu satiksmes drošības pasākumiem;",
+        "uzņēmumu kolektīviem un komandas saliedēšanai;",
+        "ģimenēm un dažādu paaudžu kopīgām aktivitātēm;",
+        "svētku un tematiskajiem pasākumiem.",
+        "Meistarklases norise",
+        "Radošajā darbnīcā LaLu.",
+        "Izbraukumā jūsu skolā, uzņēmumā, kolektīvā vai citā iepriekš saskaņotā vietā 3 e + ceļa izdevumi",
+        "Izbraukuma nodarbības ilgums ir atkarīgs no dalībnieku skaita un grupas darba tempa aptuveni vienas mācību stundas garumā. Precīzu ilgumu saskaņosim, vienojoties par dalībnieku skaitu un norises vietu.",
+        "Visi nepieciešamie materiāli tiek nodrošināti.",
+        "Izbraukuma meistarklasēm papildus tiek aprēķināti ceļa izdevumi. Dalībnieku skaitu, norises laiku un pārējos organizatoriskos jautājumus saskaņosim individuāli.",
+        "Dalībnieku skaits nav ierobežots; grupas sastāvu un norisi saskaņosim individuāli."
+      ],
+      "duration_label": "Aptuveni viena mācību stunda",
+      "price_label": "3 € no dalībnieka",
+      "travel_label": "Radošajā darbnīcā LaLu vai izbraukumā jūsu skolā, uzņēmumā vai citā saskaņotā vietā. Izbraukumiem papildus tiek aprēķināti ceļa izdevumi. Precīzu ilgumu, dalībnieku skaitu un norises laiku saskaņosim individuāli.",
+      "image_url": "/images/updates-2026-11/rokasspradzes-patriots.jpg",
+      "image_alt": "Rokassprādzes ar tautiskiem rakstiem",
+      "cta_label": "Pieteikties meistarklasei",
+      "cta_href": "/pieteikties/",
+      "sort_order": 30
+    },
+    {
+      "slug": "lina-krelles-ar-dzintaru",
+      "title": "Lina krelles ar dzintaru",
+      "intro": "Dabīgs lins, tamborējums un dzintars tavā neatkārtojamajā rotā.",
+      "details": [
+        "Aicinām uz radošu meistarklasi, kurā apvienosies lina dabiskā vienkāršība, tamborēšanas māksla un dzintara īpašais skaistums. Meistarklases laikā katrs dalībnieks paša rokām tamborēs lina krelles, izvēlēsies un papildinās tās ar dzintara elementiem, veidojot savu neatkārtojamo rotu dizainu. Pēc vēlēšanās būs iespēja darināt arī pieskaņotus auskarus, radot skaistu un vienotu rotu komplektu. Šī ir iespēja ļauties radošam procesam, eksperimentēt ar krāsām, formām un materiāliem. Tā kā katra dalībnieka rokraksts, izvēles un darināšanas process ir atšķirīgs, arī rezultāts vienmēr būs unikāls – otra tāda paša rotu komplekta nebūs. Meistarklases noslēgumā katrs dalībnieks dosies mājās ar paša darinātām lina un dzintara rotām, kurās būs ieguldīts laiks, pacietība un daļiņa no paša radošās pasaules.",
+        "Ilgums: aptuveni 4–5 stundas. Piemērota: pieaugušajiem, radošām draugu grupām, svētku reizēm un kopīgai nesteidzīgai darbošanās pieredzei. Visi nepieciešamie materiāli un darbarīki tiek nodrošināti. Iepriekšēja pieredze tamborēšanā nav obligāta – svarīgākā ir vēlme radīt un izmēģināt ko jaunu. Radošajā darbnīcā LaLu – vietā, kur idejas pārtop neatkārtojamos roku darbos!",
+        "Krelles — 80 €. Auskari — 15 €. Rotu komplekts (auskari un krelles) — 100 €."
+      ],
+      "duration_label": "Aptuveni 4–5 stundas",
+      "price_label": "Krelles 80 € · komplekts 100 €",
+      "travel_label": "Norises vietu un pārējās detaļas saskaņosim individuāli.",
+      "image_url": "/images/updates-2026-11/lina-krelles-dzintars.jpg",
+      "image_alt": "Lina un dzintara rotas, iekārtas zarā",
+      "cta_label": "Pieteikties meistarklasei",
+      "cta_href": "/pieteikties/",
+      "sort_order": 40
+    },
+    {
+      "slug": "dzintara-putas",
+      "title": "Dzintara putas",
+      "intro": "Tamborē gaisīgu dzintara kaklarotu un pēc vēlēšanās pieskaņotas rotas.",
+      "details": [
+        "Aicinām uz radošu meistarklasi, kurā apvienosies lina dabiskā vienkāršība, tamborēšanas māksla un dzintara īpašais skaistums. Meistarklases laikā katrs dalībnieks paša rokām tamborēs dzintara krelles, veidojot savu neatkārtojamo rotu dizainu. Pēc vēlēšanās būs iespēja darināt arī pieskaņotus auskarus, un rokassprādzi, radot skaistu un vienotu rotu komplektu. Šī ir iespēja ļauties radošam procesam, eksperimentēt ar krāsām, formām un materiāliem. Tā kā katra dalībnieka rokraksts, izvēles un darināšanas process ir atšķirīgs, arī rezultāts vienmēr būs unikāls – otra tāda paša rotu komplekta nebūs. Meistarklases noslēgumā katrs dalībnieks dosies mājās ar paša darinātām dzintara rotām, kurās būs ieguldīts laiks, pacietība un daļiņa no paša radošās pasaules.",
+        "Ilgums: aptuveni 4–5 stundas.",
+        "Piemērota: pieaugušajiem, radošām draugu grupām, svētku reizēm un kopīgai nesteidzīgai darbošanās pieredzei. Visi nepieciešamie materiāli un darbarīki tiek nodrošināti. Iepriekšēja pieredze tamborēšanā nav obligāta – svarīgākā ir vēlme radīt un izmēģināt ko jaunu. Radošajā darbnīcā LaLu – vietā, kur idejas pārtop neatkārtojamos roku darbos!",
+        "Krelles — 90 €. Auskari un krelles — 120 €. Auskari, rokassprādze un krelles — 130 €."
+      ],
+      "duration_label": "Aptuveni 4–5 stundas",
+      "price_label": "Krelles 90 € · komplekti 120–130 €",
+      "travel_label": "Norises vietu un pārējās detaļas saskaņosim individuāli.",
+      "image_url": "/images/updates-2026-11/dzintara-putas.jpg",
+      "image_alt": "Gaisīgas dzintara kaklarotas uz koka virsmas",
+      "cta_label": "Pieteikties meistarklasei",
+      "cta_href": "/pieteikties/",
+      "sort_order": 50
+    },
+    {
+      "slug": "mana-maza-dabas-senite",
+      "title": "Mana mazā dabas sēnīte",
+      "intro": "No ģipša liešanas līdz krāsošanai — izveido savu dabas iedvesmoto dekoru.",
+      "details": [
+        "Aicinām uz radošu un aizraujošu meistarklasi, kurā ikviens varēs iepazīt dažādu materiālu saspēli un radīt savu īpašo dekoratīvo sēnīti. Taps neliels dabas iedvesmots mākslas darbs, kas priecēs gan mājās, gan dārzā.",
+        "Ko darīsim? Meistarklases laikā katrs dalībnieks: - Pats gatavos un lies ģipsi, veidos sēni. - Pēc sacietēšanas izkrāsos un noformēs savu darinājumu, piešķirot tam individuālu raksturu. - Pabeigs savu dekoru, radot neatkārtojamu dabas iedvesmotu kompozīciju.",
+        "Ko iegūsi? Katrs dalībnieks uz mājām dosies ar paša rokām veidotu dekoratīvu sēnīti – nelielu, bet īpašu interjera vai ārtelpas akcentu. Tā būs ne tikai skaista rota, bet arī atmiņa par kopā pavadītu radošu laiku.",
+        "Kam piemērota meistarklase? Meistarklase piemērota ikvienam – bērniem, jauniešiem un pieaugušajiem. Iepriekšēja pieredze rokdarbu vai mākslas jomā nav nepieciešama. Galvenais ir vēlme darboties, izmēģināt ko jaunu un ļauties radošam procesam.",
+        "Tā būs lieliska izvēle ģimenēm, draugu grupām, skolēniem, kolektīviem un dažādu svētku aktivitātēm.",
+        "Meistarklases norise Meistarklase notiek radošā un draudzīgā atmosfērā, soli pa solim iepazīstot materiālus un sēnītes tapšanas procesu. Dalībnieki paši iesaistās visos galvenajos darba posmos – no ģipša liešanas līdz krāsošanai un galīgajai noformēšanai.",
+        "Materiāli un nodrošinājums Visi nepieciešamie materiāli un darbarīki tiek nodrošināti. Dalībniekiem nav jāņem līdzi nekas īpašs – tikai vēlme radīt! Radošajā darbnīcā LaLu – katrs darinājums sākas ar ideju un pārtop par kaut ko īpašu!"
+      ],
+      "duration_label": "Pēc vienošanās",
+      "price_label": "Pēc vienošanās",
+      "travel_label": "Norises vietu un pārējās detaļas saskaņosim individuāli.",
+      "image_url": "/images/updates-2026-11/dekorativas-senites.jpg",
+      "image_alt": "Sarkanas un baltas dekoratīvas koka un ģipša sēnītes",
+      "cta_label": "Pieteikties meistarklasei",
+      "cta_href": "/pieteikties/",
+      "sort_order": 60
+    },
+    {
+      "slug": "mezginota-volansalle",
+      "title": "Mežģīņotā volānšalle",
+      "intro": "Soli pa solim adi gaisīgu, kruzuļotu šalli ar mežģīņu rakstu.",
+      "details": [
+        "Par meistarklasi Aicinām uz radošu adīšanas meistarklasi, kurā ikviens varēs iepazīt mežģīņu raksta skaistumu un radīt sev īpašu aksesuāru – gaisīgu, kruzuļotu adītu šalli. Darbojoties soli pa solim taps eleganta šalle ar skaistu mežģīņu rakstu, kas piešķirs īpašu akcentu ikdienas vai svētku apģērbam.",
+        "Ko darīsim? Meistarklases laikā katrs dalībnieks apgūs izvēlētā mežģīņu raksta adīšanas principus. - Paša rokām adīsi savu gaisīgu un skaistu šalli, - Pabeigs un noformēs savu darinājumu, lai tas būtu gatavs valkāšanai.",
+        "Ko iegūsi? Katrs dalībnieks uz mājām dosies ar paša adītu , skaistu un kruzuļotu mežģīņu šalli – unikālu aksesuāru, kas papildinās garderobi un priecēs ar paša rokām radītu skaistumu. Tā būs arī iespēja apgūt jaunu prasmi, gūt gandarījumu par paveikto un izbaudīt radošu laiku patīkamā atmosfērā.",
+        "Kam piemērota meistarklase? Meistarklase piemērota jauniešiem un pieaugušajiem. Tā būs lieliska izvēle draudzeņu tikšanās reizēm, radošām grupām, kolektīviem un ikvienam, kurš vēlas pats radīt skaistu un praktisku aksesuāru.",
+        "Meistarklases norise Meistarklase notiek draudzīgā un radošā atmosfērā, soli pa solim apgūstot šalles adīšanas procesu. Dalībnieki saņems nepieciešamo praktisko palīdzību un norādījumus, lai katrs varētu izveidot savu skaisto darinājumu. Ilgums: aptuveni 2–3 stundas.",
+        "Materiāli un nodrošinājums Visi nepieciešamie materiāli, dzija un tamborēšanas darbarīki tiek nodrošināti. Dalībniekiem nav jāņem līdzi nekas īpašs – tikai vēlme darboties un radīt! Radošajā darbnīcā LaLu – katrs darinājums sākas ar ideju un pārtop par kaut ko īpašu!"
+      ],
+      "duration_label": "Aptuveni 2–3 stundas",
+      "price_label": "30 € · viss iekļauts",
+      "travel_label": "Norises vietu un pārējās detaļas saskaņosim individuāli.",
+      "image_url": "/images/updates-2026-11/mezginota-volansalle.jpg",
+      "image_alt": "Mežģīņota volānšalle rozā un violetos toņos",
+      "cta_label": "Pieteikties meistarklasei",
+      "cta_href": "/pieteikties/",
+      "sort_order": 70
+    },
+    {
+      "slug": "lakatu-ausana-uz-ramja",
+      "title": "Lakatu aušana uz rāmja",
+      "intro": "Iepazīsti īpašu aušanas tehniku un radi lielu, mīkstu plecu lakatu.",
+      "details": [
+        "Par meistarklasi Aicinām uz radošu aušanas meistarklasi, kurā ikviens varēs iepazīt īpašu aušanas tehniku, izmantojot speciālu rāmi. Taps liels, viegls un patīkams plecu lakats. Tā ir iespēja izmēģināt neierastu rokdarbu tehniku, ļauties radošam procesam un radīt skaistu, praktisku aksesuāru, kas noderēs jebkurā gadalaikā.",
+        "Ko darīsim? Meistarklases laikā katrs dalībnieks: - Iepazīs īpašo lakatu aušanas tehniku un darbam nepieciešamos materiālus. - Apgūs aušanas principus, izmantojot speciālu rāmi.",
+        "Pabeigs un noformēs savu darbu, lai tas būtu gatavs valkāšanai.",
+        "Ko iegūsi? Katrs dalībnieks uz mājām dosies ar paša rokām austu lielu, vieglu, mīkstu un patīkamu plecu lakatu. Tas būs ne tikai skaists garderobes papildinājums, bet arī praktisks aksesuārs, kas sasildīs vēsākos vakaros, papildinās ikdienas apģērbu un noderēs dažādos gadalaikos. Katrs lakats būs īpašs un neatkārtojams – paša izvēlētas krāsas, radītais raksts un roku darba pieskāriens piešķirs tam individuālu raksturu.",
+        "Kam piemērota meistarklase? Meistarklase piemērota jauniešiem un pieaugušajiem, rokdarbu cienītājiem un ikvienam, kurš vēlas izmēģināt ko jaunu un apgūt neparastu aušanas tehniku. Tā būs lieliska izvēle draugu grupām, radošām tikšanās reizēm, kolektīviem un nesteidzīgai kopā būšanai.",
+        "Iepriekšēja aušanas pieredze nav obligāta – galvenais ir interese un vēlme radīt!",
+        "Meistarklases norise Meistarklase notiek radošā un draudzīgā atmosfērā, soli pa solim apgūstot aušanas procesu. Dalībnieki saņems praktiskus norādījumus un nepieciešamo palīdzību, lai katrs varētu izveidot savu skaisto plecu lakatu.",
+        "Materiāli un nodrošinājums",
+        "Visi nepieciešamie materiāli, dzija un speciālie aušanas rāmji tiek nodrošināti. Dalībniekiem nav jāņem līdzi nekas īpašs – tikai vēlme darboties un radīt! Radošajā darbnīcā LaLu – katrs darinājums sākas ar ideju un pārtop par kaut ko īpašu!"
+      ],
+      "duration_label": "Pēc vienošanās",
+      "price_label": "Pēc vienošanās",
+      "travel_label": "Norises vietu un pārējās detaļas saskaņosim individuāli.",
+      "image_url": "/images/updates-2026-11/austi-plecu-lakati.jpg",
+      "image_alt": "Uz rāmja austi plecu lakati dažādās krāsās",
+      "cta_label": "Pieteikties meistarklasei",
+      "cta_href": "/pieteikties/",
+      "sort_order": 80
+    },
+    {
+      "slug": "tapota-salle",
+      "title": "Seno rokdarbu burvība — tapotā šalle",
+      "intro": "Izmēģini seno tapošanas paņēmienu un radi mīkstu, siltu šalli.",
+      "details": [
+        "Par meistarklasi Aicinām uz radošu meistarklasi, kurā būs iespēja iepazīt senu šaļļu darināšanas paņēmienu – tapošanu. Skaista, mīksta un silta šalle. Tā ir iespēja atgriezties pie senākām rokdarbu tradīcijām, izmēģināt neparastu darināšanas tehniku un radīt praktisku aksesuāru, kas apvieno roku darba vērtību un mūsdienīgu gaumi.",
+        "Ko darīsim? Meistarklases laikā katrs dalībnieks: - Iepazīs tapošanas tehniku un darbam nepieciešamos materiālus. Praktiski izmēģinās seno šaļļu darināšanas paņēmienu. - Paša rokām veidos un pabeigs savu tapoto šalli.",
+        "Ko iegūsi? Katrs dalībnieks uz mājām dosies ar paša darinātu, mīkstu, vieglu un siltu šalli – skaistu aksesuāru, kas papildinās garderobi un noderēs vēsākās dienās. Katrs darinājums būs īpašs, jo izvēlētās krāsas, dzija un paša roku darbs piešķirs šallei individuālu raksturu.",
+        "Kam piemērota meistarklase? Meistarklase piemērota jauniešiem un pieaugušajiem, rokdarbu cienītājiem un ikvienam, kurš vēlas iepazīt senāku rokdarbu tehniku un izmēģināt ko jaunu. Tā būs lieliska izvēle draugu grupām, radošām tikšanās reizēm, kolektīviem un ikvienam, kurš novērtē paša radītu skaistumu. Iepriekšēja pieredze rokdarbu darināšanā nav nepieciešama – galvenais ir interese un vēlme darboties!",
+        "Meistarklases norise Meistarklase notiek radošā un nesteidzīgā atmosfērā, soli pa solim apgūstot tapošanas tehniku. Dalībnieki saņems praktiskus norādījumus un nepieciešamo palīdzību, lai katrs varētu izveidot savu skaisto šalli.",
+        "Materiāli un nodrošinājums Visi nepieciešamie materiāli, dzija un tapojamās ierīces tiek nodrošinātas. Dalībniekiem nav jāņem līdzi nekas īpašs – tikai vēlme darboties un radīt! Radošajā darbnīcā LaLu – katrs darinājums sākas ar ideju un pārtop par kaut ko īpašu!"
+      ],
+      "duration_label": "Aptuveni 3–4 stundas",
+      "price_label": "25 € no dalībnieka",
+      "travel_label": "Norises vietu un pārējās detaļas saskaņosim individuāli.",
+      "image_url": "/images/updates-2026-11/tapota-salle.jpg",
+      "image_alt": "Tumša tapota šalle ar ziedu rotājumiem",
+      "cta_label": "Pieteikties meistarklasei",
+      "cta_href": "/pieteikties/",
+      "sort_order": 90
+    },
+    {
+      "slug": "smalko-auskaru-burviba",
+      "title": "Smalko auskaru burvība",
+      "intro": "No smalkām stieplītēm, pērlītēm un paša izvēlētām detaļām top auskaru pāris.",
+      "details": [
+        "Par meistarklasi Aicinām uz radošu rotu darināšanas meistarklasi, kurā ikviens varēs iepazīt neparastu un smalku tamborēšanas tehniku – auskaru veidošanu no smalkām stieplītēm. Izmantojot dažādu stieplītes, pērlītes un citus dekoratīvus elementus, taps eleganti auskari. Katrs dalībnieks varēs izvēlēties sev tīkamākās krāsas, materiālus un dekorus, ļaujot vaļu fantāzijai un radot savu neatkārtojamo rotu dizainu.",
+        "Ko darīsim? Meistarklases laikā katrs dalībnieks: - Iepazīs auskaru darināšanai nepieciešamos materiālus un īpašo tamborēšanas tehniku. - Apgūs smalko stieplīšu tamborēšanas un veidošanas principus. - Izvēlēsies pērlītes, krāsas un citus dekoratīvos elementus pēc savas gaumes. - Paša rokām veidos un noformēs savu auskaru pāri.",
+        "Ko iegūsi? Katrs dalībnieks uz mājām dosies ar paša darinātu, unikālu auskaru pāri – smalku, vieglu un oriģinālu rotu, kas lieliski papildinās gan ikdienas, gan svētku tēlu. Tā būs iespēja radīt rotas, kādu nav nevienam citam, jo katrā pārī būs paša izvēlētas krāsas, detaļas un radošais rokraksts.",
+        "Kam piemērota meistarklase? Meistarklase piemērota jauniešiem un pieaugušajiem, rotu cienītājiem un ikvienam, kurš vēlas izmēģināt ko jaunu un radīt sev īpašu aksesuāru. Tā būs lieliska izvēle draudzeņu tikšanās reizēm, radošām grupām, svētku aktivitātēm un kolektīvu kopīgai darbošanās pieredzei. Iepriekšēja pieredze rotu darināšanā nav nepieciešama – galvenais ir interese un vēlme radīt!",
+        "Meistarklases norise Meistarklase notiek radošā un iedvesmojošā atmosfērā, soli pa solim apgūstot smalko auskaru tamborēšanas un veidošanas tehniku. Dalībnieki saņems praktiskus norādījumus un palīdzību, lai katrs varētu izveidot savu gaumei atbilstošu auskaru pāri. Ilgums: aptuveni 2–3 stundas.",
+        "Materiāli un nodrošinājums Visi nepieciešamie materiāli, smalkās stieplītes, pērlītes, dekoratīvie elementi un darbarīki tiek nodrošināti. Dalībniekiem nav jāņem līdzi nekas īpašs – tikai vēlme darboties un radīt! Radošajā darbnīcā LaLu – katrs darinājums sākas ar ideju un pārtop par kaut ko īpašu!"
+      ],
+      "duration_label": "Aptuveni 2–3 stundas",
+      "price_label": "25 € no dalībnieka",
+      "travel_label": "Norises vietu un pārējās detaļas saskaņosim individuāli.",
+      "image_url": "/images/updates-2026-11/smalkie-auskari.jpg",
+      "image_alt": "Tamborēti stieplīšu auskari ar pērlītēm",
+      "cta_label": "Pieteikties meistarklasei",
+      "cta_href": "/pieteikties/",
+      "sort_order": 100
+    },
+    {
+      "slug": "ziedu-vieglums-brosas",
+      "title": "Ziedu vieglums — brošas",
+      "intro": "Pārvērt vieglu organzu gaisīgā ziedā un elegantā piespraudē.",
+      "details": [
+        "Par meistarklasi Aicinām uz radošu meistarklasi, kurā ikviens varēs iepazīt organzas materiāla vieglumu un pārvērst to smalkos, gaisīgos ziedos. Taps zieds, kas pārtaps elegantā piespraudē jeb brošā. Tā ir iespēja ļauties radošumam, eksperimentēt ar krāsām, formām un materiāliem, radot īpašu aksesuāru, kas piešķirs individualitāti gan ikdienas, gan svētku tērpam.",
+        "Ko darīsim? Meistarklases laikā katrs dalībnieks: - Iepazīs organzas materiālu un tā izmantošanas iespējas ziedu darināšanā. - Izvēlēsies sev tīkamākās krāsas un materiālu salikumus. - Apgūs ziedu veidošanas un noformēšanas paņēmienus. Izveidos skaistu un praktisku brošu jeb piespraudi.",
+        "Ko iegūsi? Katrs dalībnieks uz mājām dosies ar paša darinātu ziedu – neatkārtojamu aksesuāru, ko varēs piespraust pie žaketes, kleitas, šalles, mēteļa vai cita apģērba. Tas būs smalks un pamanāms akcents, kas piešķirs tērpam īpašu noskaņu un ļaus izcelt savu personīgo stilu. Katrs zieds būs citāds, jo tā izskatu noteiks paša izvēlētās krāsas, formas un radošās idejas.",
+        "Kam piemērota meistarklase? Meistarklase piemērota jauniešiem un pieaugušajiem, radošiem cilvēkiem un ikvienam, kurš vēlas apgūt jaunu rokdarbu tehniku un radīt skaistu, praktisku aksesuāru. Tā būs lieliska izvēle draudzeņu tikšanās reizēm, radošām grupām, kolektīviem, svētku aktivitātēm un kopīgai radošai darbošanās pieredzei. Iepriekšēja pieredze ziedu darināšanā nav nepieciešama – galvenais ir interese un vēlme radīt!",
+        "Meistarklases norise Meistarklase notiek radošā un iedvesmojošā atmosfērā, soli pa solim apgūstot audumu ziedu veidošanas tehniku. Dalībnieki saņems praktiskus norādījumus un nepieciešamo palīdzību, lai katrs varētu izveidot savu gaumei atbilstošu ziedu un pārvērst to par skaistu apģērba aksesuāru.",
+        "Materiāli un nodrošinājums Visi nepieciešamie materiāli, dažādu krāsu audumi, dekoratīvie elementi, brošu pamatnes un darbarīki tiek nodrošināti. Dalībniekiem nav jāņem līdzi nekas īpašs – tikai vēlme darboties un radīt! Radošajā darbnīcā LaLu – katrs darinājums sākas ar ideju un pārtop par kaut ko īpašu!"
+      ],
+      "duration_label": "Pēc vienošanās",
+      "price_label": "Pēc vienošanās",
+      "travel_label": "Norises vietu un pārējās detaļas saskaņosim individuāli.",
+      "image_url": "/images/updates-2026-11/organzas-ziedu-brosa.jpg",
+      "image_alt": "Gaisīga sarkana organzas ziedu broša",
+      "cta_label": "Pieteikties meistarklasei",
+      "cta_href": "/pieteikties/",
+      "sort_order": 110
+    },
+    {
+      "slug": "engeli",
+      "title": "Eņģeļi",
+      "intro": "Radi smalkus, gaisīgus eņģelīšus mājoklim vai sirsnīgai dāvanai.",
+      "details": [
+        "Par meistarklasi Aicinām uz radošu un iedvesmojošu meistarklasi, kurā taps smalki, viegli un gaisīgi eņģelīši. Eņģelīši simbolizē labas domas, gaišas vēlmes un skaistus notikumus, kas vēl tikai priekšā. Tie var kļūt par mīļu mājas rotājumu, svētku dekoru vai sirsnīgu dāvaniņu kādam īpašam cilvēkam.",
+        "Ko darīsim? Meistarklases laikā katrs dalībnieks: - Iepazīs eņģelīšu darināšanai nepieciešamos materiālus un to izmantošanas iespējas. Apgūs eņģelīšu veidošanas un noformēšanas paņēmienus. Piešķirs katram eņģelītim savu īpašo raksturu un noskaņu.",
+        "Ko iegūsi? Katrs dalībnieks uz mājām dosies ar paša darinātu eņģelīti – viegliem, smalkiem un neatkārtojamiem rotājumiem. Tos varēs izmantot mājas interjera papildināšanai, svētku dekorēšanai, eglītes rotāšanai vai pasniegt kā nelielu, sirsnīgu dāvanu. Katrs eņģelītis būs ar savu stāstu un labu domu, ko tas nesīs līdzi.",
+        "Kam piemērota meistarklase? Meistarklase piemērota jauniešiem un pieaugušajiem, radošiem cilvēkiem un ikvienam, kurš vēlas radīt ko skaistu, smalku un simbolisku. Tā būs lieliska izvēle draugu grupām, ģimenēm, kolektīviem, svētku aktivitātēm un kopīgai radošai darbošanās pieredzei. Iepriekšēja pieredze rokdarbu darināšanā nav nepieciešama – galvenais ir interese, iztēle un vēlme radīt!",
+        "Meistarklases norise Meistarklase notiek gaišā, mierpilnā un radošā atmosfērā, soli pa solim apgūstot eņģelīšu darināšanas tehniku. Dalībnieki saņems praktiskus norādījumus un nepieciešamo palīdzību, lai katrs varētu izveidot savus īpašos eņģelīšus.",
+        "Materiāli un nodrošinājums Visi nepieciešamie materiāli, dekoratīvie elementi un darbarīki tiek nodrošināti. Dalībniekiem nav jāņem līdzi nekas īpašs – tikai vēlme darboties, radīt un ļauties skaistām domām! Radošajā darbnīcā LaLu – katrs darinājums sākas ar ideju un pārtop par kaut ko īpašu!"
+      ],
+      "duration_label": "Pēc vienošanās",
+      "price_label": "5 € no dalībnieka",
+      "travel_label": "Norises vietu un pārējās detaļas saskaņosim individuāli.",
+      "image_url": "/images/updates-2026-11/engeli.jpg",
+      "image_alt": "Gaisīgi balti auduma eņģelīši",
+      "cta_label": "Pieteikties meistarklasei",
+      "cta_href": "/pieteikties/",
+      "sort_order": 120
+    }
+  ],
+  "products": [
+    {
+      "slug": "grabulis-pelite-sarkanas-nr-1",
+      "name": "Grabulītis “Pelīte” — sarkana ar pelēku, Nr. 1",
+      "price_cents": 1000,
+      "category": "grabulisi",
+      "short_description": "Ar rokām tamborēta pelīte mazuļa pirmajām rotaļām. Aptuveni 10 cm.",
+      "description": "Attēlā izvēlētais modelis ir Nr. 1.\n\nGrabulītis no 100% dabīgas kokvilnas un koka. Viegls un ērti satverams mazajās rociņās.\n\nBez dāvanu kastītes.\n\nKopšana: ievieto veļas maisiņā un mazgā 30 °C rokas vai vilnas režīmā, vai mazgā ar rokām. Izmanto dabīgiem materiāliem paredzētu mazgāšanas līdzekli.\n\nVēlies citu krāsu? Apskati pievienoto dzijas krāsu paleti un sazinies ar mums par individuālu pasūtījumu.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/pelites-sarkanas.jpg",
+          "alt": "Četri numurēti sarkani un pelēki peļu grabulīši"
+        },
+        {
+          "url": "/images/updates-2026-11/dzijas-krasu-palete.jpg",
+          "alt": "Grabulīšu dzijas krāsu paraugi"
+        }
+      ],
+      "is_washable": true,
+      "sort_order": 1000
+    },
+    {
+      "slug": "grabulis-pelite-sarkanas-nr-1-davanu-kastite",
+      "name": "Grabulītis “Pelīte” — sarkana ar pelēku, Nr. 1 dāvanu kastītē",
+      "price_cents": 1300,
+      "category": "grabulisi",
+      "short_description": "Ar rokām tamborēta pelīte mazuļa pirmajām rotaļām. Aptuveni 10 cm.",
+      "description": "Attēlā izvēlētais modelis ir Nr. 1.\n\nGrabulītis no 100% dabīgas kokvilnas un koka. Viegls un ērti satverams mazajās rociņās.\n\nIesaiņots dāvanu kastītē ar lodziņu.\n\nKopšana: ievieto veļas maisiņā un mazgā 30 °C rokas vai vilnas režīmā, vai mazgā ar rokām. Izmanto dabīgiem materiāliem paredzētu mazgāšanas līdzekli.\n\nVēlies citu krāsu? Apskati pievienoto dzijas krāsu paleti un sazinies ar mums par individuālu pasūtījumu.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/pelites-sarkanas.jpg",
+          "alt": "Četri numurēti sarkani un pelēki peļu grabulīši"
+        },
+        {
+          "url": "/images/updates-2026-11/dzijas-krasu-palete.jpg",
+          "alt": "Grabulīšu dzijas krāsu paraugi"
+        }
+      ],
+      "is_washable": true,
+      "sort_order": 1001
+    },
+    {
+      "slug": "grabulis-pelite-sarkanas-nr-2",
+      "name": "Grabulītis “Pelīte” — pelēka ar sarkanu, Nr. 2",
+      "price_cents": 1000,
+      "category": "grabulisi",
+      "short_description": "Ar rokām tamborēta pelīte mazuļa pirmajām rotaļām. Aptuveni 10 cm.",
+      "description": "Attēlā izvēlētais modelis ir Nr. 2.\n\nGrabulītis no 100% dabīgas kokvilnas un koka. Viegls un ērti satverams mazajās rociņās.\n\nBez dāvanu kastītes.\n\nKopšana: ievieto veļas maisiņā un mazgā 30 °C rokas vai vilnas režīmā, vai mazgā ar rokām. Izmanto dabīgiem materiāliem paredzētu mazgāšanas līdzekli.\n\nVēlies citu krāsu? Apskati pievienoto dzijas krāsu paleti un sazinies ar mums par individuālu pasūtījumu.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/pelites-sarkanas.jpg",
+          "alt": "Četri numurēti sarkani un pelēki peļu grabulīši"
+        },
+        {
+          "url": "/images/updates-2026-11/dzijas-krasu-palete.jpg",
+          "alt": "Grabulīšu dzijas krāsu paraugi"
+        }
+      ],
+      "is_washable": true,
+      "sort_order": 1002
+    },
+    {
+      "slug": "grabulis-pelite-sarkanas-nr-2-davanu-kastite",
+      "name": "Grabulītis “Pelīte” — pelēka ar sarkanu, Nr. 2 dāvanu kastītē",
+      "price_cents": 1300,
+      "category": "grabulisi",
+      "short_description": "Ar rokām tamborēta pelīte mazuļa pirmajām rotaļām. Aptuveni 10 cm.",
+      "description": "Attēlā izvēlētais modelis ir Nr. 2.\n\nGrabulītis no 100% dabīgas kokvilnas un koka. Viegls un ērti satverams mazajās rociņās.\n\nIesaiņots dāvanu kastītē ar lodziņu.\n\nKopšana: ievieto veļas maisiņā un mazgā 30 °C rokas vai vilnas režīmā, vai mazgā ar rokām. Izmanto dabīgiem materiāliem paredzētu mazgāšanas līdzekli.\n\nVēlies citu krāsu? Apskati pievienoto dzijas krāsu paleti un sazinies ar mums par individuālu pasūtījumu.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/pelites-sarkanas.jpg",
+          "alt": "Četri numurēti sarkani un pelēki peļu grabulīši"
+        },
+        {
+          "url": "/images/updates-2026-11/dzijas-krasu-palete.jpg",
+          "alt": "Grabulīšu dzijas krāsu paraugi"
+        }
+      ],
+      "is_washable": true,
+      "sort_order": 1003
+    },
+    {
+      "slug": "grabulis-pelite-sarkanas-nr-3",
+      "name": "Grabulītis “Pelīte” — sarkana, Nr. 3",
+      "price_cents": 1000,
+      "category": "grabulisi",
+      "short_description": "Ar rokām tamborēta pelīte mazuļa pirmajām rotaļām. Aptuveni 10 cm.",
+      "description": "Attēlā izvēlētais modelis ir Nr. 3.\n\nGrabulītis no 100% dabīgas kokvilnas un koka. Viegls un ērti satverams mazajās rociņās.\n\nBez dāvanu kastītes.\n\nKopšana: ievieto veļas maisiņā un mazgā 30 °C rokas vai vilnas režīmā, vai mazgā ar rokām. Izmanto dabīgiem materiāliem paredzētu mazgāšanas līdzekli.\n\nVēlies citu krāsu? Apskati pievienoto dzijas krāsu paleti un sazinies ar mums par individuālu pasūtījumu.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/pelites-sarkanas.jpg",
+          "alt": "Četri numurēti sarkani un pelēki peļu grabulīši"
+        },
+        {
+          "url": "/images/updates-2026-11/dzijas-krasu-palete.jpg",
+          "alt": "Grabulīšu dzijas krāsu paraugi"
+        }
+      ],
+      "is_washable": true,
+      "sort_order": 1004
+    },
+    {
+      "slug": "grabulis-pelite-sarkanas-nr-3-davanu-kastite",
+      "name": "Grabulītis “Pelīte” — sarkana, Nr. 3 dāvanu kastītē",
+      "price_cents": 1300,
+      "category": "grabulisi",
+      "short_description": "Ar rokām tamborēta pelīte mazuļa pirmajām rotaļām. Aptuveni 10 cm.",
+      "description": "Attēlā izvēlētais modelis ir Nr. 3.\n\nGrabulītis no 100% dabīgas kokvilnas un koka. Viegls un ērti satverams mazajās rociņās.\n\nIesaiņots dāvanu kastītē ar lodziņu.\n\nKopšana: ievieto veļas maisiņā un mazgā 30 °C rokas vai vilnas režīmā, vai mazgā ar rokām. Izmanto dabīgiem materiāliem paredzētu mazgāšanas līdzekli.\n\nVēlies citu krāsu? Apskati pievienoto dzijas krāsu paleti un sazinies ar mums par individuālu pasūtījumu.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/pelites-sarkanas.jpg",
+          "alt": "Četri numurēti sarkani un pelēki peļu grabulīši"
+        },
+        {
+          "url": "/images/updates-2026-11/dzijas-krasu-palete.jpg",
+          "alt": "Grabulīšu dzijas krāsu paraugi"
+        }
+      ],
+      "is_washable": true,
+      "sort_order": 1005
+    },
+    {
+      "slug": "grabulis-pelite-sarkanas-nr-4",
+      "name": "Grabulītis “Pelīte” — sarkana ar baltu un pelēku, Nr. 4",
+      "price_cents": 1000,
+      "category": "grabulisi",
+      "short_description": "Ar rokām tamborēta pelīte mazuļa pirmajām rotaļām. Aptuveni 10 cm.",
+      "description": "Attēlā izvēlētais modelis ir Nr. 4.\n\nGrabulītis no 100% dabīgas kokvilnas un koka. Viegls un ērti satverams mazajās rociņās.\n\nBez dāvanu kastītes.\n\nKopšana: ievieto veļas maisiņā un mazgā 30 °C rokas vai vilnas režīmā, vai mazgā ar rokām. Izmanto dabīgiem materiāliem paredzētu mazgāšanas līdzekli.\n\nVēlies citu krāsu? Apskati pievienoto dzijas krāsu paleti un sazinies ar mums par individuālu pasūtījumu.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/pelites-sarkanas.jpg",
+          "alt": "Četri numurēti sarkani un pelēki peļu grabulīši"
+        },
+        {
+          "url": "/images/updates-2026-11/dzijas-krasu-palete.jpg",
+          "alt": "Grabulīšu dzijas krāsu paraugi"
+        }
+      ],
+      "is_washable": true,
+      "sort_order": 1006
+    },
+    {
+      "slug": "grabulis-pelite-sarkanas-nr-4-davanu-kastite",
+      "name": "Grabulītis “Pelīte” — sarkana ar baltu un pelēku, Nr. 4 dāvanu kastītē",
+      "price_cents": 1300,
+      "category": "grabulisi",
+      "short_description": "Ar rokām tamborēta pelīte mazuļa pirmajām rotaļām. Aptuveni 10 cm.",
+      "description": "Attēlā izvēlētais modelis ir Nr. 4.\n\nGrabulītis no 100% dabīgas kokvilnas un koka. Viegls un ērti satverams mazajās rociņās.\n\nIesaiņots dāvanu kastītē ar lodziņu.\n\nKopšana: ievieto veļas maisiņā un mazgā 30 °C rokas vai vilnas režīmā, vai mazgā ar rokām. Izmanto dabīgiem materiāliem paredzētu mazgāšanas līdzekli.\n\nVēlies citu krāsu? Apskati pievienoto dzijas krāsu paleti un sazinies ar mums par individuālu pasūtījumu.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/pelites-sarkanas.jpg",
+          "alt": "Četri numurēti sarkani un pelēki peļu grabulīši"
+        },
+        {
+          "url": "/images/updates-2026-11/dzijas-krasu-palete.jpg",
+          "alt": "Grabulīšu dzijas krāsu paraugi"
+        }
+      ],
+      "is_washable": true,
+      "sort_order": 1007
+    },
+    {
+      "slug": "grabulis-pelite-pelekas-nr-1",
+      "name": "Grabulītis “Pelīte” — pelēka ar rozā, Nr. 1",
+      "price_cents": 1000,
+      "category": "grabulisi",
+      "short_description": "Ar rokām tamborēta pelīte mazuļa pirmajām rotaļām. Aptuveni 10 cm.",
+      "description": "Attēlā izvēlētais modelis ir Nr. 1.\n\nGrabulītis no 100% dabīgas kokvilnas un koka. Viegls un ērti satverams mazajās rociņās.\n\nBez dāvanu kastītes.\n\nKopšana: ievieto veļas maisiņā un mazgā 30 °C rokas vai vilnas režīmā, vai mazgā ar rokām. Izmanto dabīgiem materiāliem paredzētu mazgāšanas līdzekli.\n\nVēlies citu krāsu? Apskati pievienoto dzijas krāsu paleti un sazinies ar mums par individuālu pasūtījumu.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/pelites-pelekas.jpg",
+          "alt": "Divi numurēti pelēki peļu grabulīši ar rozā un fuksijas detaļām"
+        },
+        {
+          "url": "/images/updates-2026-11/dzijas-krasu-palete.jpg",
+          "alt": "Grabulīšu dzijas krāsu paraugi"
+        }
+      ],
+      "is_washable": true,
+      "sort_order": 1008
+    },
+    {
+      "slug": "grabulis-pelite-pelekas-nr-1-davanu-kastite",
+      "name": "Grabulītis “Pelīte” — pelēka ar rozā, Nr. 1 dāvanu kastītē",
+      "price_cents": 1300,
+      "category": "grabulisi",
+      "short_description": "Ar rokām tamborēta pelīte mazuļa pirmajām rotaļām. Aptuveni 10 cm.",
+      "description": "Attēlā izvēlētais modelis ir Nr. 1.\n\nGrabulītis no 100% dabīgas kokvilnas un koka. Viegls un ērti satverams mazajās rociņās.\n\nIesaiņots dāvanu kastītē ar lodziņu.\n\nKopšana: ievieto veļas maisiņā un mazgā 30 °C rokas vai vilnas režīmā, vai mazgā ar rokām. Izmanto dabīgiem materiāliem paredzētu mazgāšanas līdzekli.\n\nVēlies citu krāsu? Apskati pievienoto dzijas krāsu paleti un sazinies ar mums par individuālu pasūtījumu.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/pelites-pelekas.jpg",
+          "alt": "Divi numurēti pelēki peļu grabulīši ar rozā un fuksijas detaļām"
+        },
+        {
+          "url": "/images/updates-2026-11/dzijas-krasu-palete.jpg",
+          "alt": "Grabulīšu dzijas krāsu paraugi"
+        }
+      ],
+      "is_washable": true,
+      "sort_order": 1009
+    },
+    {
+      "slug": "grabulis-pelite-pelekas-nr-2",
+      "name": "Grabulītis “Pelīte” — pelēka ar fuksiju, Nr. 2",
+      "price_cents": 1000,
+      "category": "grabulisi",
+      "short_description": "Ar rokām tamborēta pelīte mazuļa pirmajām rotaļām. Aptuveni 10 cm.",
+      "description": "Attēlā izvēlētais modelis ir Nr. 2.\n\nGrabulītis no 100% dabīgas kokvilnas un koka. Viegls un ērti satverams mazajās rociņās.\n\nBez dāvanu kastītes.\n\nKopšana: ievieto veļas maisiņā un mazgā 30 °C rokas vai vilnas režīmā, vai mazgā ar rokām. Izmanto dabīgiem materiāliem paredzētu mazgāšanas līdzekli.\n\nVēlies citu krāsu? Apskati pievienoto dzijas krāsu paleti un sazinies ar mums par individuālu pasūtījumu.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/pelites-pelekas.jpg",
+          "alt": "Divi numurēti pelēki peļu grabulīši ar rozā un fuksijas detaļām"
+        },
+        {
+          "url": "/images/updates-2026-11/dzijas-krasu-palete.jpg",
+          "alt": "Grabulīšu dzijas krāsu paraugi"
+        }
+      ],
+      "is_washable": true,
+      "sort_order": 1010
+    },
+    {
+      "slug": "grabulis-pelite-pelekas-nr-2-davanu-kastite",
+      "name": "Grabulītis “Pelīte” — pelēka ar fuksiju, Nr. 2 dāvanu kastītē",
+      "price_cents": 1300,
+      "category": "grabulisi",
+      "short_description": "Ar rokām tamborēta pelīte mazuļa pirmajām rotaļām. Aptuveni 10 cm.",
+      "description": "Attēlā izvēlētais modelis ir Nr. 2.\n\nGrabulītis no 100% dabīgas kokvilnas un koka. Viegls un ērti satverams mazajās rociņās.\n\nIesaiņots dāvanu kastītē ar lodziņu.\n\nKopšana: ievieto veļas maisiņā un mazgā 30 °C rokas vai vilnas režīmā, vai mazgā ar rokām. Izmanto dabīgiem materiāliem paredzētu mazgāšanas līdzekli.\n\nVēlies citu krāsu? Apskati pievienoto dzijas krāsu paleti un sazinies ar mums par individuālu pasūtījumu.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/pelites-pelekas.jpg",
+          "alt": "Divi numurēti pelēki peļu grabulīši ar rozā un fuksijas detaļām"
+        },
+        {
+          "url": "/images/updates-2026-11/dzijas-krasu-palete.jpg",
+          "alt": "Grabulīšu dzijas krāsu paraugi"
+        }
+      ],
+      "is_washable": true,
+      "sort_order": 1011
+    },
+    {
+      "slug": "grabulis-gliemezitis-nr-1",
+      "name": "Grabulītis “Gliemezītis” — rozā",
+      "price_cents": null,
+      "category": "grabulisi",
+      "short_description": "Krāsains tamborēts gliemezītis ar maigi skanošu zvārguļīti.",
+      "description": "Attēlā izvēlētais gliemezītis ir rozā. Iekšpusē paslēpts zvārguļītis, kas kustoties rada maigu skaņu. Kompakts rotaļu draugs mazajām plaukstiņām.\n\nKopšana: ievieto veļas maisiņā un mazgā 30 °C rokas vai vilnas režīmā, vai mazgā ar rokām. Izmanto dabīgiem materiāliem paredzētu mazgāšanas līdzekli.\n\nPar cenu, pieejamību un dāvanu kastīti vienosimies pirms pasūtījuma.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/grabulisi-gliemezi.jpg",
+          "alt": "Rozā, dzeltens un bēšs tamborēts gliemezīša grabulītis"
+        }
+      ],
+      "is_washable": true,
+      "sort_order": 1012
+    },
+    {
+      "slug": "grabulis-gliemezitis-nr-2",
+      "name": "Grabulītis “Gliemezītis” — dzeltens",
+      "price_cents": null,
+      "category": "grabulisi",
+      "short_description": "Krāsains tamborēts gliemezītis ar maigi skanošu zvārguļīti.",
+      "description": "Attēlā izvēlētais gliemezītis ir dzeltens. Iekšpusē paslēpts zvārguļītis, kas kustoties rada maigu skaņu. Kompakts rotaļu draugs mazajām plaukstiņām.\n\nKopšana: ievieto veļas maisiņā un mazgā 30 °C rokas vai vilnas režīmā, vai mazgā ar rokām. Izmanto dabīgiem materiāliem paredzētu mazgāšanas līdzekli.\n\nPar cenu, pieejamību un dāvanu kastīti vienosimies pirms pasūtījuma.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/grabulisi-gliemezi.jpg",
+          "alt": "Rozā, dzeltens un bēšs tamborēts gliemezīša grabulītis"
+        }
+      ],
+      "is_washable": true,
+      "sort_order": 1013
+    },
+    {
+      "slug": "grabulis-gliemezitis-nr-3",
+      "name": "Grabulītis “Gliemezītis” — bēšs",
+      "price_cents": null,
+      "category": "grabulisi",
+      "short_description": "Krāsains tamborēts gliemezītis ar maigi skanošu zvārguļīti.",
+      "description": "Attēlā izvēlētais gliemezītis ir bēšs. Iekšpusē paslēpts zvārguļītis, kas kustoties rada maigu skaņu. Kompakts rotaļu draugs mazajām plaukstiņām.\n\nKopšana: ievieto veļas maisiņā un mazgā 30 °C rokas vai vilnas režīmā, vai mazgā ar rokām. Izmanto dabīgiem materiāliem paredzētu mazgāšanas līdzekli.\n\nPar cenu, pieejamību un dāvanu kastīti vienosimies pirms pasūtījuma.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/grabulisi-gliemezi.jpg",
+          "alt": "Rozā, dzeltens un bēšs tamborēts gliemezīša grabulītis"
+        }
+      ],
+      "is_washable": true,
+      "sort_order": 1014
+    },
+    {
+      "slug": "davanu-komplekts-kengurs",
+      "name": "Dāvanu komplekts jaundzimušajam “Ķengurs”",
+      "price_cents": 6000,
+      "category": "davanas",
+      "short_description": "Roku darināts komplekts ar ķenguru un trim aksesuāriem mazuļa rotaļām.",
+      "description": "Komplektā: rotaļlieta “Ķengurs”, grabulītis “Zaķītis”, knupīša turētājs un grabulīšu riņķītis.\n\nBez dāvanu kastītes.\n\nKopšana: ievieto veļas maisiņā un mazgā 30 °C rokas vai vilnas režīmā, vai mazgā ar rokām. Izmanto dabīgiem materiāliem paredzētu mazgāšanas līdzekli.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/davanu-komplekts-kengurs.jpg",
+          "alt": "Zils tamborēts ķengurs, zaķīša grabulītis, knupīša turētājs un grabulīšu riņķītis"
+        }
+      ],
+      "is_washable": false,
+      "sort_order": 1015
+    },
+    {
+      "slug": "davanu-komplekts-kengurs-davanu-kastite",
+      "name": "Dāvanu komplekts jaundzimušajam “Ķengurs” dāvanu kastītē",
+      "price_cents": 6300,
+      "category": "davanas",
+      "short_description": "Roku darināts komplekts ar ķenguru un trim aksesuāriem mazuļa rotaļām.",
+      "description": "Komplektā: rotaļlieta “Ķengurs”, grabulītis “Zaķītis”, knupīša turētājs un grabulīšu riņķītis.\n\nIesaiņots dāvanu kastītē ar lodziņu.\n\nKopšana: ievieto veļas maisiņā un mazgā 30 °C rokas vai vilnas režīmā, vai mazgā ar rokām. Izmanto dabīgiem materiāliem paredzētu mazgāšanas līdzekli.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/davanu-komplekts-kengurs.jpg",
+          "alt": "Zils tamborēts ķengurs, zaķīša grabulītis, knupīša turētājs un grabulīšu riņķītis"
+        }
+      ],
+      "is_washable": false,
+      "sort_order": 1016
+    },
+    {
+      "slug": "dekorativas-senites-1-gab",
+      "name": "Dekoratīvas sēnītes — 1 gabals",
+      "price_cents": 300,
+      "category": "davanas",
+      "short_description": "Roku darbs no dabīga koka un ģipša. Aptuveni 10–13 cm.",
+      "description": "Komplektā 1 sēnīte.\n\nMateriāli: dabīgs koks, ģipsis un krāsa. Piemērotas plauktiem, mājas augu un sezonas kompozīcijām vai dāvināšanai.\n\nKopšana: tīri ar sausu vai nedaudz mitru drānu. Nemērcē ūdenī un neatstāj tiešos nokrišņos.\n\nPar dāvanu kārbiņu sazinies ar mums.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/dekorativas-senites.jpg",
+          "alt": "Sarkanas un baltas dekoratīvas koka un ģipša sēnītes"
+        }
+      ],
+      "is_washable": false,
+      "sort_order": 1017
+    },
+    {
+      "slug": "dekorativas-senites-2-gab",
+      "name": "Dekoratīvas sēnītes — 2 gabali",
+      "price_cents": 500,
+      "category": "davanas",
+      "short_description": "Roku darbs no dabīga koka un ģipša. Aptuveni 10–13 cm.",
+      "description": "Komplektā 2 sēnītes.\n\nMateriāli: dabīgs koks, ģipsis un krāsa. Piemērotas plauktiem, mājas augu un sezonas kompozīcijām vai dāvināšanai.\n\nKopšana: tīri ar sausu vai nedaudz mitru drānu. Nemērcē ūdenī un neatstāj tiešos nokrišņos.\n\nPar dāvanu kārbiņu sazinies ar mums.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/dekorativas-senites.jpg",
+          "alt": "Sarkanas un baltas dekoratīvas koka un ģipša sēnītes"
+        }
+      ],
+      "is_washable": false,
+      "sort_order": 1018
+    },
+    {
+      "slug": "dekorativas-senites-5-gab",
+      "name": "Dekoratīvas sēnītes — 5 gabali",
+      "price_cents": 1000,
+      "category": "davanas",
+      "short_description": "Roku darbs no dabīga koka un ģipša. Aptuveni 10–13 cm.",
+      "description": "Komplektā 5 sēnītes.\n\nMateriāli: dabīgs koks, ģipsis un krāsa. Piemērotas plauktiem, mājas augu un sezonas kompozīcijām vai dāvināšanai.\n\nKopšana: tīri ar sausu vai nedaudz mitru drānu. Nemērcē ūdenī un neatstāj tiešos nokrišņos.\n\nPar dāvanu kārbiņu sazinies ar mums.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/dekorativas-senites.jpg",
+          "alt": "Sarkanas un baltas dekoratīvas koka un ģipša sēnītes"
+        }
+      ],
+      "is_washable": false,
+      "sort_order": 1019
+    },
+    {
+      "slug": "engelisi-1-gab",
+      "name": "Auduma eņģelīši — 1 gabals",
+      "price_cents": 400,
+      "category": "davanas",
+      "short_description": "Viegli un gaisīgi auduma eņģelīši mājoklim vai dāvanai. Aptuveni 8–10 cm.",
+      "description": "Komplektā 1 eņģelītis.\n\nSmalks akcents eglītē, pie loga vai svētku galda noformējumā. Dāvana Ziemassvētkos, krustabās, kāzās vai dzimšanas dienā.\n\nPar dāvanu kārbiņu sazinies ar mums.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/engeli.jpg",
+          "alt": "Gaisīgi balti auduma eņģelīši"
+        }
+      ],
+      "is_washable": false,
+      "sort_order": 1020
+    },
+    {
+      "slug": "engelisi-2-gab",
+      "name": "Auduma eņģelīši — 2 gabali",
+      "price_cents": 750,
+      "category": "davanas",
+      "short_description": "Viegli un gaisīgi auduma eņģelīši mājoklim vai dāvanai. Aptuveni 8–10 cm.",
+      "description": "Komplektā 2 eņģelīši.\n\nSmalks akcents eglītē, pie loga vai svētku galda noformējumā. Dāvana Ziemassvētkos, krustabās, kāzās vai dzimšanas dienā.\n\nPar dāvanu kārbiņu sazinies ar mums.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/engeli.jpg",
+          "alt": "Gaisīgi balti auduma eņģelīši"
+        }
+      ],
+      "is_washable": false,
+      "sort_order": 1021
+    },
+    {
+      "slug": "engelisi-3-gab",
+      "name": "Auduma eņģelīši — 3 gabali",
+      "price_cents": 1100,
+      "category": "davanas",
+      "short_description": "Viegli un gaisīgi auduma eņģelīši mājoklim vai dāvanai. Aptuveni 8–10 cm.",
+      "description": "Komplektā 3 eņģelīši.\n\nSmalks akcents eglītē, pie loga vai svētku galda noformējumā. Dāvana Ziemassvētkos, krustabās, kāzās vai dzimšanas dienā.\n\nPar dāvanu kārbiņu sazinies ar mums.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/engeli.jpg",
+          "alt": "Gaisīgi balti auduma eņģelīši"
+        }
+      ],
+      "is_washable": false,
+      "sort_order": 1022
+    },
+    {
+      "slug": "engelisi-4-gab",
+      "name": "Auduma eņģelīši — 4 gabali",
+      "price_cents": 1450,
+      "category": "davanas",
+      "short_description": "Viegli un gaisīgi auduma eņģelīši mājoklim vai dāvanai. Aptuveni 8–10 cm.",
+      "description": "Komplektā 4 eņģelīši.\n\nSmalks akcents eglītē, pie loga vai svētku galda noformējumā. Dāvana Ziemassvētkos, krustabās, kāzās vai dzimšanas dienā.\n\nPar dāvanu kārbiņu sazinies ar mums.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/engeli.jpg",
+          "alt": "Gaisīgi balti auduma eņģelīši"
+        }
+      ],
+      "is_washable": false,
+      "sort_order": 1023
+    },
+    {
+      "slug": "engelisi-5-gab",
+      "name": "Auduma eņģelīši — 5 gabali",
+      "price_cents": 1700,
+      "category": "davanas",
+      "short_description": "Viegli un gaisīgi auduma eņģelīši mājoklim vai dāvanai. Aptuveni 8–10 cm.",
+      "description": "Komplektā 5 eņģelīši.\n\nSmalks akcents eglītē, pie loga vai svētku galda noformējumā. Dāvana Ziemassvētkos, krustabās, kāzās vai dzimšanas dienā.\n\nPar dāvanu kārbiņu sazinies ar mums.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/engeli.jpg",
+          "alt": "Gaisīgi balti auduma eņģelīši"
+        }
+      ],
+      "is_washable": false,
+      "sort_order": 1024
+    },
+    {
+      "slug": "atstarotajs-ar-latvijas-karodzinu",
+      "name": "Atstarotājs ar Latvijas karodziņu",
+      "price_cents": 300,
+      "category": "atstarotaji",
+      "short_description": "Latvisks piekariņš ar Latvijas karodziņa lentīti.",
+      "description": "Ar rokām darināts atstarotājs no izturīgiem materiāliem, piestiprināšanai pie somas, jakas vai mugursomas. Piemērots bērniem un pieaugušajiem.\n\nPar dāvanu kastīti un tās cenu sazinies ar LaLu.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/atstarotaji-karodzins.jpg",
+          "alt": "Atstarotāji ar Latvijas karodziņa lentīti"
+        }
+      ],
+      "is_washable": false,
+      "sort_order": 1025
+    },
+    {
+      "slug": "atstarotajs-ar-tautisku-lentiti",
+      "name": "Atstarotājs ar tautisku lentīti",
+      "price_cents": 300,
+      "category": "atstarotaji",
+      "short_description": "Latvisks piekariņš ar tautiska raksta lentīti.",
+      "description": "Ar rokām darināts atstarotājs no izturīgiem materiāliem, piestiprināšanai pie somas, jakas vai mugursomas. Piemērots bērniem un pieaugušajiem.\n\nPar dāvanu kastīti un tās cenu sazinies ar LaLu.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/atstarotaji-tautiska-lente.jpg",
+          "alt": "Atstarotāji ar tautisku rakstu lentītēm"
+        }
+      ],
+      "is_washable": false,
+      "sort_order": 1026
+    },
+    {
+      "slug": "rokasspradze-patriots-tautiska-lente",
+      "name": "Rokassprādze “Patriots” — tautiska lentīte",
+      "price_cents": 300,
+      "category": "atstarotaji",
+      "short_description": "Roku darināta rokassprādze ar tautisku rakstu.",
+      "description": "Vēlamo garumu norādi pasūtījuma komentārā vai sazinies ar mums. Piemērota bērniem un pieaugušajiem.\n\nKatrs darbs ir darināts ar rokām un var nedaudz atšķirties no attēlā redzamā. Ekrānā redzamie krāsu toņi var atšķirties no faktiskajiem. Par citām krāsām un to salikumiem sazinies ar LaLu.",
+      "images": [
+        {
+          "url": "/images/updates-2026-11/rokasspradzes-patriots.jpg",
+          "alt": "Rokassprādzes ar tautiskiem rakstiem"
+        }
+      ],
+      "is_washable": false,
+      "sort_order": 1027
+    }
+  ]
+}

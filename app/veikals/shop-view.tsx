@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 import { type ShopCategory, type ShopProduct } from "@/lib/shop";
 import { GiftCard } from "./gift-card";
 import { ProductCard } from "./product-card";
@@ -46,11 +47,55 @@ export function ShopView({
   categories,
   products,
 }: ShopViewProps) {
-  const [sort, setSort] = useState<SortKey>("recommended");
-  const [search, setSearch] = useState("");
-  const [availableOnly, setAvailableOnly] = useState(false);
-  const [visibleCount, setVisibleCount] =
-    useState(PRODUCTS_PER_PAGE);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const requestedSort = searchParams.get("sort");
+  const sort: SortKey = requestedSort === "price_asc" || requestedSort === "price_desc" ? requestedSort : "recommended";
+  const search = searchParams.get("q") ?? "";
+  const availableOnly = searchParams.get("available") === "1";
+  const requestedCount = Number(searchParams.get("loaded"));
+  const visibleCount = Number.isSafeInteger(requestedCount) ? Math.max(PRODUCTS_PER_PAGE, requestedCount) : PRODUCTS_PER_PAGE;
+
+  function updateView(values: Record<string, string | null>, resetCount = true) {
+    const params = new URLSearchParams(searchParams.toString());
+    if (resetCount) params.delete("loaded");
+    for (const [key, value] of Object.entries(values)) {
+      if (value) params.set(key, value);
+      else params.delete(key);
+    }
+    const query = params.toString();
+    window.history.replaceState(null, "", `${pathname}${query ? `?${query}` : ""}`);
+  }
+
+  function rememberProduct(productId: string) {
+    const card = document.getElementById(`shop-product-${productId}`);
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const offset = Math.max(96, Math.min(rect.top, window.innerHeight - Math.min(rect.height, 400) - 24));
+    try {
+      sessionStorage.setItem(`lalu:shop-return:${window.location.pathname}${window.location.search}`, JSON.stringify({ productId, offset }));
+    } catch { /* The URL still preserves the loaded products if storage is unavailable. */ }
+  }
+
+  useEffect(() => {
+    const key = `lalu:shop-return:${window.location.pathname}${window.location.search}`;
+    let saved: { productId: string; offset: number };
+    try {
+      const value = sessionStorage.getItem(key);
+      if (!value) return;
+      saved = JSON.parse(value);
+    } catch { return; }
+    // Restore after the router's own scroll handling and after the expanded grid exists.
+    let frame = requestAnimationFrame(() => {
+      frame = requestAnimationFrame(() => {
+        const card = document.getElementById(`shop-product-${saved.productId}`);
+        if (!card || !Number.isFinite(saved.offset)) return;
+        window.scrollTo({ top: window.scrollY + card.getBoundingClientRect().top - saved.offset, behavior: "instant" });
+        try { sessionStorage.removeItem(key); } catch { /* Storage can be disabled. */ }
+      });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [pathname, searchParams]);
 
   const activeCategory = categories.find(
     (category) => category.slug === activeCategorySlug,
@@ -84,7 +129,7 @@ export function ShopView({
       const normalizedSearch = search.trim().toLowerCase();
 
       nextProducts = nextProducts.filter((product) =>
-        product.name.toLowerCase().includes(normalizedSearch),
+        [product.name, ...product.colors, ...(product.options ?? []).map(option => option.name)].some(value => value.toLowerCase().includes(normalizedSearch)),
       );
     }
 
@@ -116,19 +161,6 @@ export function ShopView({
     activeCategorySlugs,
     availableOnly,
     products,
-    search,
-    sort,
-  ]);
-
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => {
-      setVisibleCount(PRODUCTS_PER_PAGE);
-    });
-
-    return () => cancelAnimationFrame(frame);
-  }, [
-    activeCategorySlug,
-    availableOnly,
     search,
     sort,
   ]);
@@ -187,7 +219,7 @@ export function ShopView({
               type="search"
               value={search}
               onChange={(event) =>
-                setSearch(event.target.value)
+                updateView({ q: event.target.value })
               }
             />
           </form>
@@ -260,7 +292,7 @@ export function ShopView({
                 type="checkbox"
                 checked={availableOnly}
                 onChange={(event) =>
-                  setAvailableOnly(event.target.checked)
+                  updateView({ available: event.target.checked ? "1" : null })
                 }
               />
 
@@ -309,9 +341,7 @@ export function ShopView({
                   aria-label="Kārtot produktus"
                   value={sort}
                   onChange={(event) =>
-                    setSort(
-                      event.target.value as SortKey,
-                    )
+                    updateView({ sort: event.target.value === "recommended" ? null : event.target.value })
                   }
                 >
                   {Object.entries(sortLabels).map(
@@ -349,6 +379,7 @@ export function ShopView({
                 {displayedProducts.map((product) => (
                   <ProductCard
                     product={product}
+                    onNavigate={() => rememberProduct(product.id)}
                     key={product.id}
                   />
                 ))}
@@ -360,13 +391,7 @@ export function ShopView({
                     className={styles.loadMoreButton}
                     type="button"
                     onClick={() =>
-                      setVisibleCount((current) =>
-                        Math.min(
-                          current +
-                            PRODUCTS_PER_PAGE,
-                          visibleProducts.length,
-                        ),
-                      )
+                      updateView({ loaded: String(Math.min(visibleCount + PRODUCTS_PER_PAGE, visibleProducts.length)) }, false)
                     }
                   >
                     <span className={styles.loadMoreLabel}>
@@ -402,8 +427,7 @@ export function ShopView({
               <button
                 type="button"
                 onClick={() => {
-                  setSearch("");
-                  setAvailableOnly(false);
+                  updateView({ q: null, available: null });
                 }}
               >
                 Notīrīt filtrus

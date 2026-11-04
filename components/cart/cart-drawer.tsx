@@ -26,6 +26,7 @@ export function CartDrawer() {
           items: items.map((item) => ({
             id: item.id,
             quantity: item.quantity,
+            color: item.color,
           })),
         }),
       });
@@ -70,7 +71,7 @@ export function CartDrawer() {
           <>
             <div className="cart-items">
               {items.map((item) => (
-                <article className="cart-item" key={item.id}>
+                <article className="cart-item" key={item.key}>
                   <Link className="cart-item-image" href={`/veikals/product/${item.slug}/`} onClick={closeCart}>
                     {item.image ? (
                       <Image src={item.image.url} alt={item.image.alt ?? item.name} width={120} height={150} sizes="72px" />
@@ -84,16 +85,16 @@ export function CartDrawer() {
                     </Link>
                     <span>{formatPrice(item.price_cents, item.currency)}</span>
                     <div className="cart-quantity">
-                      <button type="button" aria-label="Samazināt daudzumu" onClick={() => setItemQuantity(item.id, item.quantity - 1)}>
+                      <button type="button" aria-label="Samazināt daudzumu" onClick={() => setItemQuantity(item.key, item.quantity - 1)}>
                         -
                       </button>
                       <span>{item.quantity}</span>
-                      <button type="button" aria-label="Palielināt daudzumu" onClick={() => setItemQuantity(item.id, item.quantity + 1)}>
+                      <button type="button" aria-label="Palielināt daudzumu" onClick={() => setItemQuantity(item.key, item.quantity + 1)}>
                         +
                       </button>
                     </div>
                   </div>
-                  <button className="cart-remove" type="button" aria-label={`Noņemt no groza: ${item.name}`} onClick={() => removeItem(item.id)}>
+                  <button className="cart-remove" type="button" aria-label={`Noņemt no groza: ${item.name}`} onClick={() => removeItem(item.key)}>
                     <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 4 8 8M12 4l-8 8" /></svg>
                   </button>
                 </article>

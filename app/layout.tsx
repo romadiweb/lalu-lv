@@ -40,6 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="lv"
+      data-scroll-behavior="smooth"
       className={`${inter.variable} ${editorial.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>

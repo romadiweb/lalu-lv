@@ -10,8 +10,10 @@ import styles from "./page.module.css";
 
 export function ProductCard({
   product,
+  onNavigate,
 }: {
   product: ShopProduct;
+  onNavigate?: () => void;
 }) {
   const { addItem } = useCart();
 
@@ -19,11 +21,12 @@ export function ProductCard({
     product.stock_status === "sold_out";
 
   return (
-    <article className={styles.productCard}>
+    <article className={styles.productCard} id={`shop-product-${product.id}`}>
       <div className={styles.productMedia}>
         <Link
           className={styles.productImage}
           href={`/veikals/product/${product.slug}/`}
+          onNavigate={onNavigate}
         >
           {product.image ? (
             <Image
@@ -47,7 +50,7 @@ export function ProductCard({
           )}
         </Link>
 
-        <button
+        {product.price_cents === null || product.options?.length || product.colors.length ? <Link className={styles.addToBagButton} href={`/veikals/product/${product.slug}/`} onNavigate={onNavigate} aria-label={`Izvēlēties iespējas: ${product.name}`}><BagIcon /></Link> : <button
           className={styles.addToBagButton}
           type="button"
           disabled={isSoldOut}
@@ -64,7 +67,7 @@ export function ProductCard({
           }
         >
           <BagIcon />
-        </button>
+        </button>}
 
         {isSoldOut ? (
           <span className={styles.productBadge}>
@@ -92,6 +95,7 @@ export function ProductCard({
         <Link
           className={styles.productName}
           href={`/veikals/product/${product.slug}/`}
+          onNavigate={onNavigate}
         >
           {product.name}
         </Link>

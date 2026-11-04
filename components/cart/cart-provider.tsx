@@ -8,6 +8,7 @@ export type CartItemInput = {
   name: string;
   price_cents: number | null;
   currency: string;
+  color?: string;
   image?: {
     url: string;
     alt: string | null;
@@ -15,6 +16,7 @@ export type CartItemInput = {
 };
 
 export type CartItem = CartItemInput & {
+  key: string;
   quantity: number;
 };
 
@@ -37,24 +39,25 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const addItem = useCallback((item: CartItemInput) => {
+    const key = JSON.stringify([item.id, item.color ?? ""]);
     setItems((currentItems) => {
-      const existingItem = currentItems.find((currentItem) => currentItem.id === item.id);
+      const existingItem = currentItems.find((currentItem) => currentItem.key === key);
 
       if (existingItem) {
         return currentItems.map((currentItem) =>
-          currentItem.id === item.id
+          currentItem.key === key
             ? { ...currentItem, quantity: currentItem.quantity + 1 }
             : currentItem,
         );
       }
 
-      return [...currentItems, { ...item, quantity: 1 }];
+      return [...currentItems, { ...item, key, quantity: 1 }];
     });
     setIsCartOpen(true);
   }, []);
 
   const removeItem = useCallback((id: string) => {
-    setItems((currentItems) => currentItems.filter((item) => item.id !== id));
+    setItems((currentItems) => currentItems.filter((item) => item.key !== id));
   }, []);
 
   const setItemQuantity = useCallback((id: string, quantity: number) => {
@@ -64,7 +67,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
 
     setItems((currentItems) =>
-      currentItems.map((item) => (item.id === id ? { ...item, quantity } : item)),
+      currentItems.map((item) => (item.key === id ? { ...item, quantity } : item)),
     );
   }, [removeItem]);
 

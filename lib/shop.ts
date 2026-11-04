@@ -1,5 +1,6 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
+import { groupShopProducts, type ProductOption } from "./product-options";
 export { formatPrice } from "@/lib/format";
 
 export type ShopCategory = {
@@ -18,6 +19,7 @@ export type ShopProduct = {
   slug: string;
   name: string;
   short_description: string | null;
+  description: string | null;
   price_cents: number | null;
   currency: string;
   stock_status: "in_stock" | "made_to_order" | "sold_out";
@@ -35,6 +37,8 @@ export type ShopProduct = {
   } | null;
   categorySlugs: string[];
   colors: string[];
+  options?: ProductOption[];
+  aliases?: string[];
 };
 
 type ProductRow = Omit<ShopProduct, "image" | "images" | "categorySlugs" | "colors"> & {
@@ -91,6 +95,7 @@ export async function getShopData() {
           slug,
           name,
           short_description,
+          description,
           price_cents,
           currency,
           stock_status,
@@ -135,6 +140,7 @@ export async function getShopData() {
       slug: product.slug,
       name: product.name,
       short_description: product.short_description,
+      description: product.description,
       price_cents: product.price_cents,
       currency: product.currency,
       stock_status: product.stock_status,
@@ -153,77 +159,13 @@ export async function getShopData() {
 
   return {
     categories: (categoriesResponse.data ?? []) as ShopCategory[],
-    products,
+    products: groupShopProducts(products),
   };
 }
 
 export async function getShopProductBySlug(slug: string) {
-  noStore();
-
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("shop_products")
-    .select(
-      `
-        id,
-        slug,
-        name,
-        short_description,
-        price_cents,
-        currency,
-        stock_status,
-        is_washable,
-        is_top_product,
-        is_limited_stock,
-        old_url,
-        shop_product_images(url, alt, is_primary, sort_order),
-        shop_product_categories(shop_categories(slug)),
-          shop_product_colors(shop_colors(name))
-      `,
-    )
-    .eq("status", "published")
-    .eq("slug", slug)
-    .maybeSingle();
-
-  if (error) {
-    throw new Error(error.message);
-  }
-
-  if (!data) {
-    return null;
-  }
-
-  const product = data as unknown as ProductRow;
-  const images = [...(product.shop_product_images ?? [])].sort((a, b) => {
-    if (a.is_primary !== b.is_primary) {
-      return a.is_primary ? -1 : 1;
-    }
-
-    return a.sort_order - b.sort_order;
-  });
-
-  const productImages = images.map((image) => ({
-    url: image.url,
-    alt: image.alt,
-  }));
-
-  return {
-    id: product.id,
-    slug: product.slug,
-    name: product.name,
-    short_description: product.short_description,
-    price_cents: product.price_cents,
-    currency: product.currency,
-    stock_status: product.stock_status,
-    is_washable: product.is_washable,
-    is_top_product: product.is_top_product,
-    is_limited_stock: product.is_limited_stock,
-    colors: getProductColors(product),
-    old_url: product.old_url,
-    images: productImages,
-    image: productImages[0] ?? null,
-    categorySlugs: (product.shop_product_categories ?? [])
-      .map((entry) => getCategorySlug(entry.shop_categories))
-      .filter((categorySlug): categorySlug is string => Boolean(categorySlug)),
-  };
+  const { products } = await getShopData();
+  const product = products.find(item => item.slug === slug || item.aliases?.includes(slug));
+  if (!product) return null;
+  return { ...product, initialOptionId: product.options?.find(option => option.slug === slug)?.id };
 }

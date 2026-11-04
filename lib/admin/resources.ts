@@ -248,6 +248,7 @@ export const adminResources: AdminResource[] = [
         optionsFrom: { table: "shop_colors", labelColumn: "name", valueColumn: "id", orderBy: "sort_order asc, name asc" },
         help: "Izvēlies vienu vai vairākas krāsas vai atstāj visas neatzīmētas. Sarakstu pārvaldi sadaļā “Produktu krāsas”." },
       { name: "short_description", label: "Īsais apraksts", type: "textarea" },
+      { name: "description", label: "Pilnais apraksts", type: "textarea", help: "Atdali rindkopas ar tukšu rindu." },
       { name: "price_cents", label: "Cena EUR", type: "money", help: "Piemēram: 30.00 vai 30,00. Datubāzē saglabājas centos." },
       { name: "currency", label: "Valūta", type: "text" },
       {

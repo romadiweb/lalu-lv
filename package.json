@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "test:shop": "node --test tests/shop-options.test.mjs",
     "cms:check": "node --env-file-if-exists=.env.local scripts/check-admin.mjs",
     "cms:migrate": "node --env-file-if-exists=.env.local scripts/apply-sql.mjs supabase/migrations/20261007094500_create_admin_cms.sql",
     "cms:migrate:reviews": "node --env-file-if-exists=.env.local scripts/apply-sql.mjs supabase/migrations/20261014120000_create_homepage_reviews.sql",

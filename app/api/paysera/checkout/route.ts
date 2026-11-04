@@ -1,53 +1,13 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getPayseraClient, getPayseraTestFlag, getPublicBaseUrl } from "@/lib/paysera";
+import { normalizeCheckoutItems, makeOrderItem, type CheckoutItem, type CheckoutProduct } from "@/lib/checkout-items";
 
 export const runtime = "nodejs";
-
-type CheckoutItem = {
-  id: string;
-  quantity: number;
-};
 
 type CheckoutRequest = {
   items?: CheckoutItem[];
 };
-
-type ProductRow = {
-  id: string;
-  slug: string;
-  name: string;
-  price_cents: number | null;
-  currency: string;
-  stock_status: string;
-};
-
-const MAX_QUANTITY = 99;
-
-function normalizeItems(items: CheckoutRequest["items"]) {
-  if (!Array.isArray(items)) {
-    return [];
-  }
-
-  const quantities = new Map<string, number>();
-
-  for (const item of items) {
-    if (!item || typeof item.id !== "string") {
-      continue;
-    }
-
-    const quantity = Math.min(Math.max(Math.floor(Number(item.quantity) || 0), 0), MAX_QUANTITY);
-
-    if (quantity > 0) {
-      quantities.set(item.id, (quantities.get(item.id) ?? 0) + quantity);
-    }
-  }
-
-  return Array.from(quantities, ([id, quantity]) => ({
-    id,
-    quantity: Math.min(quantity, MAX_QUANTITY),
-  }));
-}
 
 export async function POST(request: Request) {
   let body: CheckoutRequest;
@@ -58,7 +18,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Nederīgs pieprasījums." }, { status: 400 });
   }
 
-  const items = normalizeItems(body.items);
+  const items = normalizeCheckoutItems(body.items);
 
   if (!items.length) {
     return NextResponse.json({ error: "Grozs ir tukšs." }, { status: 400 });
@@ -68,7 +28,7 @@ export async function POST(request: Request) {
   const productIds = items.map((item) => item.id);
   const { data, error } = await supabase
     .from("shop_products")
-    .select("id, slug, name, price_cents, currency, stock_status")
+    .select("id, slug, name, price_cents, currency, stock_status, shop_product_colors(shop_colors(name))")
     .in("id", productIds)
     .eq("status", "published");
 
@@ -76,24 +36,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Neizdevās pārbaudīt grozu." }, { status: 500 });
   }
 
-  const products = new Map((data as ProductRow[]).map((product) => [product.id, product]));
-  const orderItems = items.map((item) => {
-    const product = products.get(item.id);
-
-    if (!product || product.stock_status === "sold_out" || product.price_cents === null) {
-      return null;
-    }
-
-    return {
-      product_id: product.id,
-      product_slug: product.slug,
-      product_name: product.name,
-      quantity: item.quantity,
-      unit_price_cents: product.price_cents,
-      currency: product.currency,
-      line_total_cents: product.price_cents * item.quantity,
-    };
-  });
+  const products = new Map((data as unknown as CheckoutProduct[]).map((product) => [product.id, product]));
+  const orderItems = items.map((item) => makeOrderItem(products.get(item.id), item));
 
   if (orderItems.some((item) => item === null)) {
     return NextResponse.json(
