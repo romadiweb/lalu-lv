@@ -9,6 +9,28 @@
     linear-gradient(180deg, #fffdf9 0%, var(--canvas) 34rem);
 }
 
+body > main.page-shell {
+  background-image:
+    url("/decorative-thread.svg"),
+    url("/decorative-thread.svg"),
+    url("/decorative-thread.svg"),
+    radial-gradient(circle at 18% 18%, rgb(200 187 251 / 0.24), transparent 24rem),
+    linear-gradient(180deg, #fffdf9 0%, var(--canvas) 34rem);
+  background-repeat: no-repeat;
+  background-position:
+    right -8rem top 78rem,
+    left -13rem top 194rem,
+    right -10rem top 318rem,
+    left top,
+    left top;
+  background-size:
+    min(760px, 62vw) auto,
+    min(660px, 54vw) auto,
+    min(720px, 58vw) auto,
+    auto,
+    auto;
+}
+
 .opening-panel {
   position: relative;
   z-index: 1;
@@ -407,6 +429,21 @@
 }
 
 @media (max-width: 720px) {
+  body > main.page-shell {
+    background-position:
+      right -14rem top 62rem,
+      left -14rem top 135rem,
+      right -15rem top 246rem,
+      left top,
+      left top;
+    background-size:
+      520px auto,
+      470px auto,
+      510px auto,
+      auto,
+      auto;
+  }
+
   .opening-panel {
     margin-bottom: 88px;
   }

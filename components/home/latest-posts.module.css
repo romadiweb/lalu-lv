@@ -94,12 +94,6 @@
   outline-offset: -5px;
 }
 
-.card:hover,
-.card:focus-within {
-  background: #292624;
-  color: #fffdf9;
-}
-
 .imageWrap {
   position: relative;
   aspect-ratio: 4 / 3;
@@ -136,12 +130,6 @@
     transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.card:hover .image,
-.card:focus-within .image {
-  filter: brightness(0.84);
-  transform: scale(1.025);
-}
-
 .cardBody {
   display: flex;
   flex-direction: column;
@@ -175,21 +163,6 @@
   font-size: 12px;
   font-variant-numeric: tabular-nums;
   transition: color 300ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.card:hover .cardBody > span,
-.card:focus-within .cardBody > span {
-  color: #d8ceff;
-}
-
-.card:hover .cardBody h3,
-.card:focus-within .cardBody h3 {
-  color: #fffdf9;
-}
-
-.card:hover .cardBody time,
-.card:focus-within .cardBody time {
-  color: rgb(255 253 249 / 0.72);
 }
 
 .archiveRow {
@@ -238,6 +211,30 @@
 .archiveRow a:hover svg,
 .archiveRow a:focus-visible svg {
   transform: translateX(4px);
+}
+
+@media (min-width: 721px) and (hover: hover) {
+  .card:hover {
+    background: #292624;
+    color: #fffdf9;
+  }
+
+  .card:hover .image {
+    filter: brightness(0.84);
+    transform: scale(1.025);
+  }
+
+  .card:hover .cardBody > span {
+    color: #d8ceff;
+  }
+
+  .card:hover .cardBody h3 {
+    color: #fffdf9;
+  }
+
+  .card:hover .cardBody time {
+    color: rgb(255 253 249 / 0.72);
+  }
 }
 
 @media (max-width: 980px) {

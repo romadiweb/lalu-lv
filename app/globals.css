@@ -47,6 +47,19 @@ body {
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
 }
 
+body > main:not(.payment-status-page) {
+  background-image:
+    url("/decorative-thread.svg"),
+    url("/decorative-thread.svg");
+  background-repeat: no-repeat;
+  background-position:
+    right -8rem top 8rem,
+    left -13rem top 112rem;
+  background-size:
+    min(760px, 62vw) auto,
+    min(660px, 54vw) auto;
+}
+
 ::selection {
   background: var(--primary);
   color: var(--ink);
@@ -145,5 +158,16 @@ button:focus-visible {
   .mobile-category-list a,
   .mobile-menu-actions {
     transition-delay: 0ms !important;
+  }
+}
+
+@media (max-width: 720px) {
+  body > main:not(.payment-status-page) {
+    background-position:
+      right -19rem top 5rem,
+      left -18rem top 94rem;
+    background-size:
+      520px auto,
+      470px auto;
   }
 }
