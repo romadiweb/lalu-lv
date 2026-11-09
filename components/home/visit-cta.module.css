@@ -6,6 +6,7 @@
 }
 
 .panel {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
   gap: clamp(48px, 8vw, 112px);
@@ -15,6 +16,15 @@
   border-radius: clamp(20px, 2.5vw, 32px);
   background: var(--primary);
   color: var(--ink);
+}
+
+.panel::before {
+  position: absolute;
+  inset: 15px;
+  border: 1.5px dashed rgb(46 41 64 / 34%);
+  border-radius: clamp(14px, 2vw, 24px);
+  content: "";
+  pointer-events: none;
 }
 
 .panel h2 {
@@ -109,6 +119,11 @@
     gap: 28px;
     padding: 30px 24px 26px;
     border-radius: var(--radius-xl);
+  }
+
+  .panel::before {
+    inset: 10px;
+    border-radius: calc(var(--radius-xl) - 7px);
   }
 
   .panel h2 {
