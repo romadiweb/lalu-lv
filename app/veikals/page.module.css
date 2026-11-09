@@ -358,8 +358,29 @@
     transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.productImageContain {
+  background: #f4f4f2;
+}
+
+.productImageContain img {
+  object-fit: contain;
+  transform: rotate(-90deg) scale(1.7);
+}
+
+.productImageAngels img {
+  object-position: 74% center;
+}
+
+.productImageReflectors img {
+  object-position: center 72%;
+}
+
 .productCard:hover .productImage img {
   transform: scale(1.025);
+}
+
+.productCard:hover .productImageContain img {
+  transform: rotate(-90deg) scale(1.74);
 }
 
 .imageFallback {

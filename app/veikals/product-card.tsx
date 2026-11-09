@@ -8,6 +8,31 @@ import { formatPrice } from "@/lib/format";
 import { type ShopProduct } from "@/lib/shop";
 import styles from "./page.module.css";
 
+function productImageClass(product: ShopProduct) {
+  if (product.slug === "grabulis-gliemezitis") {
+    return `${styles.productImage} ${styles.productImageContain}`;
+  }
+
+  if (product.slug === "engelisi") {
+    return `${styles.productImage} ${styles.productImageAngels}`;
+  }
+
+  if (product.slug === "atstarotajs-ar-tautisku-lentiti") {
+    return `${styles.productImage} ${styles.productImageReflectors}`;
+  }
+
+  return styles.productImage;
+}
+
+function needsFullQualityThumbnail(product: ShopProduct) {
+  return [
+    "grabulis-gliemezitis",
+    "engelisi",
+    "atstarotajs-ar-tautisku-lentiti",
+    "rokasspradze-patriots-tautiska-lente",
+  ].includes(product.slug);
+}
+
 export function ProductCard({
   product,
   onNavigate,
@@ -24,7 +49,7 @@ export function ProductCard({
     <article className={styles.productCard} id={`shop-product-${product.id}`}>
       <div className={styles.productMedia}>
         <Link
-          className={styles.productImage}
+          className={productImageClass(product)}
           href={`/veikals/product/${product.slug}/`}
           onNavigate={onNavigate}
         >
@@ -36,11 +61,13 @@ export function ProductCard({
               }
               width={480}
               height={560}
+              quality={95}
+              unoptimized={needsFullQualityThumbnail(product)}
               sizes="
-                (max-width: 600px) 50vw,
-                (max-width: 900px) 33vw,
-                (max-width: 1180px) 25vw,
-                220px
+                (max-width: 760px) 46vw,
+                (max-width: 1050px) 30vw,
+                (max-width: 1320px) 23vw,
+                240px
               "
             />
           ) : (
