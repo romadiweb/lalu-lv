@@ -8,8 +8,10 @@ import { createClient } from "@supabase/supabase-js";
 // Preview by default. Apply after deploying public assets:
 // node --env-file=.env.local scripts/import-november-content.mjs --apply
 // Add --upload-images to publish photos to the existing CMS storage bucket first.
-const content = JSON.parse(await readFile(new URL("../data/content-updates/2026-11.json", import.meta.url), "utf8"));
+const update = process.argv.includes("--november-11") ? "2026-11-11" : "2026-11";
+const content = JSON.parse(await readFile(new URL(`../data/content-updates/${update}.json`, import.meta.url), "utf8"));
 const apply = process.argv.includes("--apply");
+const productStatus = process.argv.includes("--draft") ? "draft" : "published";
 const slugs = new Set();
 for (const record of [...content.workshops, ...content.products]) {
   if (slugs.has(record.slug)) throw new Error(`Duplicate slug: ${record.slug}`);
@@ -58,6 +60,12 @@ try {
   const backupDirectory = join(tmpdir(), "lalu-content-backups");
   await mkdir(backupDirectory, { recursive: true });
   await writeFile(join(backupDirectory, `november-${Date.now()}.json`), JSON.stringify(backup, null, 2));
+  if (update === "2026-11-11") {
+    await client.query(`insert into public.shop_categories (slug,name,parent_id,sort_order)
+      select 'tamboreti-augli-un-partika','Tamborēti augļi un pārtika',id,100
+      from public.shop_categories where slug='rotallietas'
+      on conflict (slug) do nothing`);
+  }
   const categories = new Map((await client.query("select slug,id from public.shop_categories")).rows.map(c => [c.slug,c.id]));
   for (const w of content.workshops) {
     await client.query(`insert into public.workshops (slug,title,intro,details,duration_label,price_label,travel_label,image_url,image_alt,cta_label,cta_href,status,sort_order)
@@ -69,9 +77,11 @@ try {
     const categoryId = categories.get(p.category);
     if (!categoryId) throw new Error(`Missing category: ${p.category}`);
     const { rows: [product] } = await client.query(`insert into public.shop_products (slug,name,short_description,description,price_cents,currency,status,stock_status,is_washable,sort_order,published_at)
-      values ($1,$2,$3,$4,$5,'EUR','published','in_stock',$6,$7,now())
-      on conflict (slug) do update set name=excluded.name,short_description=excluded.short_description,description=excluded.description,price_cents=excluded.price_cents,is_washable=excluded.is_washable
-      returning id`, [p.slug,p.name,p.short_description,p.description,p.price_cents,p.is_washable,p.sort_order]);
+      values ($1,$2,$3,$4,$5,'EUR',$9,$8,$6,$7,case when $9 = 'published' then now() end)
+      on conflict (slug) do update set name=excluded.name,short_description=excluded.short_description,description=excluded.description,price_cents=excluded.price_cents,is_washable=excluded.is_washable,
+        status=case when shop_products.status='draft' and excluded.status='published' then 'published' else shop_products.status end,
+        published_at=coalesce(shop_products.published_at,excluded.published_at)
+      returning id`, [p.slug,p.name,p.short_description,p.description,p.price_cents,p.is_washable,p.sort_order,p.stock_status ?? "in_stock",productStatus]);
     await client.query(`insert into public.shop_product_categories (product_id,category_id,is_primary,sort_order) values ($1,$2,true,0)
       on conflict (product_id,category_id) do nothing`, [product.id, categoryId]);
     for (const [index,image] of p.images.entries()) {

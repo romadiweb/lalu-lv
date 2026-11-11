@@ -17,6 +17,15 @@ type Family = { slug: string; name: string; color?: boolean; packs?: boolean };
 
 function familyFor(product: ShopProduct): Family | null {
   const slug = product.slug;
+  const option = slug.match(/^(.+)-opcija-(krasa|komplekts|iepakojums)-\d+(?:-davanu-kastite)?$/);
+  if (option) {
+    return {
+      slug: option[1],
+      name: product.name.split(" — ")[0].replace(/ dāvanu kastītē$/, ""),
+      color: option[2] === "krasa",
+      packs: option[2] === "komplekts",
+    };
+  }
   if (/^grabulis-pelite-(sarkanas|pelekas)-nr-\d/.test(slug)) return { slug: "grabulis-pelite", name: "Grabulītis “Pelīte”", color: true };
   if (/^grabulis-gliemezitis-nr-\d+$/.test(slug)) return { slug: "grabulis-gliemezitis", name: "Grabulītis “Gliemezītis”", color: true };
   if (/^davanu-komplekts-kengurs(?:-davanu-kastite)?$/.test(slug)) return { slug: "davanu-komplekts-kengurs", name: "Dāvanu komplekts jaundzimušajam “Ķengurs”" };
@@ -50,7 +59,7 @@ export function groupShopProducts(products: ShopProduct[]): ShopProduct[] {
     for (const member of members) {
       // This older overview record has no specific colour; the colour-specific records provide its choices.
       if (family?.slug === "grauzamrinkis-un-grabulitis-pelite" && member.slug.endsWith("-berniem")) continue;
-      const color = family?.color ? member.name.split(" — ")[1]?.replace(/, Nr\. \d+.*$/, "").trim() ?? null : null;
+      const color = family?.color ? member.name.split(" — ")[1]?.replace(/ dāvanu kastītē$/, "").replace(/, Nr\. \d+.*$/, "").trim() ?? null : null;
       const giftBox = member.slug.endsWith("-davanu-kastite");
       const pack = family?.packs ? member.name.split(" — ")[1] ?? null : null;
       const key = `${color}|${giftBox}|${pack}`;
