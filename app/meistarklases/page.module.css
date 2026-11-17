@@ -498,3 +498,14 @@
 .workshopDialog { margin: auto; }
 .readMore svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .dialogDetails h3 { margin: 28px 0 12px; font-size: 18px; font-weight: 600; letter-spacing: -0.02em; }
+
+.offerTable {
+  width: 100%;
+  margin: 24px 0;
+  border-collapse: collapse;
+  font-size: 14px;
+  text-align: left;
+}
+.offerTable caption { margin-bottom: 8px; font-weight: 600; text-align: left; }
+.offerTable th, .offerTable td { padding: 10px 8px; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+.offerTable td { white-space: nowrap; }

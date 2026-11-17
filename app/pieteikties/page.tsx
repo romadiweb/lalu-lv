@@ -3,6 +3,7 @@ import { SiteFooter } from "@/components/footer/site-footer";
 import { SiteHeader } from "@/components/navigation/site-header";
 import { getPublishedWorkshopOptions } from "@/lib/content";
 import { PieteiktiesForm } from "./pieteikties-form";
+import { flowerWorkshops } from "../fantazijas-ziedi/flower-content";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -14,7 +15,10 @@ export const metadata: Metadata = {
 export default async function PieteiktiesPage({ searchParams }: PageProps<"/pieteikties">) {
   const { veids, meistarklase, prece } = await searchParams;
   const isCustomOrder = veids === "individuals-pasutijums";
-  const workshopOptions = await getPublishedWorkshopOptions();
+  const workshopOptions = [
+    ...await getPublishedWorkshopOptions(),
+    ...flowerWorkshops.map(({ id, title }) => ({ id, title: `Fantāzijas ziedi · ${title}` })),
+  ];
 
   return (
     <main className={styles.pageShell}>

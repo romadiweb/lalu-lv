@@ -4,6 +4,8 @@ import Link from "next/link";
 import { SiteFooter } from "@/components/footer/site-footer";
 import { SiteHeader } from "@/components/navigation/site-header";
 import { getFlowerGalleryBySlug } from "@/lib/content";
+import { WorkshopCarousel } from "../meistarklases/workshop-carousel";
+import { flowerGalleryPhotos, flowerWorkshopOffers, flowerWorkshops } from "./flower-content";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -27,7 +29,7 @@ const offeringItems = [
   },
   {
     title: "Individuāli pasūtījumi",
-    text: "Ziedu un kompozīciju izgatavošana pēc Tavas ieceres un vajadzībām.",
+    text: "Ziedu un aptuveni 1 m augstu kompozīciju izgatavošana pēc Tavas ieceres. Kompozīciju noma pēc vienošanās.",
   },
 ];
 
@@ -35,7 +37,7 @@ export default async function FantasyFlowersPage() {
   const data = await getFlowerGalleryBySlug("fantazijas-ziedi");
   const items = data?.items ?? [];
 
-  const visibleItems = items.slice(0, 7);
+  const visibleItems = [...items, ...flowerGalleryPhotos];
 
   return (
     <main className={styles.pageShell}>
@@ -53,8 +55,7 @@ export default async function FantasyFlowersPage() {
           </h1>
 
           <p className={styles.introLead}>
-            Lielformāta ziedi un kompozīcijas svētkiem,
-            fotosesijām, noformējumam un īpašām iecerēm.
+            Ienāc pasakā, kur ziedi nekad nenovīst! Lielformāta ziedi svētkiem un fotosesijām, meistarklasēm, iegādei un nomai.
           </p>
         </div>
 
@@ -89,6 +90,12 @@ export default async function FantasyFlowersPage() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section className={styles.workshopSection} aria-labelledby="flower-workshops-title">
+        <h2 id="flower-workshops-title">Lielizmēra ziedu meistarklases</h2>
+        <p>Radi cilvēka auguma ziedu un apgūsti ziedlapu veidošanu soli pa solim. Ziedi ir izturīgi, kopjami un formējami.</p>
+        <WorkshopCarousel workshops={flowerWorkshops} offers={flowerWorkshopOffers} />
       </section>
 
       <section
@@ -133,7 +140,7 @@ export default async function FantasyFlowersPage() {
             <figure
               className={`${styles.tile} ${
                 styles.imageTile
-              } ${styles[`imageTile${index + 1}`]}`}
+              } ${styles[`imageTile${index + 1}`] ?? styles.galleryPhoto}`}
               key={item.id}
             >
               <Image
@@ -194,13 +201,6 @@ export default async function FantasyFlowersPage() {
             </div>
           </Link>
 
-          {items.length === 0 ? (
-            <div
-              className={`${styles.tile} ${styles.emptyTile}`}
-            >
-              <span>Fantāzijas ziedi</span>
-            </div>
-          ) : null}
         </div>
       </section>
 

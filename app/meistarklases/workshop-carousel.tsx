@@ -6,7 +6,9 @@ import { useEffect, useRef, useState } from "react";
 import { type Workshop } from "@/lib/content-types";
 import styles from "./page.module.css";
 
-export function WorkshopCarousel({ workshops }: { workshops: Workshop[] }) {
+type OfferRow = { label: string; duration: string; price: string };
+
+export function WorkshopCarousel({ workshops, offers }: { workshops: Workshop[]; offers?: Record<string, OfferRow[]> }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [showControls, setShowControls] = useState(false);
   const [selectedWorkshop, setSelectedWorkshop] = useState<Workshop | null>(null);
@@ -94,7 +96,7 @@ export function WorkshopCarousel({ workshops }: { workshops: Workshop[] }) {
                 src={item.image_url}
                 alt={item.image_alt}
                 fill
-                sizes="(max-width: 700px) 78vw, (max-width: 1100px) 38vw, 260px"
+                sizes="(max-width: 700px) min(78vw, 320px), (max-width: 1100px) max(250px, 44vw), min(31vw, 370px)"
               />
             </div>
             <div className={styles.masterclassCopy}>
@@ -115,12 +117,12 @@ export function WorkshopCarousel({ workshops }: { workshops: Workshop[] }) {
           </article>
         ))}
       </div>
-      {selectedWorkshop ? <WorkshopDialog workshop={selectedWorkshop} onClose={() => setSelectedWorkshop(null)} /> : null}
+      {selectedWorkshop ? <WorkshopDialog workshop={selectedWorkshop} offers={offers?.[selectedWorkshop.id]} onClose={() => setSelectedWorkshop(null)} /> : null}
     </div>
   );
 }
 
-function WorkshopDialog({ workshop, onClose }: { workshop: Workshop; onClose: () => void }) {
+function WorkshopDialog({ workshop, offers, onClose }: { workshop: Workshop; offers?: OfferRow[]; onClose: () => void }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -144,7 +146,7 @@ function WorkshopDialog({ workshop, onClose }: { workshop: Workshop; onClose: ()
     }}>
       <div className={styles.dialogLayout}>
         <div className={styles.dialogVisual}>
-          <Image src={workshop.image_url} alt={workshop.image_alt} width={900} height={900} sizes="(max-width: 700px) 100vw, 400px" />
+          <Image src={workshop.image_url} alt={workshop.image_alt} width={900} height={900} sizes="(max-width: 700px) calc(100vw - 24px), 425px" />
         </div>
         <div className={styles.dialogCopy}>
           <button type="button" className={styles.dialogClose} onClick={close} aria-label="Aizvērt meistarklases aprakstu" autoFocus>
@@ -162,6 +164,15 @@ function WorkshopDialog({ workshop, onClose }: { workshop: Workshop; onClose: ()
               return heading ? <section key={index}><h3>{heading}</h3>{detail.slice(heading.length).trim() ? <p>{detail.slice(heading.length).trim()}</p> : null}</section> : <p key={index}>{detail}</p>;
             })}
           </div>
+          {offers?.length ? (
+            <table className={styles.offerTable}>
+              <caption>Piedāvājums</caption>
+              <thead><tr><th scope="col">Pakalpojums</th><th scope="col">Ilgums</th><th scope="col">Cena</th></tr></thead>
+              <tbody>{offers.map(row => (
+                <tr key={row.label}><th scope="row">{row.label}</th><td>{row.duration}</td><td>{row.price}</td></tr>
+              ))}</tbody>
+            </table>
+          ) : null}
           {workshop.travel_label ? <p className={styles.travelNote}>{workshop.travel_label}</p> : null}
           <Link className={styles.dialogCta} href={`${workshop.cta_href || "/pieteikties/"}${(workshop.cta_href || "").includes("?") ? "&" : "?"}veids=meistarklase&meistarklase=${encodeURIComponent(workshop.id)}`}>
             {workshop.cta_label || "Pieteikties meistarklasei"}
