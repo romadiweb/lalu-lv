@@ -8,7 +8,19 @@ import { formatPrice } from "@/lib/format";
 import { type ShopProduct } from "@/lib/shop";
 import styles from "./page.module.css";
 
+const portraitProductSlugs = new Set([
+  "skaista-roku-darinata-lalu-lelle-ar-sominu-milumam-priekam-skaistiem-mirkliem",
+  "zaku-meitenite-kosa-kleitina",
+  "adita-miega-pele-pelu-puika-bikses",
+  "tamborets-rotalu-lacis-pekainis",
+  "raibs-tamborets-kakis-ar-baltu-purninu-un-asti",
+]);
+
 function productImageClass(product: ShopProduct) {
+  if (portraitProductSlugs.has(product.slug)) {
+    return `${styles.productImage} ${styles.productImagePortrait}`;
+  }
+
   if (product.slug === "grabulis-gliemezitis") {
     return `${styles.productImage} ${styles.productImageContain}`;
   }
@@ -24,13 +36,28 @@ function productImageClass(product: ShopProduct) {
   return styles.productImage;
 }
 
-function needsFullQualityThumbnail(product: ShopProduct) {
-  return [
-    "grabulis-gliemezitis",
-    "engelisi",
-    "atstarotajs-ar-tautisku-lentiti",
-    "rokasspradze-patriots-tautiska-lente",
-  ].includes(product.slug);
+function productImagePosition(product: ShopProduct) {
+  const focalPositions: Record<string, string> = {
+    "skaista-roku-darinata-lalu-lelle-ar-sominu-milumam-priekam-skaistiem-mirkliem": "center 37%",
+    "zaku-meitenite-kosa-kleitina": "center 15%",
+    "adita-miega-pele-pelu-puika-bikses": "center 30%",
+    "tamborets-rotalu-lacis-pekainis": "center 24%",
+    "raibs-tamborets-kakis-ar-baltu-purninu-un-asti": "center 25%",
+  };
+
+  return focalPositions[product.slug];
+}
+
+function shouldUseOriginalImage(product: ShopProduct) {
+  return Boolean(
+    product.image?.url.startsWith("/images/legacy-products/") ||
+    [
+      "grabulis-gliemezitis",
+      "engelisi",
+      "atstarotajs-ar-tautisku-lentiti",
+      "rokasspradze-patriots-tautiska-lente",
+    ].includes(product.slug),
+  );
 }
 
 export function ProductCard({
@@ -62,7 +89,8 @@ export function ProductCard({
               width={480}
               height={560}
               quality={95}
-              unoptimized={needsFullQualityThumbnail(product)}
+              unoptimized={shouldUseOriginalImage(product)}
+              style={{ objectPosition: productImagePosition(product) }}
               sizes="
                 (max-width: 760px) 46vw,
                 (max-width: 1050px) 30vw,

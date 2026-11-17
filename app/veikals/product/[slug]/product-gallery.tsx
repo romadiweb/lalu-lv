@@ -8,10 +8,20 @@ import styles from "./page.module.css";
 export function ProductGallery({ images, name }: { images: ShopProduct["images"]; name: string }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const selected = images[selectedIndex];
+  const useOriginalImage = selected?.url.startsWith("/images/legacy-products/");
 
   return <div className={styles.galleryStack}>
     <div className={styles.galleryPanel}>
-      {selected ? <Image src={selected.url} alt={selected.alt ?? name} width={840} height={980} sizes="(max-width: 900px) 100vw, 54vw" priority /> : <span>LaLu</span>}
+      {selected ? <Image
+        className={styles.galleryImage}
+        src={selected.url}
+        alt={selected.alt ?? name}
+        fill
+        quality={95}
+        unoptimized={useOriginalImage}
+        sizes="(max-width: 560px) calc(100vw - 20px), (max-width: 900px) min(calc(100vw - 28px), 620px), 620px"
+        priority
+      /> : <span>LaLu</span>}
     </div>
     {images.length > 1 ? <div className={styles.thumbnailGrid} aria-label="Produkta attēli">
       {images.map((image, index) => <button className={styles.thumbnail} type="button" key={`${image.url}-${index}`} aria-label={`Skatīt attēlu: ${image.alt ?? `${name}, ${index + 1}`}`} aria-pressed={index === selectedIndex} onClick={() => setSelectedIndex(index)}>

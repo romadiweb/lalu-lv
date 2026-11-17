@@ -18,6 +18,18 @@ type SortKey = "recommended" | "price_asc" | "price_desc";
 
 const PRODUCTS_PER_PAGE = 20;
 
+const portraitFirstRow = [
+  "skaista-roku-darinata-lalu-lelle-ar-sominu-milumam-priekam-skaistiem-mirkliem",
+  "zaku-meitenite-kosa-kleitina",
+  "adita-miega-pele-pelu-puika-bikses",
+  "tamborets-rotalu-lacis-pekainis",
+  "raibs-tamborets-kakis-ar-baltu-purninu-un-asti",
+];
+
+const portraitFirstRowOrder = new Map(
+  portraitFirstRow.map((slug, index) => [slug, index]),
+);
+
 const sortLabels: Record<SortKey, string> = {
   recommended: "Ieteicamais",
   price_asc: "Cena: zemākā",
@@ -137,6 +149,19 @@ export function ShopView({
       nextProducts = nextProducts.filter(
         (product) => product.stock_status !== "sold_out",
       );
+    }
+
+    if (
+      sort === "recommended" &&
+      !activeCategorySlug &&
+      !search.trim() &&
+      !availableOnly
+    ) {
+      nextProducts.sort((a, b) => {
+        const aOrder = portraitFirstRowOrder.get(a.slug) ?? Number.MAX_SAFE_INTEGER;
+        const bOrder = portraitFirstRowOrder.get(b.slug) ?? Number.MAX_SAFE_INTEGER;
+        return aOrder - bOrder;
+      });
     }
 
     if (sort === "price_asc") {
